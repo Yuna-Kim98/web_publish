@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Tag</title>
+    <style>
+        table, th, td {
+            border: 1px solid gray;
+            border-collapse: collapse; /*border간의 공백을 없애주는 속성*/
+        }
+        table {
+            width: 50%; /* %로 지정시 끝이 정해져있는 너비만 조정 가능함*/
+            /* height: 300px; */
+        }
+        th, td {
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <table><!--스타일 속성은 컨텐츠를 가지고 있는 table, th, td에만 적용됨-->
+        <thead>
+        <tr><!--table row 행-->
+            <th scope="col">구분</th><!--table head-->
+            <th scope="col">제목 1</th>
+            <th scope="col">제목 2</th>
+            <th scope="col">제목 3</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td colspan="3">data11</td><!--table data-->
+        </tr>
+        <tr scope="row">
+            <th>2</th>
+            <td rowspan="2">data21</td>
+            <td>data22</td>
+            <td>data23</td>
+        </tr>
+        <tr scope="row">
+            <th>3</th>
+            <td colspan="2">data32</td>
+        </tr>
+        <tr scope="row">
+            <th>4</th>
+            <td>data41</td>
+            <td>data42</td>
+            <td>data43</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th scope="row">합계</th>
+            <td>total1</td>
+            <td>total1</td>
+            <td>total3</td>
+        </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
