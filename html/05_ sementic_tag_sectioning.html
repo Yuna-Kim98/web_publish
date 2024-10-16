@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div-Sectioning</title>
+</head>
+<body>
+    <!--HTML5 시맨틱 태그 사용하여 섹셔닝(레이아웃)-->
+    <header>
+        <div class="header-logo">
+            <h2>Header</h2><!--두 태그를 그룹화 해야하는 경우에는 div 태그를 사용해야 함-->
+            <img src="" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="http://www.naver.com">네이버</a></li>
+                <li><a href="www.google.com">구글</a></li>
+                <li><a href="www.daum.net">다음</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <aside>Sub Menu</aside>
+        </section>
+        <section>
+            <article>
+                <h2>Main Content</h2>
+                <div>content</div>
+            </article>
+            <article>Main Content2</article>
+            <article>Main Content3</article>
+        </section>
+    </main>
+    <footer>
+        <address>
+            <p>대표자 이름</p>
+            <p>전화번호 : 02-1234-5678</p>
+            <p>email : test@test.com</p>
+        </address>
+       <div class="footer-copyright">&copy;copyright 회사소개</div> 
+    </footer>
+</body>
+</html>
