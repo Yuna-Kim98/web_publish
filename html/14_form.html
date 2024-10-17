@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script>
+        function loginSubmit() {
+            alert("서버로 전송합니다!")
+        }
+    </script>
+</head>
+<body>
+    <h1>Form Element of Tag</h1>
+    <!--form 태그를 쓰는 이유: 서버에 전송하기 위해-->
+    <form action="#" method="get"><!--예시 <form action="LoginCheck.jsp"-->
+        <!-- get: 소켓의 head에 쿼리스트링 방식(텍스트값) 사용. 형식은 주소?name=value&name=value&... 주소에 값이 드러남. a 태그를 사용할 때 기본값-->
+        <!-- post: 소켓의 body에 데이터 저장. 값을 서버에서 확인하여 주소에 값이 드러나지 않음. 중요한 데이터를 넘길 때 사용-->
+         <fieldset>
+            <legend>로그인 화면</legend>
+            <ul>
+                <li>
+                    <label for="">ID</label>
+                    <input type="id" name="id" placeholder="아이디 입력">
+                </li>
+                <li>
+                    <label for="">Password</label>
+                    <input type="password" name="pwd" placeholder="비밀번호 입력">
+                </li>
+            </ul>
+         </fieldset>
+        <fieldset>
+            <legend>옵션 사항</legend>
+            <ul>
+                <li>
+                    <label for="">주소</label>
+                    <select name="address" id="">
+                        <option value="선택">선택</option>
+                        <option value="서울시">서울시</option>
+                        <option value="부산시">부산시</option>
+                        <option value="인천시">인천시</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="">직군</label>
+                    <input type="radio" name="role" value="front"><!-- name 속성을 똑같이 줘야 하나만 선택됨-->
+                    <span>프론트개발자</span>
+                    <input type="radio" name="role" value="server">
+                    <span>서버개발자</span>
+                    <input type="radio" name="role" value="dba">
+                    <span>DB관리자</span>
+                </li>
+                <li>
+                    <label for="">관심 과목</label>
+                    <input type="checkbox" name="subject" value="html">
+                    <span>HTML</span>
+                    <input type="checkbox" name="subject" value="css">
+                    <span>CSS</span>
+                    <input type="checkbox" name="subject" value="JavaScript">
+                    <span>JavaScript</span>
+                    <!-- 서버에 데이터가 제대로 넘어가도록 하려면 value값을 잘 써야함-->
+                </li>
+                <li>
+                    <label for="">자기소개</label>
+                    <textarea name="intro" cols="50" rows="10" placeholder="200자 이내로 작성해주세요."></textarea>
+                    <!-- 공백도 글자로 textarea에선 인식하므로 공백이 생기지 않도록 주의할 것 -->
+                </li>
+                <li>
+                    <label for="">파일업로드</label>
+                    <input type="file" name="file"><!-- 쿼리스트링 방식으로x 쿼리스트링 방식은 텍스트값이 넘어가므로 파일을 업로드하기 위해서는 포스트 방식으로 따로 라이브러리를 사용하여야 함 -->
+                </li>
+                <li>
+                    <label for="">URL</label>
+                    <input type="url" name="url">
+                </li>
+                <li>
+                    <label for="">생년월일</label>
+                    <input type="date" name="birth">
+                </li>
+            </ul>
+        </fieldset>
+        <div>
+        <!-- botton의 default type : submit(폼 주소 서버로 데이터를 전송) -->
+        <button type="submit">Login</button><!-- jsp 사용방법 -->
+        <button type="reset">Reset</button>
+        <button type="button"><img src="/html/images/logoRed.png" width="70px"></button>
+    </div>
+    </form>
+</body>
+</html>
