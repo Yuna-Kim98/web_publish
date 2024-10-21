@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Unit</title>
+    <style>
+        div.pixel {
+            /* 크기 고정 : width, height */
+            width: 400px;
+            height: 300px;
+            background-color: aquamarine;
+        }
+        div.percent {
+            width: 100%;
+            height: 200px;
+            background-color: blueviolet;
+        }
+        div.pixel-child1 {
+            width: 50%;
+            background-color: yellowgreen;
+        }
+        p.lorem {
+            width: 500px;
+            font-size: 1.2em; /* 글자크기 : 폰트 사이즈의 1.2배로 조정 */
+        }
+        strong {
+            font-size: 3rem; /* 1rem = 16px */
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 단위</h1>
+    <h2>pixel(px)</h2>
+    <div class="pixel"><!-- 부모 요소 -->
+        <h5>pixel(px)</h5>
+        <div class="pixel-child1">pixel child element</div><!-- 자식 요소 -->
+    </div><!-- 부모 요소와 자식 요소 주의. 자식 요소는 부모 요소를 기준으로 설정됨 -->
+    <hr>
+    <h2>percent(%)</h2>
+    <div class="percent">percent(%)</div>
+    <hr>
+    <h2>em/rem</h2>
+    <p class="lorem"><strong>Lorem</strong> ipsum dolor sit amet consectetur adipisicing elit. Iusto, assumenda? Rem ullam ipsa quaerat praesentium numquam accusantium iste sequi facilis ad, modi dignissimos aliquid a sunt iure officia rerum itaque?</p>
+</body>
+</html>

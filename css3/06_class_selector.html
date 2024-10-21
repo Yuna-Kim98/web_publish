@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Selector</title>
+    <style>
+        h1.main-title { /*css 처리 속도는 class가 가장 빠름*/
+            font-family: '나눔고딕';
+            font-size: 1.3em;
+            color: green;
+        }
+        .sub-title {
+            font-family: 'D2Coding';
+            font-size: 20px;
+            color: tomato;
+        }
+        /* 특정 태그에만 속성을 적용하고 싶은 경우 태그명을 붙이고, 여러 요소에 적용하고 싶은 경우 class 속성값만 작성*/
+        .highlight-bg {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">Class Selector</h1><!-- 리액트는 언더바가 아닌 하이픈 사용! 하이픈 사용에 익숙해질 것 -->
+    <p>
+        <h3 class="sub-title">class selector sub title</h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, nemo. Architecto hic distinctio provident alias, voluptates sequi numquam porro, aspernatur similique illum consequatur cupiditate dolores minus laborum? Eius, repellendus incidunt.
+    </p>
+    <p>
+        <h3 class="sub-title">class selector sub title</h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <b class="sub-title highlight-bg">Quis, nemo.</b> <!-- 여러 스타일을 적용할 때는 공백을 한 칸 주고 사용 -->
+        Architecto hic distinctio provident alias, voluptates sequi numquam porro, aspernatur similique illum consequatur cupiditate dolores minus laborum? Eius, repellendus incidunt.
+    </p>
+</body>
+</html>
