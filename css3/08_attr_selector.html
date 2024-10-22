@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribute Selector</title>
+    <style>
+        [href="http://www.daum.net"] {
+            background-color: aquamarine;
+        }
+        [href] {
+            text-decoration: none;
+        }
+        [target] {
+            color: yellowgreen;
+        }
+        [class^="inner"] { /* 속성의 일부가 같을 경우 그 일부만 사용하여 css에서 값을 줄 수 있음 */
+            color: blue;
+        }
+        ul, ul > li {
+            border: 1px solid gray;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        [for="id"] {
+            color: green;
+            background-color: yellow;
+        }
+        input[type] { /* 태그명을 적어주는게 좋음 */
+            width: 70%x;
+            border: 1px solid lightgray;
+            border-radius: 7px;
+            padding: 10px
+        }
+        /* class 속성을 사용하지 않아 html 코드가 깔끔해짐 */
+    </style>
+</head>
+<body>
+    <h1>Attribute Selecotor</h1>
+    <p>
+        <a href="#" target="_blank">네이버</a>
+        <a href="#" class="inner_attr1">구글</a>
+        <a href="http://www.daum.net" class="inner_attr2">다음</a>
+    </p>
+    <form action="#" method="post">
+        <ul>
+            <li>
+                <label for="id">아이디</label><!-- for 속성은 input 태그의 name 속성과 값을 맞추는 것이 좋음 -->
+                <input type="text" name="id">
+            </li>
+            <li>
+                <label for="pwd">비밀번호</label>
+                <input type="password" name="pwd">
+            </li>
+            <li>
+                <button type="submit">로그인</button>
+                <button type="reset">취소</button>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>

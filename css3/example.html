@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Selector</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        input[type="radio"]:checked + label/*인라인 요소로 작성해서 적용하는 것이 좋음*/ {
+            background-color: powderblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Status Selecotors</h1>
+    <form action="">
+        <ul>
+            <li>
+                <input type="radio" name="city"><!-- 하나만 선택되도록 하려면 name을 동일하게 주는 것 잊지말 것-->
+                <label for="">서울</label>
+                <input type="radio" name="city">
+                <label for="">부산</label>
+                <input type="radio" name="city">
+                <label for="">인천</label>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nth-child Selector</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul.first li:first-child {
+            color: blue;
+        }
+        li:last-child {
+            text-decoration: underline;
+        }
+        li:nth-child(3) {
+            background-color: aqua;
+        }
+        ul.first > li:nth-child(4) > a { /* 포함 관계 및 태그 작성 신경쓸 것 */
+            font-weight: 700;
+            color: tomato;
+            text-decoration: none;
+        }
+        .box article {
+            width: 100px;
+            height: 100px;
+            border: 1px solid silver;
+        }
+        article:first-child {
+            background-color: yellow;
+        }
+        article:nth-child(3) {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>nth-child Selector</h1>
+    <!-- 반복되는 태그에는 모두 사용 가능! -->
+    <ul class="first">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li><a href="#">Naver</a></li>
+        <li>React</li>
+    </ul>
+    <div class="box">
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+    </div>
+</body>
+</html>

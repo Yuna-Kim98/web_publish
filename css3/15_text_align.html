@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-align</title>
+    <style>
+        p {
+            border: 1px solid tomato;
+        }
+        /* align 속성 */
+        .left {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+        .center {
+            text-align: center;
+        }
+        .justify {
+            text-align: justify; /* 양끝 정렬 */
+        }
+        /* 속성 변경 */
+        .block {
+            display: block;
+        }
+        .inline {
+            display: inline; /* inline 속성을 가진 태그는 정렬 속성이 적용되지 않음! */
+        }
+        div > p {
+            width: 50px;
+            height: 50px;
+        }
+        div {
+            border: 2px solid red;
+            text-align: center;
+        }
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .green {
+            background-color: green;
+        }
+        img {
+            width: 80px;
+        }
+        /* 글자 간격 */
+        h1 {
+            /* letter-spacing: 10px; */
+            word-spacing: 20px;
+        }
+        .lineheight {
+            line-height: 40px;
+        }
+        h2 {
+            border: 1px solid blue;
+        }
+        /* 글자 들여쓰기 */
+        .indent1 {
+            text-indent: 20px;
+        }
+        .indent2 {
+            text-indent: -30px;
+            margin-left: 100px;
+        }
+        .uppercase {
+            text-transform: uppercase;
+        }
+        .lowercase {
+            text-transform: lowercase;
+        }
+        .capitalize {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text align</h1>
+    <h2 class="indent1 uppercase">Text indent1</h2>
+    <h2 class="indent2 lowercase">Text indent2</h2>
+    <h2 class="indent2 capitalize">text transform capitalize</h2>
+    <!-- 텍스트 정렬은 블록 요소에만 적용된다 -->
+    <p class="left inline uppercase">text-align : left</p><!-- 속성이 inline으로 적용되면서 정렬 속성 적용x 기본값이 left이기에 적용된 것처럼 보일 뿐 -->
+    <p class="right">text-align : right</p>
+    <p class="center">text-align : center</p>
+    <p class="justify lineheight">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+        Dicta maiores quo non sit animi, 
+        ipsa dolores atque ex dolorem laudantium ratione saepe incidunt assumenda repellat numquam 
+        nulla laboriosam consectetur nostrum.</p>
+        <div>
+            <p class="red">left</p>
+            <p class="blue inline">right</p> <!-- inline 요소로 바뀌었기 때문에 너비, 높이 속성이 적용되지 않음 -->
+            <p class="green inline">center</p>
+        </div>
+        <div>
+            
+            <img src="/web_publish/html/images/logoRed.png" alt="cgv logo"><!-- div가 가운데 정렬되어 화면에서 나란히 나타남-->
+            <img src="/web_publish/html/images/logoRed.png" alt="cgv logo">
+            <img src="/web_publish/html/images/logoRed.png" alt="cgv logo">
+        </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Selector</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+        }
+        input[type="radio"]:checked + label/*인라인 요소로 작성해서 적용하는 것이 좋음*/ {
+            background-color: powderblue;
+        }
+        input[type="checkbox"]:checked + label {
+            background-color: lightcoral;
+        }
+        .not-selector > li:not(:last-child) {
+            background-color: powderblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Status Selecotors</h1>
+    <form action="">
+        <ul>
+            <li>
+                <input type="radio" name="city"><!-- 하나만 선택되도록 하려면 name을 동일하게 주는 것 잊지말 것-->
+                <label for="">서울</label>
+                <input type="radio" name="city">
+                <label for="">부산</label>
+                <input type="radio" name="city">
+                <label for="">인천</label>
+            </li>
+            <li>
+                <input type="checkbox" name="subject"><!--동일한 name을 지정해야 서버에 그룹화되어 넘어감-->
+                <label for="">HTML</label>
+                <input type="checkbox" name="subject">
+                <label for="">CSS</label>
+                <input type="checkbox" name="subject">
+                <label for="">JavaScript</label>
+            </li>
+            <li>
+                <button>사용가능</button>
+                <button disabled>사용불가능</button><!--html에서 바로 적용. 단, 크롬 기준이므로 크로스 브라우징을 위해서는 따로 확인 요함-->
+            </li>
+            <li>
+                <ul class="not-selector">
+                    <li>list item</li>
+                    <li>list item</li>
+                    <li>list item</li>
+                    <li>list item</li>
+                    <li>list item</li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>
