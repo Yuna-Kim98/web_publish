@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+    <style>
+        .box-group {
+            overflow: hidden; /* 너비, 높이를 설정하지 않은 상태라 자식 div가 영역을 초과하기 때문에 설정*/
+            border: 1px solid silver;
+            clear: both; /* float을 지정하지 않겠다는 속성 */
+        }
+        .box-group > div {
+            width: 100px;
+            height: 100px;
+            background-color: powderblue;
+            text-align: center;
+            float: left;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        div.box-group > p {
+            clear: both;
+        }
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        ul li {
+            width: 100px;
+            padding: 5px 0px;
+            border: 1px solid blue;
+            background-color: silver;
+            float: left;
+            text-align: center;
+        }
+        ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        ul li a:hover {
+            color: black;
+            text-decoration: underline;
+        }
+        ul li:first-child a {
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul + hr {
+            clear: both;
+        }
+        img {
+            display: block;
+            float: right;
+        }
+        img + p {
+            width: 500px;
+            border: 1px solid red;
+            text-indent: 10px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <!--float 속성을 설정할 경우 그 아래에 있는 모든 블록 요소들에 속성이 상속됨-->
+    <h1>Float : 블록레벨 한줄로 정렬</h1><!--여기에 float을 줄 경우 아래 나오는 요소들이 전부 h1을 기준으로 플로팅 됨-->
+    <div class="box-group">
+        <div>box1</div>
+        <div>box2</div>
+        <div>box3</div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+            Aperiam ad dolores quia at dignissimos natus sunt, suscipit recusandae animi earum, iure, explicabo placeat. 
+            Nihil dolore deserunt provident aspernatur quod quisquam!
+        </p>
+    </div>
+    <hr>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Join</a></li>
+        <li><a href="#">My Page</a></li>
+        <li><a href="#">Support</a></li>
+    </ul>
+    <hr>
+    <img src="/web_publish/html/images/logoRed.png" alt="cgv logo">
+    <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Aperiam ad dolores quia at dignissimos natus sunt, suscipit recusandae animi earum, iure, explicabo placeat. 
+        Nihil dolore deserunt provident aspernatur quod quisquam!
+    </p>
+</body>
+</html>

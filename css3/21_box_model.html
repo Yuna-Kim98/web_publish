@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+    <style>
+        div {
+            border: 1px solid red;
+        }
+        div.padding h3 {
+            border: 1px solid blue;
+            margin: 0;
+        }
+        .padding {
+            /* padding-top: 20px;
+            padding-right: 10px;
+            padding-bottom: 30px;
+            padding-left: 50px;
+            t(top), r(right), b(bottom), l(left) 순서로 적용 */
+            padding: 20px 10px 30px 50px;
+            /* 한자리(전체 통일). 두자리(앞:위, 아래 / 뒤: 왼, 오), 네자리(각각 설정)로 설정한다 */
+        }
+        .margin {
+            /* margin-top: 20px;
+            margin-right: 10px;
+            margin-bottom: 40px;
+            margin-left: 30px; */
+            margin: 20px 10px 40px 30px;
+        }
+        .border {
+            /* border: 3px solid pink;
+            border-top: 3px groove green;
+            border-right: 5px double red;
+            border-bottom: 10px dotted pink;
+            border-left: 5px solid silver; */
+            border-bottom: none
+            /* border-width: 1px;
+            border-style: solid;
+            border-color: blue; */
+        }
+        .box-size {
+            box-sizing: border-box;
+            box-sizing: size-box;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Box Model : content, padding, border, margin</h1>
+    <div class="padding">
+        <h3>padding</h3><!--블록 요소들은 기본 마진이 있음-->
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Molestiae sint quibusdam mollitia repudiandae? 
+        Illum iusto a incidunt accusantium itaque veritatis deserunt corporis nihil, 
+        in ipsam quisquam dicta vel blanditiis impedit.
+    </div>
+    <div class="margin">
+        <h3>margin</h3>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Molestiae sint quibusdam mollitia repudiandae? 
+        Illum iusto a incidunt accusantium itaque veritatis deserunt corporis nihil, 
+        in ipsam quisquam dicta vel blanditiis impedit.
+    </div>
+    <div class="border">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Molestiae sint quibusdam mollitia repudiandae? 
+        Illum iusto a incidunt accusantium itaque veritatis deserunt corporis nihil, 
+        in ipsam quisquam dicta vel blanditiis impedit.
+    </div>
+    <div class="border padding margin">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Molestiae sint quibusdam mollitia repudiandae? 
+        Illum iusto a incidunt accusantium itaque veritatis deserunt corporis nihil, 
+        in ipsam quisquam dicta vel blanditiis impedit.
+    </div>
+    <div class="box-size">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Molestiae sint quibusdam mollitia repudiandae? 
+        Illum iusto a incidunt accusantium itaque veritatis deserunt corporis nihil, 
+        in ipsam quisquam dicta vel blanditiis impedit.
+    </div>
+</body>
+</html>
