@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Index</title>
+    <style>
+        div {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #000;
+            color: #fff;
+        }
+        .red {
+            background-color: red;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .green {
+            background-color: green;
+        }
+        .child1{
+            position: relative;
+            top: 20px;
+            left: 50px;
+            z-index: 1; /* 값이 클수록 위에 위치 */
+        }
+        .child2 {
+            position: relative;
+            left: 20px;
+            z-index: 3;
+        }
+        .child3 {
+            position: relative;
+            top: -30px;
+            left: 10px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Z-Index</h1>
+    <div class="red child1">child 1</div>
+    <div class="blue child2">child 2</div>
+    <div class="green child3">child 3</div>
+</body>
+</html>

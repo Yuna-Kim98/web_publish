@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex-basic</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .parent {
+            height: 100px;
+            padding: 0;
+            /* padding-top: 20px; */
+            border: 1px solid red;
+            display: flex; /* table, float 등의 레이아웃 지정 요소를 모두 포함. 블록 요소엔 모두 지정된다 */
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .parent div {
+            background-color: bisque;
+            border: 1px solid salmon;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex-basic</h1>
+    <div class="parent">
+        <div>Flex item1</div>
+        <div>Flex item2</div>
+        <div>Flex item3</div>
+        <div>Flex item4</div>
+        <div>Flex item5</div>
+    </div>
+</body>
+</html>

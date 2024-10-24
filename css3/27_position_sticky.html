@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .wrapper {
+            /* border: 1px solid red; */
+            width: 100%;
+            max-width: 600px;
+            margin: 60px auto 200px;
+        }
+        .content {
+            padding: 0 15px;
+            width: 380px;
+        }
+        .content > h1 {
+            margin-top: 0;
+        }
+        .sidebar {
+            padding: 20px;
+            width: 170px;
+            background-color: #000;
+            color: #fff;
+            position: sticky;
+            top: 30px;
+        }
+        .sidebar h3 {
+            margin: 0;
+        }
+        .content, .sidebar {
+            float: left;
+        }
+        .cf::after {
+            content: " "; /* 가상 컨텐츠 */
+            display: block;
+            clear: both;
+        } /* 해당 속성이 적용된 요소 다음에 오는 블록들은 float 속성 해제 */
+    </style>
+</head>
+<body>
+    <div class="wrapper cf">
+        <div class="content">
+            <h1>Scroll Down!</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. 
+                Magnam iure minus quia quas nam, doloremque sunt error fuga optio quasi!</p>
+        </div>
+        <div class="sidebar">
+            <h3>Sidebar</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Doloremque ex nesciunt veniam hic deleniti itaque dicta in facilis. </p>
+        </div>
+    </div>
+</body>
+</html>

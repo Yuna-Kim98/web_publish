@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .sliderwrapper {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto; /* 가운데 정렬. auto를 사용하려면 반드시 width를 px로 주어야 함 */
+            background-color: blanchedalmond;
+            position: relative; /* 요소의 원래 위치를 기준으로 배치하므로, 부모 요소로 지정되는 요소에 속성 부여 */
+        }
+        .btn {
+            padding: 0 20px;
+            margin-top: -15px; /* line-height의 절반(버튼 높이의 절반)만큼 위로 올려 버튼이 정확히 정중앙에 위치하도록 함 */
+            line-height: 30px;
+            color: #fff;
+            background-color: #000;
+            display: inline-block;
+            position: absolute; /* 부모 요소를 기준으로 배치하므로 위치 조정할 자식 요소에 속성 부여 */
+            top: 50%;
+        }
+        .next {
+            right: -30px;
+        }
+        .prev {
+            left: -30px;
+        }/* right, left 속성은 부모에 relative가 적용되어 있을 때만 가능 */
+        .slide-img {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sliderwrapper</h1>
+    <div class="sliderwrapper">
+        <img class="slide-img" src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000088/88526/88526230727_727.jpg" alt="venom-img">
+        <button class="btn next">next</button>
+        <button class="btn prev">prev</button>
+    </div>
+</body>
+</html>

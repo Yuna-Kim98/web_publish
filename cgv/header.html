@@ -4,28 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV-header</title>
+    <link rel="stylesheet" href="/web_publish/cgv/css/commons.css">
+    <link rel="stylesheet" href="/web_publish/cgv/css/cgv.css">
     <script src="https://kit.fontawesome.com/f74b439d76.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header style="background-color: lightgray;">
-        <div>
-            <div>
-                <a href="/cgv/index.html" target="_parent"><img src="/cgv/images/logoRed.png" alt="cgv logo"></a>
+    <header>
+        <div class="header-top">
+            <div class="header-top-logo"><!--logo-->
+                <a href="/web_publish/cgv/index.html" target="_parent"><img src="/web_publish/cgv/images/logoRed.png" alt="cgv logo"></a>
                 <span>DEEP DIVE SPACE</span><!-- label 태그도 사용 가능-->
-            </div>
-            <div">
-                <img src="/cgv/images/header_card.png" alt="header card image">
+            </div><!--부호나 글자 등 잘못 입력되지 않도록 주의할 것 스타일 적용 안 됨-->
+            <div>
+                <img src="/web_publish/cgv/images/header_card.png" alt="header card image">
             </div>
             <nav><!-- menu -->
                 <ul>
-                    <li><a href="/cgv/login/login.html" target="_parent"><i class="fa-solid fa-lock"></i>로그인</a></li>
-                    <li><a href="/cgv/join/join.html" target="_parent">회원가입</a></li>
-                    <li><a href="/cgv/mycgv/mycgv.html" target="_parent">MY CGV</a></li>
-                    <li><a href="/cgv/support/support.html" target="_parent">고객센터</a></li>
+                    <li><a href="/web_publish/cgv/login/login.html" target="_parent"><i class="fa-solid fa-lock"></i>로그인</a></li>
+                    <li><a href="/web_publish/cgv/join/join.html" target="_parent">회원가입</a></li>
+                    <li><a href="/web_publish/cgv/mycgv/mycgv.html" target="_parent">MY CGV</a></li>
+                    <li><a href="/web_publish/cgv/support/support.html" target="_parent">고객센터</a></li>
                 </ul>
             </nav>
         </div>
-        <div>
+
+        <div class="header-bottom">
             <ul>
                 <li>
                     <a href="">영화</a>
@@ -91,7 +94,7 @@
                     </dl>
                 </li>
             </ul>
-            <div>
+            <div><!--search-->
                 <input type="search">
                 <button type="button">돋보기 이미지</button>
             </div>
