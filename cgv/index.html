@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV</title>
+    <link rel="stylesheet" href="/web_publish/cgv/css/commons.css">
+    <link rel="stylesheet" href="/web_publish/cgv/css/cgv.css">
+    <style>
+
+    </style>
 </head>
 <body>
     <!-- header -->
@@ -11,64 +16,120 @@
 
     <!-- content -->
     <div class="content">
-        <div style="background-color: black; width: 100%;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/agjBrj8qZFA?si=uhC1mEWs2E4-VcH-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="content-top"><!-- 영화 예고편 -->
+            <iframe width="1000" height="540" src="https://www.youtube.com/embed/agjBrj8qZFA?si=uhC1mEWs2E4-VcH-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <div style="background-color: lightcyan; width: 100%;">
+        <div class="content-moviechart"><!--무비 차트-->
             <div><!-- 콘텐츠 가운데 정렬 -->
-                <article><!-- div 대신 사용 가능 -->
+                <article class="content-moviechart-title"><!-- 무비차트 ~ 전체보기div 대신 사용 가능 / div 대신 사용 가능 -->
                     <div>
-                        <span>무비차트</span>
+                        <span class="content-title-style-font">무비차트</span>
+                        <span>&nbsp;</span><!--div로 변경 후 before, after 써보기 -->
                         <span>상영예정작</span>
                     </div>
                     <div>
-                        <button>전체보기</button>
+                        <button class="total-view-button">전체보기 &gt;</button>
                     </div>
                 </article>
-                <article>
+                <article class="content-moviechart-list"><!--무비 차트 리스트-->
                     <ul>
                         <li>
                             <div>
                                 <img src="/web_publish/cgv/images/movie-chart1.jpg" alt="movie1" width="200px">
                             </div>
-                            <div><b>제목</b></div>
-                            <div><b>에그지수/에매율</b></div>
+                            <div><h3>제목</h3></div>
+                            <div><h5>에그지수/예매율</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="/web_publish/cgv/images/movie-chart1.jpg" alt="movie1" width="200px">
+                            </div>
+                            <div><h3>제목</h3></div>
+                            <div><h5>에그지수/예매율</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="/web_publish/cgv/images/movie-chart1.jpg" alt="movie1" width="200px">
+                            </div>
+                            <div><h3>제목</h3></div>
+                            <div><h5>에그지수/예매율</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="/web_publish/cgv/images/movie-chart1.jpg" alt="movie1" width="200px">
+                            </div>
+                            <div><h3>제목</h3></div>
+                            <div><h5>에그지수/예매율</h5></div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="/web_publish/cgv/images/movie-chart1.jpg" alt="movie1" width="200px">
+                            </div>
+                            <div><h3>제목</h3></div>
+                            <div><h5>에그지수/예매율</h5></div>
                         </li>
                         <!-- 추후 무비차트 리스트 반복 -->
                     </ul>
                 </article>
             </div>
         </div>
-        <div>
-            <section>
-                <div>
-                    <h3>EVENT</h3>
-                    <button>전체보기</button>
+
+        <div class="content-event-special"><!--이벤트, 특별관 등 -->
+            <section><!--event-->
+                <div class="content-title-style">
+                    <h3 class="content-title-style-font">EVENT</h3>
+                    <button class="total-view-button">전체보기 &gt;</button>
                 </div>
                 <ul>
                     <li>
                         <div>
+                            <img src="/web_publish/cgv/images/event2.jpg" alt="Event Image" width="200px">
+                        </div>
+                        <h3>[CGV] 10월 컬쳐위크</h3>
+                        <h5>2024.10.24~2024.10.31</h5>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/web_publish/cgv/images/event3.jpg" alt="Event Image" width="200px">
+                        </div>
+                        <h3>[베놈-라스트댄스]씨네브리핑 시리즈</h3>
+                        <h5>2024.09.25~2024.10.31</h5>
+                    </li>
+                    <li>
+                        <div>
                             <img src="/web_publish/cgv/images/event1.jpg" alt="Event Image" width="200px">
                         </div>
-                        <p>[콜렉터블 무비머니]Vol.1 맥스 달튼</p>
-                        <p>2024.09.25~2024.10.31</p>
+                        <h3>[콜렉터블 무비머니]Vol.1 맥스 달튼</h3>
+                        <h5>2024.09.25~2024.10.31</h5>
                     </li>
                 </ul>
             </section>
-            <section>
-                <div>
-                    <h3>특별관</h3>
-                    <button>전체보기</button>
+            <section><!--특별관-->
+                <div class="content-title-style">
+                    <h3 class="content-title-style-font">특별관</h3>
+                    <button class="total-view-button">전체보기 &gt;</button>
                 </div>
                 <div>
                     <div>
                         <img src="/web_publish/cgv/images/special1.png" alt="Event1" width="400px">
                     </div>
                     <ul>
-                        <li><span>SUITE CINEMA</span><span>#호텔 컨셉의 프리미엄관</span></li>
-                        <li><span>CINE & LIVINGROOM</span><span>#신개념 소셜 상영관</span></li>
-                        <li><span>4DX</span><span>#모션시트 #오감체험</span></li>
-                        <li><span>CINE de CHEF</span><span>#쉐프가 있는 영화관</span></li>
+                        <li>
+                            <span>SUITE CINEMA</span>
+                            <span class="special-hashtag">#호텔 컨셉의 프리미엄관</span>
+                        </li>
+                        <li>
+                            <span>CINE & LIVINGROOM</span>
+                            <span class="special-hashtag">#신개념 소셜 상영관</span>
+                        </li>
+                        <li>
+                            <span>4DX</span>
+                            <span class="special-hashtag">#모션시트 #오감체험</span>
+                        </li>
+                        <li>
+                            <span>CINE de CHEF</span>
+                            <span class="special-hashtag">#쉐프가 있는 영화관</span>
+                        </li>
                     </ul>
                 </div>
             </section>

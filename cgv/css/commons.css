@@ -3,12 +3,59 @@
     margin: 0;
     padding: 0;
 }
+/* 
+    공통적으로 적용되는 클래스는 직접 셀렉팅 하는 경우 부모를 직관적으로 지정함
+*/
 :root {
     /* color list */
+    /* 공통적으로 사용되는 색상, 글자 스타일 등은 전체 css 지정하여 class 사용 */
     --color-primary: rgb(77, 77, 77);
     --color-black: #050a13;
     --color-white: #fff;
     --color-border: red;
     --color-silver: silver;
-    --color-footer-bg: rgb(248. 248, 248)
+    --color-footer-bg: rgb(248. 248, 248);
+    --color-moviechart: rgb(251. 251, 251);
+    --color-gray-222: rgb(222, 222, 222);
+    --color-bg-248: rgb(248, 248, 248);
+}
+
+/* index-preview-button-style */
+.total-view-button {
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    border: 1px solid var(--color-silver);
+    border-radius: 15px;
+    background-color: var(--color-white);
+}
+
+/* moviechart, event, special title style */
+.content-title-style {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: var(--color-black);
+    font-size: 26px;
+    font-weight: 700;
+}
+.content-title-style-font {
+    color: var(--color-black);
+    font-size: 26px;
+    font-weight: 700;
+}
+.font-color-main {
+    color: var(--color-primary)
+}
+/* 글자 설정 */
+.content-title-h3 {
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 0;
+}
+.content-title-h5 {
+    font-size: 14px;
+    text-align: center;
+    padding-top: 3px;
+    color: var(--color-primary);
 }

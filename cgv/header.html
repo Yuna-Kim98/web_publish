@@ -15,88 +15,106 @@
                 <a href="/web_publish/cgv/index.html" target="_parent"><img src="/web_publish/cgv/images/logoRed.png" alt="cgv logo"></a>
                 <span>DEEP DIVE SPACE</span><!-- label 태그도 사용 가능-->
             </div><!--부호나 글자 등 잘못 입력되지 않도록 주의할 것 스타일 적용 안 됨-->
-            <div>
+            <div class="header-top-card"><!--카드 광고-->
                 <img src="/web_publish/cgv/images/header_card.png" alt="header card image">
             </div>
             <nav><!-- menu -->
                 <ul>
-                    <li><a href="/web_publish/cgv/login/login.html" target="_parent"><i class="fa-solid fa-lock"></i>로그인</a></li>
-                    <li><a href="/web_publish/cgv/join/join.html" target="_parent">회원가입</a></li>
-                    <li><a href="/web_publish/cgv/mycgv/mycgv.html" target="_parent">MY CGV</a></li>
-                    <li><a href="/web_publish/cgv/support/support.html" target="_parent">고객센터</a></li>
+                    <li>
+                        <a href="/web_publish/cgv/login/login.html" target="_parent" class="header-menu-icon">
+                            <img src="/web_publish/cgv/images/loginPassword.png" alt=""><span>&nbsp;<!--공백-->로그인</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/web_publish/cgv/join/join.html" target="_parent" class="header-menu-icon">
+                            <img src="/web_publish/cgv/images/loginJoin.png" alt=""><span>회원가입</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/web_publish/cgv/mycgv/mycgv.html" target="_parent" class="header-menu-icon">
+                            <img src="/web_publish/cgv/images/loginMember.png" alt=""><span>MY CGV</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/web_publish/cgv/support/support.html" target="_parent" class="header-menu-icon">
+                            <img src="/web_publish/cgv/images/loginCustomer.png" alt=""><span>고객센터</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
         <div class="header-bottom">
-            <ul>
-                <li>
-                    <a href="">영화</a>
-                    <dl>
-                        <dt>영화</dt>
-                        <dd>무비차트</dd>
-                        <dd>아트하우스</dd>
-                        <dd>ICECON</dd>
-                    </dl>
-                </li>
-                <li>
-                    <a href="">극장</a>
-                    <dl>
-                        <dt>극장</dt>
-                        <dd>CGV 극장</dd>
-                        <dd>특별관</dd>
-                    </dl>
-                </li>
-                <li>
-                    <a href="">예매</a>
-                    <dl>
-                        <dt>빠른예매</dt>
-                        <dd>상영스케줄</dd>
-                        <dd>Engilish Ticketing</dd>
-                        <dd>English Schedule</dd>
-                    </dl>
-                </li>
-                <li>
-                    <a href="">스토어</a>
-                    <dl>
-                        <dt>스토어</dt>
-                        <dd>패키지</dd>
-                        <dd>영화관람권</dd>
-                        <dd>기프트카드</dd>
-                        <dd>콤보</dd>
-                        <dd>팝콘</dd>
-                        <dd>음료</dd>
-                        <dd>스낵</dd>
-                        <dd>플레이존</dd>
-                        <dd>씨네샵</dd>
-                    </dl>
-                </li>
-                <li>
-                    <a href="">이벤트</a>
-                    <dl>
-                        <dt>이벤트</dt>
-                        <dd>SPECIAL</dd>
-                        <dd>영화/예매</dd>
-                        <dd>멤버십/CLUB</dd>
-                        <dd>CGV 극장별</dd>
-                        <dd>제휴할인</dd>
-                        <dd>당첨자 발표</dd>
-                        <dd>종료된 이벤트</dd>
-                    </dl>
-                </li>
-                <li>
-                    <a href="">혜택</a>
-                    <dl>
-                        <dt>혜택</dt>
-                        <dd>CGV 할인정보</dd>
-                        <dd>CLUB 서비스</dd>
-                        <dd>VIP 라운지</dd>
-                    </dl>
-                </li>
-            </ul>
-            <div><!--search-->
-                <input type="search">
-                <button type="button">돋보기 이미지</button>
+            <div class="header-bottom-content">
+                <ul>
+                    <li>
+                        <a href="">영화</a>
+                        <dl>
+                            <dt>영화</dt>
+                            <dd>무비차트</dd>
+                            <dd>아트하우스</dd>
+                            <dd>ICECON</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="">극장</a>
+                        <dl>
+                            <dt>극장</dt>
+                            <dd>CGV 극장</dd>
+                            <dd>특별관</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="">예매</a>
+                        <dl>
+                            <dt>빠른예매</dt>
+                            <dd>상영스케줄</dd>
+                            <dd>Engilish Ticketing</dd>
+                            <dd>English Schedule</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="">스토어</a>
+                        <dl>
+                            <dt>스토어</dt>
+                            <dd>패키지</dd>
+                            <dd>영화관람권</dd>
+                            <dd>기프트카드</dd>
+                            <dd>콤보</dd>
+                            <dd>팝콘</dd>
+                            <dd>음료</dd>
+                            <dd>스낵</dd>
+                            <dd>플레이존</dd>
+                            <dd>씨네샵</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="">이벤트</a>
+                        <dl>
+                            <dt>이벤트</dt>
+                            <dd>SPECIAL</dd>
+                            <dd>영화/예매</dd>
+                            <dd>멤버십/CLUB</dd>
+                            <dd>CGV 극장별</dd>
+                            <dd>제휴할인</dd>
+                            <dd>당첨자 발표</dd>
+                            <dd>종료된 이벤트</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="">혜택</a>
+                        <dl>
+                            <dt>혜택</dt>
+                            <dd>CGV 할인정보</dd>
+                            <dd>CLUB 서비스</dd>
+                            <dd>VIP 라운지</dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="header-bottom-search"><!--search-->
+                    <input type="text" value="리틀 엠마">
+                    <button type="button">돋보기</button><!--돋보기 이미지 넣기-->
+                </div>
             </div>
         </div>
     </header>

@@ -5,11 +5,14 @@
 *******************************************/
 header {
     /* border: 1px solid var(--color-border); */
-    width: 1000px;
+    width: 100%;
     height: 150px;
     margin: 0 auto;
+    border-bottom: 2px solid red;
 }
-.header-top, .header-bottom {
+.header-top, .header-bottom-content {
+    width: 1000px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,6 +23,7 @@ header {
     list-style-type: none;
 }
 .header-top {
+    /* border: 1px solid red; */
     padding: 20px 0px;
 }
 .header-top-logo {
@@ -42,17 +46,56 @@ header {
     background-color: aqua;
 } */
 .header-top ul li a {
-    padding: 25px 10px;
+    /* padding: 25px 10px; */
     /* background-color: aqua; */
     text-decoration: none;
     color: var(--color-primary);
 }
-.header-bottom dl {
-    display: none;
+.header-top > nav {
+    /* border: 1px solid green; */
+}
+.header-top > nav > ul li{
+    margin-left: 44px;
+}
+.header-menu-icon {
+    /* border: 1px solid red; */
+    display: block;
+    width: 36px;
+    height: 54px;
+    position: relative;
+    /* overflow: hidden; */
+}
+.header-menu-icon img {
+    /* border: 1px solid blue; */
+    width: 36px;
+    height: 36px;
+}
+.header-menu-icon span {
+    /* border: 1px solid blue; */
+    /* display: inline-block; */
+    position: absolute;
+    width: 55px;
+    bottom: 0;
+    left: -5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.header-top-card {
+    /* border: 1px solid red; */
+    position: relative;
+    left: 130px;
 }
 .header-bottom {
-    /* border: 1px solid silver; */
+    width: 100%;
     height: 40px;
+    padding: 5px 0;
+    border-top: 1px solid silver;
+}
+.header-bottom-content {
+    /* border: 1px solid blue; */
+}
+.header-bottom dl {
+    display: none;
 }
 .header-bottom li {
     padding: 10px 25px;
@@ -62,9 +105,240 @@ header {
     font-weight: bold;
     color: var(--color-black);
 }
+.header-bottom-search {
+    /* border: 1px solid red; */
+    width: 230px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px solid silver;
+    border-left: 1px solid silver;
+}
+.header-bottom-search input {
+    width: 80%;
+    border: none; /* focus 되었을 때만 border가 나타남 */
+    padding: 5px;
+}
 
 /******************************************
 * title: footer style
 * author: yuna
 * final date : 2024/10/24
 *******************************************/
+footer {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    background-color: var(--color-footer-bg);
+}
+.footer-content {
+    width: 1000px;
+    margin: 0 auto;/* margin으로 중앙 정렬하는 방법 잊지 말 것 */
+}
+.footer-intro > ul {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    border-bottom: 1px solid var(--color-silver);
+}
+.footer-intro ul a {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+.footer-intro ul li:nth-child(8) {
+    color: var(--color-black);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+ul a:hover {
+    text-decoration: underline;
+}
+.footer-intro div {
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 0;
+}
+.p {
+    margin-top: 20px;
+}
+.p2 {
+    margin-bottom: 20px;
+}
+
+/******************************************
+* title: content style
+* author: yuna
+* final date : 2024/10/24
+*******************************************/
+.content, .content-top, .content-moviechart {
+    width: 100%;
+}
+.content-top {
+    background-color: #000;
+    position: relative;
+    top: -4px;
+}
+.content-top iframe, /* index content들 가운데 정렬*/
+.content-moviechart > div,
+.content-event-special {
+    display: block;
+    width: 1000px;
+    margin: 0 auto;
+}
+.content-moviechart {
+    padding: 20px 0;
+    background-color: var(--color-bg-248);
+}
+.content-moviechart-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+.content-moviechart-title > div {
+    position: relative;
+    /* border: 1px solid blue; */
+    width: 250px;
+}
+.content-moviechart-title > div > span {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+/*index 각 섹션 타이틀 */
+.content-moviechart-title > div > span:first-child { 
+    color: var(--color-black);
+    font-size: 26px;
+    font-weight: 700;
+}
+.content-moviechart-title > div > span:last-child { 
+    color: var(--color-primary);
+    font-size: 26px;
+    font-weight: 700;
+    position: absolute;
+    right: 0;
+}
+.content-moviechart-title > div > span:first-child + span {
+    display: inline-block;
+    width: 1px;
+    height: 15px;
+    font-size: 20px;
+    background-color: var(--color-silver);
+    position: absolute;
+    top: 10px;
+    left: 45%;
+    /* border: 1px solid red; 
+    이부분은 추후 span 태그 전부 div로 바꾸고 before, after 기능 사용하여 수정해볼 것*/
+}
+/* .content-moviechart-title div:last-child button {
+    padding: 5px 10px;
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    position: absolute;
+    right: 0;
+} */
+
+/* 무비차트/상영예정작 리스트 */
+.content-moviechart-list ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+.content-moviechart-list ul li {
+    padding: 15px;
+}
+.content-moviechart-list ul li:first-child {
+    padding: 15px;
+    padding-left: 0;
+}
+.content-moviechart-list ul li:last-child {
+    padding: 15px;
+    padding-right: 0;
+}
+.content-moviechart-list ul li img {
+    border-radius: 10px;
+    width: 170px;
+}
+.content-moviechart-list ul h3 {
+    text-align: center;
+    padding: 5px 0;
+}
+.content-moviechart-list ul h5 {
+    text-align: center;
+    padding-top: 3px;
+    color: var(--color-primary);
+}
+
+/* 이벤트 ~ 패키지 섹션 */
+.content-event-special section:first-child {
+    /* border: 1px solid red; */
+    margin: 30px 0;
+}
+.content-event-special section:first-child > div {
+    display: flex;
+    /* border: 1px solid blue; */
+    position: relative;
+}
+.content-event-special section:first-child > ul {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid green; */
+    list-style: none;
+}
+.content-event-special section:first-child > ul > li img {
+    /* border: 1px solid green; */
+    border-radius: 10px;
+    width: 315px;
+}
+.content-event-special section:first-child > ul > li h3 {
+    padding: 5px 0;
+}
+.content-event-special section:first-child > ul > li h5 {
+    padding-top: 3px;
+    color: var(--color-primary);
+}
+
+/* 특별관 */
+.content-event-special section:nth-child(2) {
+    /* border: 1px solid red; */
+    /* display: flex; */
+    /* position: relative; */
+}
+.content-event-special section:nth-child(2) > div:first-child {
+    display: flex;
+    position: relative;
+}
+.content-event-special section:nth-child(2) div:nth-child(2) {
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+}
+.content-event-special section:nth-child(2) img {
+    width: 500px;
+}
+.content-event-special section:nth-child(2) ul {
+    /* border: 1px solid blue; */
+    list-style-type: none;
+    width: 450px;
+    position: relative;
+}
+.content-event-special section:nth-child(2) ul li {
+    /* border: 1px solid gray; */
+    border-radius: 10px;
+    padding: 18px;
+}
+.content-event-special section:nth-child(2) ul li span:first-child {
+    font-size: larger;
+    font-weight: bold;
+}
+.content-event-special section:nth-child(2) ul li span.special-hashtag {
+    /* border: 1px solid red; */
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--color-bg-248);
+}
