@@ -4,136 +4,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGV_practice</title>
-    <link rel="stylesheet" href="/web_publish/cgv_practice/cgv_css/cgv_index.css">
+    <link rel="stylesheet" href="/web_publish/cgv_practice/cgv_css/common.css">
+    <link rel="stylesheet" href="/web_publish/cgv_practice/cgv_css/cgv.css">
 <body>
-    <div><!-- 전체 페이지 wrap -->
+    <div class="wrap"><!-- 전체 페이지 wrap -->
         <!-- header -->
-        <iframe src="/web_publish/cgv_practice/header.html" frameborder="0" width="100%" height="250px"></iframe>
+        <!-- <iframe src="/web_publish/cgv_practice/header.html" frameborder="0" width="100%" height="154px"></iframe> -->
+        <header><!--헤더 전체 영역-->
+            <div class="header-top"><!-- 로고 영역, 로그인, 회원가입, MY CGV, 고객센터 -->
+                <div class="header-top-logo">
+                    <a href="/web_publish/cgv_practice/index.html" target="_parent"><img src="/web_publish/cgv_practice/images/logoRed.png" alt="logoRed" width="130" ></a>
+                    <span>DEEP DIVE SPACE</span>
+                </div>
+                <nav class="header-top-nav">
+                    <div><img src="/web_publish/cgv_practice/images/header_card.png" alt="header_card"></div>
+                    <div>
+                        <ul>
+                            <li>
+                                <a href="/web_publish/cgv_practice/login.html" target="_parent">
+                                    <img src="/web_publish/cgv/images/loginPassword.png" alt="login">
+                                    <span>로그인</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/web_publish/cgv_practice/join.html" target="_parent">
+                                    <img src="/web_publish/cgv/images/loginJoin.png" alt="join">
+                                    <span>회원가입</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/web_publish/cgv_practice/mycgv.html" target="_parent">
+                                    <img src="/web_publish/cgv/images/loginMember.png" alt="member">
+                                    <span>MY CGV</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/web_publish/cgv_practice/support.html" target="_parent">
+                                    <img src="/web_publish/cgv/images/loginCustomer.png" alt="customer">
+                                    <span>고객센터</span>
+                                </a>
+                            </li>
+                        </ul><!-- menu는 nav 태그 사용할 것 -->
+                    </div>
+                </nav>
+            </div>
+            <nav class="header-bottom"><!-- 메뉴섹션. 중요! -->
+                <div class="header-bottom-nav">
+                    <ul><!-- 영화 ~ 혜택 -->
+                        <li>
+                            <a href="#" target="_parent"><span>영화</span></a>
+                                <dl>
+                                    <dt>영화</dt>
+                                    <dd>무비차트</dd>
+                                    <dd>아트하우스</dd>
+                                    <dd>ICECON</dd>
+                                </dl>
+                        </li>
+                        <li>
+                            <a href="#" target="_parent">극장</a>
+                            <dl>
+                                <dt>극장</dt>
+                                <dd>CGV 극장</dd>
+                                <dd>특별관</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <a href="#" target="_parent" class="nav-title-red">예매</a>
+                            <dl>
+                                <dt>예매</dt>
+                                <dd>빠른예매</dd>
+                                <dd>상영스케줄</dd>
+                                <dd>English Ticketing</dd>
+                                <dd>English Schedule</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <a href="#" target="_parent">스토어</a>
+                            <dl>
+                                <dt>스토어</dt>
+                                <dd>패키지</dd>
+                                <dd>영화관람권</dd>
+                                <dd>기프트카드</dd>
+                                <dd>콤보</dd>
+                                <dd>팝콘</dd>
+                                <dd>음료</dd>
+                                <dd>스낵</dd>
+                                <dd>플레이존</dd>
+                                <dd>씨네샵</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <a href="#" target="_parent">이벤트</a>
+                            <dl>
+                                <dt>이벤트</dt>
+                                <dd>SPECIAL</dd>
+                                <dd>영화/예매</dd>
+                                <dd>멤버십/CLUB</dd>
+                                <dd>CGV 극장별</dd>
+                                <dd>제휴할인</dd>
+                                <dd>당첨자 발표</dd>
+                                <dd>종료된 이벤트</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <a href="#">혜택</a>
+                            <dl>
+                                <dt>혜택</dt>
+                                <dd>CGV 할인정보</dd>
+                                <dd>CLUB 서비스</dd>
+                                <dd>VIP 라운지</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                    <div>
+                        <input type="search" placeholder="아메바 소녀들">
+                        <i class="fa-solid fa-magnifying-glass"></i><!--버튼 기능 추가 & 돋보기 왜 빠져나오는지?-->
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <!-- content -->
-        <div><!-- 전체 메인 콘텐츠 부분-->
-            <div class="trailer"><!-- 예고편 -->
+        <content><!-- 전체 메인 콘텐츠 부분-->
+            <div class="main-content-trailer"><!-- 예고편 -->
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/agjBrj8qZFA?si=yBSxsLC3bO4ZqkQ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            <div class="movie-chart"><!-- 무비차트, 상영예정작 전체보기 / 무비차트 -->
-                <div><!-- 무비차트 ~ 전체보기 -->
-                    <span>무비차트</span>
-                    <span>상영예정작</span>
+            <div class="main-content-wrap">
+                <div><!-- 무비차트, 상영예정작 전체보기 / 무비차트 -->
+                    <div><!-- 무비차트 ~ 전체보기 -->
+                        <span>무비차트</span>
+                        <span>상영예정작</span>
+                    </div>
+                    <div>
+                        <button>전체보기</button>
+                    </div>
+                    <div><!-- 무비차트 -->
+                        <ul>
+                            <li><!-- li 안에서도 div로 영역 나누기 가능 -->
+                                <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
+                                <div><h4>보통의 가족</h5></div>
+                                <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <button>전체보기</button>
+                <div><!-- event 목록 -->
+                    <div><!-- event -->
+                        <div><h3>EVENT</h3></div>
+                        <button>전체보기</button>
+                    </div>
+                    <div><!-- 내용 -->
+                        <ul><!-- 해당 페이지의 무비차트나 이벤트탭처럼 여러 항목이 한 그룹 안에 있는 그룹은 li로 나열하는 것이 효율적 -->
+                            <li>
+                                <div><img src="/web_publish/cgv_practice/images/event1.jpg" alt="event1" width="250px"></div>
+                                <p><b>[콜렉터블 무비머니]Vol.1 맥스 달튼</b></p>
+                                <p>2024.09.25~2024.10.31</p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div><!-- 무비차트 -->
-                    <ul>
-                        <li><!-- li 안에서도 div로 영역 나누기 가능 -->
-                            <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                            <div><h4>보통의 가족</h5></div>
-                            <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
-                        </li>
-                    </ul>
+                <div><!-- 특별관 탭-->
+                    <div><!-- 특별관 -->
+                        <div><h3>특별관</h3></div>
+                        <button>전체보기</button>
+                    </div>
+                    <div><!-- 특별관 목록 -->
+                        <ul>
+                            <li>
+                                <span>SUITE CINEMA</span>
+                                <span>#호텔 컨셉의 프리미엄관</span>
+                            </li>
+                            <li>
+                                <span>CINE & LIVINGROOM</span>
+                                <span>#신개념 소셜 상영관</span>
+                            </li>
+                            <li>
+                                <span>4DX</span>
+                                <span>#모션시트 #오감체험</span>
+                            </li>
+                            <li>
+                                <span>CINE de CHEF</span>
+                                <span>#쉐프가 있는 영화관</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div><!-- 패키지, 영화관람권, 기프트카드-->
+                    <div><!-- 패키지 -->
+                        <span><b>패키지</b></span><button>더보기</button>
+                        <ul>
+                            <li>
+                                <img src="/web_publish/cgv_practice/images/package1.jpg" alt="package1" width="60px">
+                                <p>우리 패키지</p>
+                                <p><b>62,000</b></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div><!-- 영화관람권 -->
+                        <span><b>영화관람권</b></span><button>더보기</button>
+                        <ul>
+                            <li>
+                                <img src="/web_publish/cgv_practice/images/ticket1.jpg" alt="movieticket1" width="60px">
+                                <p>CGV 영화관람권</p>
+                                <p><b>13,000원</b></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div><!-- 기프트카드 -->
+                        <span><b>기프트카드</b></span><button>더보기</button>
+                        <ul>
+                            <li>
+                                <img src="/web_publish/cgv_practice/images/giftcard.jpg" alt="giftcard1" width="60px">
+                                <p>PANCONNI A형</p>
+                                <p><b>금액충전형</b></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div><!-- 하단 안내사항 탭 -->
+                    <div><!-- 공지사항 -->
+                        <span><b>공지사항</b></span>
+                        <span><a href="#">[시스템점검] iOS 18 업데이트 관련 예매 서비스 이용 안내</a></span>
+                        <button>더보기</button>
+                    </div>
+                    <div><!-- 고객센터 -->
+                        <p><b>고객센터</b></p>
+                        <p><b>1544-1122</b>
+                        <p>고객센터 운영시간 (평일 09:00~18:00)</p>
+                        <p>업무시간 외 자동응답 안내 가능합니다.</p>
+                    </div>
+                    <div><!-- 버튼 -->
+                        <button>FAQ</button>
+                        <button>1:1 문의</button>
+                        <button>대관/단체 문의</button>
+                    </div>
+                    <div><!-- 앱 다운로드 -->
+                        <p><b>앱 다운로드</b></p>
+                        <p>CGV앱에서 더 편리하게 이용하세요</p>
+                        <img src="/web_publish/cgv_practice/images/img_qrcode.gif" alt="qrcode" width="50px">
+                        <p>QR코드를 스캔하고<br>앱설치 페이지로 바로 이동하세요</p>
+                    </div>
+                </div>
+                <div><!-- 광고 -->
+                    <img src="/web_publish/cgv_practice/images/ad1.png" alt="ad1" width="200px">
                 </div>
             </div>
-            <div><!-- event 목록 -->
-                <div><!-- event -->
-                    <div><h3>EVENT</h3></div>
-                    <button>전체보기</button>
-                </div>
-                <div><!-- 내용 -->
-                    <ul><!-- 해당 페이지의 무비차트나 이벤트탭처럼 여러 항목이 한 그룹 안에 있는 그룹은 li로 나열하는 것이 효율적 -->
-                        <li>
-                            <div><img src="/web_publish/cgv_practice/images/event1.jpg" alt="event1" width="250px"></div>
-                            <p><b>[콜렉터블 무비머니]Vol.1 맥스 달튼</b></p>
-                            <p>2024.09.25~2024.10.31</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div><!-- 특별관 탭-->
-                <div><!-- 특별관 -->
-                    <div><h3>특별관</h3></div>
-                    <button>전체보기</button>
-                </div>
-                <div><!-- 특별관 목록 -->
-                    <ul>
-                        <li>
-                            <span>SUITE CINEMA</span>
-                            <span>#호텔 컨셉의 프리미엄관</span>
-                        </li>
-                        <li>
-                            <span>CINE & LIVINGROOM</span>
-                            <span>#신개념 소셜 상영관</span>
-                        </li>
-                        <li>
-                            <span>4DX</span>
-                            <span>#모션시트 #오감체험</span>
-                        </li>
-                        <li>
-                            <span>CINE de CHEF</span>
-                            <span>#쉐프가 있는 영화관</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div><!-- 패키지, 영화관람권, 기프트카드-->
-                <div><!-- 패키지 -->
-                    <span><b>패키지</b></span><button>더보기</button>
-                    <ul>
-                        <li>
-                            <img src="/web_publish/cgv_practice/images/package1.jpg" alt="package1" width="60px">
-                            <p>우리 패키지</p>
-                            <p><b>62,000</b></p>
-                        </li>
-                    </ul>
-                </div>
-                <div><!-- 영화관람권 -->
-                    <span><b>영화관람권</b></span><button>더보기</button>
-                    <ul>
-                        <li>
-                            <img src="/web_publish/cgv_practice/images/ticket1.jpg" alt="movieticket1" width="60px">
-                            <p>CGV 영화관람권</p>
-                            <p><b>13,000원</b></p>
-                        </li>
-                    </ul>
-                </div>
-                <div><!-- 기프트카드 -->
-                    <span><b>기프트카드</b></span><button>더보기</button>
-                    <ul>
-                        <li>
-                            <img src="/web_publish/cgv_practice/images/giftcard.jpg" alt="giftcard1" width="60px">
-                            <p>PANCONNI A형</p>
-                            <p><b>금액충전형</b></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div><!-- 하단 안내사항 탭 -->
-                <div><!-- 공지사항 -->
-                    <span><b>공지사항</b></span>
-                    <span><a href="#">[시스템점검] iOS 18 업데이트 관련 예매 서비스 이용 안내</a></span>
-                    <button>더보기</button>
-                </div>
-                <div><!-- 고객센터 -->
-                    <p><b>고객센터</b></p>
-                    <p><b>1544-1122</b>
-                    <p>고객센터 운영시간 (평일 09:00~18:00)</p>
-                    <p>업무시간 외 자동응답 안내 가능합니다.</p>
-                </div>
-                <div><!-- 버튼 -->
-                    <button>FAQ</button>
-                    <button>1:1 문의</button>
-                    <button>대관/단체 문의</button>
-                </div>
-                <div><!-- 앱 다운로드 -->
-                    <p><b>앱 다운로드</b></p>
-                    <p>CGV앱에서 더 편리하게 이용하세요</p>
-                    <img src="/web_publish/cgv_practice/images/img_qrcode.gif" alt="qrcode" width="50px">
-                    <p>QR코드를 스캔하고<br>앱설치 페이지로 바로 이동하세요</p>
-                </div>
-            </div>
-            <div><!-- 광고 -->
-                <img src="/web_publish/cgv_practice/images/ad1.png" alt="ad1" width="200px">
-            </div>
-        </div>
+        </content>
 
         <!-- footer -->
         <iframe src="/web_publish/cgv_practice/footer.html" frameborder="0" width="100%"></iframe>

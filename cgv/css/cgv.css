@@ -90,9 +90,6 @@ header {
     padding: 5px 0;
     border-top: 1px solid silver;
 }
-.header-bottom-content {
-    /* border: 1px solid blue; */
-}
 .header-bottom dl {
     display: none;
 }

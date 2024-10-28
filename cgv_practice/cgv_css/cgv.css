@@ -3,30 +3,32 @@
 * author: yuna
 * final date : 2024/10/24
 *******************************************/
-
 /* header */
 header {
     width: 100%;
     margin: 0 auto;
+    border-bottom: 2px solid red;
 }
 
 /* logo ~ 고객센터 */
 .header-top {
+    /* border: 1px solid red; */
     width: 980px;
     margin: 0 auto;/* 콘텐츠 중앙 정렬 */
+    /* margin-bottom: 50px */
     padding: 30px 6px 25px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .header-top-logo > a > img {
-    width: 140px;
+    width: 117px;
     position: relative;
 }
 .header-top-logo > span {
     position: absolute;
     display: inline-block;
-    top: 70px;
+    top: 60px;
     font-size: 16px;
     letter-spacing: 3px;
 }
@@ -35,50 +37,104 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-.header-top-nav ul {
+.header-top-nav div:first-child {
+    width: 136px;
+}
+.header-top-nav div:nth-child(2) ul {
     display: flex;
+    align-items: center;
     list-style-type: none;
 }
 .header-top-nav ul li a img {
     display: block;
     position: relative;
-    width: 50px;
+    width: 36px;
+    height: 36px;
     padding: 0;
     margin-left: 30px;
 }
 .header-top-nav ul li a span {
     position: absolute;
+    /* left: 50%; */
     width: 70px;
-    margin-left: 20px;
+    margin-left: 13px;
     text-align: center;
-    color: var(--color-102);
-    font-weight: 600;
+    color: var(--color-666);
+    font-size: 13px;
+    font-weight: bold;
 }
 
 /* header menu / 영화 ~ 검색창 */
-.header-nav {
-    width: 980px;
+.header-bottom {
+    width: 100%;
     margin: 0 auto;
-    padding: 5px 0;
+    border-top: 1px solid silver;
+}
+.header-bottom-nav {
+    width: 980px;
+    height: 40px;
+    left: 0;
+    margin: 0 auto;
+    padding: px 0;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
-.header-nav ul {
+.header-bottom-nav ul {
     display: flex;
     list-style-type: none;
 }
-.header-nav ul li a {
+.header-bottom-nav ul li a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--color-black);
     width: 100px;
     height: 40px;
+    font-size: 16px;
+    font-weight: 600;
 }
-.header-nav ul li dl {
+.nav-title-red {
+    color: #fb4357;
+}
+.header-bottom-nav ul li dl {
     display: none;
 }
-.header-nav div {
-    display: flex;
-    align-items: center;
+.header-bottom-nav div {
+    border-right: 1px solid var(--color-666);
+    border-left: 1px solid var(--color-666);
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 200px;
+    height: 24px;
+    padding: 0 5px;
+}
+.header-bottom-nav div input {
+    border: none;
+    height: 18px;
+}
+
+/******************************************
+* title: index style
+* author: yuna
+* final date : 2024/10/28
+*******************************************/
+/* main content */
+content {
+    width: 100%;
+    margin: 0 auto;
+}
+.main-content-trailer {
+    background-color: #000;
+    position: relative;
+}
+.main-content-trailer iframe {
+    display: block;
+    width: 980px;
+    height: 500px;
+    margin: 0 auto;
+}
+.main-content-wrap {
+    width: 980px;
+    margin: 0 auto;
 }
