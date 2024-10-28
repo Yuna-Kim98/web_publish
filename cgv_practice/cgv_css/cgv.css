@@ -12,23 +12,73 @@ header {
 
 /* logo ~ 고객센터 */
 .header-top {
-    border: 1px solid red;
     width: 980px;
     margin: 0 auto;/* 콘텐츠 중앙 정렬 */
+    padding: 30px 6px 25px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .header-top-logo > a > img {
-    border: 1px solid blue;
-    /* width: auto;
-    height: 100%; */
+    width: 140px;
     position: relative;
 }
 .header-top-logo > span {
     position: absolute;
     display: inline-block;
-    top: 50px;
+    top: 70px;
     font-size: 16px;
     letter-spacing: 3px;
+}
+.header-top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-top-nav ul {
+    display: flex;
+    list-style-type: none;
+}
+.header-top-nav ul li a img {
+    display: block;
+    position: relative;
+    width: 50px;
+    padding: 0;
+    margin-left: 30px;
+}
+.header-top-nav ul li a span {
+    position: absolute;
+    width: 70px;
+    margin-left: 20px;
+    text-align: center;
+    color: var(--color-102);
+    font-weight: 600;
+}
+
+/* header menu / 영화 ~ 검색창 */
+.header-nav {
+    width: 980px;
+    margin: 0 auto;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.header-nav ul {
+    display: flex;
+    list-style-type: none;
+}
+.header-nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-black);
+    width: 100px;
+    height: 40px;
+}
+.header-nav ul li dl {
+    display: none;
+}
+.header-nav div {
+    display: flex;
+    align-items: center;
 }

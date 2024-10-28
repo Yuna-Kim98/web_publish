@@ -4,7 +4,6 @@
 * final date : 2024/10/24
 *******************************************/
 header {
-    /* border: 1px solid var(--color-border); */
     width: 100%;
     height: 150px;
     margin: 0 auto;
@@ -127,10 +126,18 @@ header {
 *******************************************/
 footer {
     width: 100%;
-    height: 200px;
+    height: 450px;
     margin: 0 auto;
+    margin-top: 60px;
     background-color: var(--color-footer-bg);
 }
+.footer-content-top {
+    background-color: rgb(242, 135, 36);
+    height: 180px;
+}
+.footer-content-top img {
+    margin-top: -60px;
+}/* 이미지 잘림 */
 .footer-content {
     width: 1000px;
     margin: 0 auto;/* margin으로 중앙 정렬하는 방법 잊지 말 것 */
@@ -151,7 +158,7 @@ footer {
     color: var(--color-primary);
     text-decoration: none;
 }
-.footer-intro ul li:nth-child(8) {
+.footer-intro ul li:nth-child(8) a {
     color: var(--color-black);
     font-weight: bolder;
     text-decoration: underline;
@@ -179,6 +186,7 @@ ul a:hover {
 *******************************************/
 .content, .content-top, .content-moviechart {
     width: 100%;
+    /* margin: 100px; */
 }
 .content-top {
     background-color: #000;
@@ -277,68 +285,276 @@ ul a:hover {
 /* 이벤트 ~ 패키지 섹션 */
 .content-event-special section:first-child {
     /* border: 1px solid red; */
-    margin: 30px 0;
+    margin: 50px 0;
 }
 .content-event-special section:first-child > div {
-    display: flex;
     /* border: 1px solid blue; */
+    display: flex;
     position: relative;
 }
-.content-event-special section:first-child > ul {
+.content-event-list {
+    /* border: 1px solid green; */
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid green; */
-    list-style: none;
+    list-style-type: none;
 }
-.content-event-special section:first-child > ul > li img {
+.content-event-list > li img {
     /* border: 1px solid green; */
     border-radius: 10px;
     width: 315px;
-}
-.content-event-special section:first-child > ul > li h3 {
+}/* 이미지 hover 넣어보기 */
+.content-event-list > li h3 {
     padding: 5px 0;
 }
-.content-event-special section:first-child > ul > li h5 {
-    padding-top: 3px;
+.content-event-list > li h5 {
     color: var(--color-primary);
 }
 
 /* 특별관 */
 .content-event-special section:nth-child(2) {
     /* border: 1px solid red; */
-    /* display: flex; */
-    /* position: relative; */
+    margin: 50px 0;
 }
 .content-event-special section:nth-child(2) > div:first-child {
     display: flex;
     position: relative;
 }
-.content-event-special section:nth-child(2) div:nth-child(2) {
-    border: 1px solid green;
+.special-content-list {
+    /* border: 1px solid green; */
     display: flex;
     justify-content: space-between;
 }
-.content-event-special section:nth-child(2) img {
-    width: 500px;
-}
-.content-event-special section:nth-child(2) ul {
-    /* border: 1px solid blue; */
+.special-content-list ul {
     list-style-type: none;
     width: 450px;
     position: relative;
 }
-.content-event-special section:nth-child(2) ul li {
-    /* border: 1px solid gray; */
-    border-radius: 10px;
-    padding: 18px;
+.special-content-list img {
+    width: 500px;
 }
-.content-event-special section:nth-child(2) ul li span:first-child {
+.special-content-list ul li {
+    border-top: 1px solid var(--color-silver);
+    /* border-radius: 10px; */
+    padding: 17px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.special-content-list ul li:last-child {
+    border-bottom: 1px solid var(--color-silver);
+}
+.special-content-list ul li:hover {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.special-content-list ul li:hover + li {
+    border-top: none; /*white로도 가능*/
+}
+    span.special-content-list-title {
     font-size: larger;
     font-weight: bold;
+    /* letter-spacing: 1px; */
 }
-.content-event-special section:nth-child(2) ul li span.special-hashtag {
-    /* border: 1px solid red; */
-    padding: 10px;
+span.special-hashtag {
+    display: inline-block;
+    padding: 5px;
     border-radius: 5px;
     background-color: var(--color-bg-248);
+    font-size: small;
+    color: var(--color-primary);
+}
+
+/* 패키지 ~ 기프트카드 */
+.content-package-list {
+    margin: 50px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.package-content-border {
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 20px;
+    width: 320px;
+}
+.package-content-border div {
+    margin-bottom: 20px;
+    position: relative;
+}
+.package-title-button {
+    position: absolute;
+    right: 0;
+    border: 1px solid var(--color-silver);
+    background-color: var(--color-white);
+    padding: 2px 7px;
+    color: var(--color-primary);
+    border-radius: 15px;
+}
+.package-content-border ul {
+    list-style-type: none;
+}
+.package-content-border ul li {
+    border: 1px solid red;
+    display: flex;
+    align-items: center; /* 수평 정렬 안 됨 */
+    padding: 10px 0;
+}
+.package-content-border ul li div {
+    margin-left: 10px;
+}
+.package-content-title {
+    font-size: small;
+    font-weight: bold;
+}
+.package-content-price {
+    font-weight: 900;
+}
+
+/* 공지사항 ~ 앱 다운로드 */
+.notice-content-list, .notice-content-list > div:first-child {
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.notice-content-border {
+    border: 1px solid silver;
+    border-radius: 10px;
+    width: 770px;
+    height: 230px;
+    margin-bottom: 60px;
+    padding: 20px;
+    font-size: small;
+}
+.notice-content-notice {
+    padding-bottom: 20px;
+    border-bottom: 1px solid silver;
+}
+.notice-content-notice > button {
+    border: 1px solid var(--color-silver);
+    background-color: var(--color-white);
+    padding: 2px 7px;
+    color: var(--color-primary);
+    border-radius: 15px;
+}
+.notice-content-notice .notice-content-border-title,
+.notice-content-support span.notice-content-border-title {
+    /* border: 1px solid blue; */
+    margin-right: 15px;
+}
+.notice-content-support {
+    padding: 20px 0;
+    display: flex;
+}
+.notice-content-support div p {
+    margin-bottom: 5px;
+}
+.notice-content-faq {
+    padding-top: 20px;
+    /* border: 1px solid blue; */
+}
+.notice-content-faq a span {
+    color: black;
+    font-weight: 600;
+}
+.notice-content-border-title {
+    font-weight: bold;
+}
+.notice-content-app {
+    /* border: 1px solid red; */
+    text-align: center;
+}
+.notice-content-app span {
+    font-size: medium;
+}
+.notice-content-app img {
+    width: 60px;
+    margin: 20px 0;
+}
+.notice-content-list div:last-child div img {
+    border-radius: 10px;
+    width: 200px;
+    padding-top: 0;
+}
+
+/******************************************
+* title: login form
+* author: yuna
+* final date : 2024/10/28
+*******************************************/
+.login-form {
+    margin-top: 30px;
+}
+.login-form form {
+    width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-login-font);
+}
+.login-form form div:first-child {
+    width: 541px;
+}
+.login-form form div:first-child ul {
+    list-style-type: none;
+}
+.login-form form div:first-child ul:first-child {
+    display: flex;
+}
+.login-form form div:first-child ul:nth-child(2) {
+    /* border: 1px solid blue; */
+    margin-top: 0;
+    border-top: 3px solid var(--color-login-font);
+    border-bottom: 3px solid var(--color-login-font);
+}
+.login-form form div:first-child ul:first-child li {
+    /* border: 1px solid blue; */
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.login-form form div:first-child ul:first-child li a {
+    width: 100px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    border-bottom: none;
+    border-left: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: var(--color-white);
+    text-decoration: none;
+    background-color: var(--color-login-font);
+    font-size: small;
+    font-weight: bold;
+}
+.login-form form div:first-child ul:first-child li:first-child a {
+    background-color: var(--color-button);
+}
+.login-form ul li {
+    padding: 10px;
+}
+.login-form input:not(input[type="checkbox"]) {
+    width: 200px;
+    padding: 10px 10px 10px 20px;
+}
+.login-form button {
+    width: 263px;
+    padding: 10px;
+    outline-style: solid;
+    outline-color: var(--color-button);
+}
+.login-form ul > li:nth-child(5) {
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+.login-form ul > li:nth-child(5) > div:last-child > :nth-child(2) {
+    padding-right: 2px;
+}
+.login-form ul > li:nth-child(5) > div:last-child > a {
+    color: var(--color-login-font);
+    font-weight: 700;
 }

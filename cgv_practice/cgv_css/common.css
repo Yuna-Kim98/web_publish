@@ -3,3 +3,9 @@
     margin: 0;
     padding: 0;
 }
+
+/* color list */
+:root {
+    --color-102: rgb(102, 102, 102);
+    --color-black: #000;
+}
