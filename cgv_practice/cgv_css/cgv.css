@@ -51,13 +51,13 @@ header {
     width: 36px;
     height: 36px;
     padding: 0;
-    margin-left: 30px;
+    margin-left: 50px;
 }
 .header-top-nav ul li a span {
     position: absolute;
     /* left: 50%; */
     width: 70px;
-    margin-left: 13px;
+    margin-left: 34px;
     text-align: center;
     color: var(--color-666);
     font-size: 13px;
@@ -72,10 +72,10 @@ header {
 }
 .header-bottom-nav {
     width: 980px;
-    height: 40px;
-    left: 0;
+    height: 50px;
+    /* left: 0; */
     margin: 0 auto;
-    padding: px 0;
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -103,7 +103,7 @@ header {
     border-right: 1px solid var(--color-666);
     border-left: 1px solid var(--color-666);
     position: absolute;
-    top: 7px;
+    top: 13px;
     right: 0;
     width: 200px;
     height: 24px;
@@ -112,6 +112,76 @@ header {
 .header-bottom-nav div input {
     border: none;
     height: 18px;
+}
+.header-bottom-nav div i {
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 5px;
+    right: 2;
+}
+
+/******************************************
+* title: index style
+* author: yuna
+* final date : 2024/10/28
+*******************************************/
+footer {
+    width: 100%;
+    height: 460px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.footer-content-top {
+    background-color: rgb(242, 145, 36);
+    height: 180px;
+}
+.footer-content-top div {
+    width: 980px;
+    margin: 0 auto;
+}
+.footer-content-top img {
+    width: 980px;
+    margin: 0 auto;
+    margin-top: -60px;
+}
+.footer-content-list {
+    width: 980px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.footer-content-list ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-content-list ul li {
+    padding: 23px 0;
+}
+.footer-content-list ul li a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+.footer-content-list ul li a:hover {
+    text-decoration: underline;
+}
+.footer-content-list ul li:nth-child(9) a {
+    text-decoration: underline;
+    font-weight: 600;
+}
+.footer-content-bottom {
+    width: 980px;
+    margin: 0 auto;
+}
+.footer-content-bottom div {
+    padding: 23px 0;
+}
+.footer-content-bottom div p {
+    padding: 2px 0;
+    font-size: 12px;
+}
+.footer-content-bottom div p:nth-child(2) a {
+    text-decoration: underline;
 }
 
 /******************************************
@@ -137,4 +207,8 @@ content {
 .main-content-wrap {
     width: 980px;
     margin: 0 auto;
+}
+.main-content-moviechart {
+    border: 1px solid red;
+    padding-top: 50px;
 }

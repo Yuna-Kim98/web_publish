@@ -11,3 +11,8 @@
     --color-black: #000;
     --color-222: #222; /*cgv font color*/
 }
+
+/* 공통 요소 */
+.main-content-title {
+    font-size: 26px;
+}

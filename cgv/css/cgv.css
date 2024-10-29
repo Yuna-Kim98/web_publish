@@ -1,4 +1,4 @@
-/******************************************
+/* /******************************************
 * title: header style
 * author: yuna
 * final date : 2024/10/24
@@ -174,6 +174,11 @@ ul a:hover {
 }
 .p2 {
     margin-bottom: 20px;
+}
+.p2 > a {
+    text-decoration: none;
+    color: var(--color-primary);
+    cursor: text;
 }
 
 /******************************************
@@ -554,4 +559,282 @@ span.special-hashtag {
 .login-form ul > li:nth-child(5) > div:last-child > a {
     color: var(--color-login-font);
     font-weight: 700;
+}
+
+/******************************************
+* title: join form style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+.join-form {
+    /* border: 1px solid red; */
+}
+.join-form > div > h1 {
+    margin: 0;
+    padding-left: 0;
+}
+.join-form > div > p {
+    /* border: 1px solid blue; */
+    margin-bottom: 10px;
+}
+.join-form > div, .join-form > form {
+    width: 400px;
+    margin: 0 auto;
+}
+.join-form ul {
+    list-style-type: none;
+}
+.join-form ul li {
+    /* border: 1px solid tomato; */
+    padding-top: 10px;
+}
+.join-form ul li div:not(.join-form ul li:nth-child(6) div) {
+    border: 1px solid var(--color-silver);
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+.join-form ul li:nth-child(6) input,
+.join-form ul li:nth-child(6) select {
+    border: 1px solid var(--color-silver);
+    border-radius: 5px;
+    padding: 10px;
+}
+.join-form ul li:first-child > div, .join-form li:nth-child(6) > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.join-form ul li label {
+    display: inline-block; /* 마진, 들여쓰기 등은 인라인일 때 적용되지 않는 것 기억하기 */
+    margin-right: 10px;
+    text-indent: 7px; /* 들여쓰기 */
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.join-form ul li label + span {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: red;
+}
+.join-form ul li > div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* height: 40px; */
+}
+.join-form ul li > div > input {
+    border: none;
+    /* width: 310px; */
+}
+.join-form ul li:first-child input {
+    width: 70%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) input {
+    width: 40%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) select {
+    width: 40%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) span {
+    margin: 0 20px;
+}
+.join-form ul li input:focus { /*커서가 올라갔을 때 작업 설정*/
+    outline: none;
+}
+.join-form ul li > div > input {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+}
+.join-form ul li:first-child > div > button,
+.join-form ul li:last-child > button {
+    margin: 0;
+    width: 100px;
+    padding: 7px 0;
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-button);
+}
+.join-form ul li:last-child > button[type="reset"] {
+    margin-left: 5px;
+    padding: 7px 0;
+    width: 100px;
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+.join-form ul li:first-child > div > button {
+    border-radius: 5px;
+}
+.join-form ul li:last-child {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+/******************************************
+* title: mycgv style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+
+.mycgv div {
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+}
+.mycgv div span {
+    display: inline-block;
+    width: 200px;
+    padding: 20px;
+    margin: 30px 20px;
+    text-align: center;
+    color: var(--color-white);
+    border: 1px solid red;
+    background-color: var(--color-button);
+}
+.mycgv div span:hover {
+    background-color: lightpink;
+}
+
+/******************************************
+* title: notice/news style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+.support .center-title {
+    /* border: 1px solid red; */
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0;
+    font-size: 16px;
+    color: var(--color-primary);
+}
+.support-content {
+    /* border: 1px solid red; */
+    width: 800px;
+    margin: 0 auto;
+}
+.support-content > p:first-child {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--color-primary);
+}
+.support-content div {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.support-content div select {
+    width: 100px;
+}
+.support-content div select:hover {
+    outline: none;
+}
+.support-content div select,
+.support-content div input {
+    border: 1px solid var(--color-primary);
+    padding: 5px 3px;
+    margin: 5px 5px 5px 0;
+}
+.support-content div button {
+    left: 280px;
+    top: 5px;
+    /* padding: 3px 10px; */
+    width: 70px;
+    height: 25px;
+    color: #fff;
+    background-color: #000;
+    border: 1px solid var(--color-primary);
+    outline: 1px solid #000;
+}
+.support-content nav {
+    border-bottom: 1px solid var(--color-login-font);
+    margin: 10px 0;
+    z-index: 1;
+}
+.support-content nav ul {
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+}
+.support-content nav ul li a {
+    /* border: 1px solid red; */
+    display: inline-block;
+    align-items: center;
+    width: 90px;
+    padding: 10px 0;
+    margin: 0 3px 0 0;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-white);
+    background-color: var(--color-login-font);
+}
+.support-content nav ul li:first-child a {
+    /* border: 1px solid red; */
+    background-color: var(--color-button);
+    z-index: 2;
+}
+.support-content p { 
+    color: var(--color-primary);
+    margin: 10px 0;
+}
+.support-content table {
+    /* border: 1px solid green; */
+    border-collapse: collapse; /* 중요 */
+    width: 100%;
+    color: var(--color-primary);
+}
+.support-content table th, .support-content table td {
+    /* height: 40px; */
+    padding: 10px 0;
+}
+.support-content table thead th:first-child {
+    width: 10%;
+}
+.support-content table thead th:nth-child(3) {
+    text-align: left;
+}
+.support-content table thead th:nth-child(2),
+.support-content table thead th:nth-child(4) {
+    width: 15%;
+}
+.support-content table thead th:last-child {
+    width: 10%;
+}
+.support-content table > thead {
+    border-top: 1px solid var(--color-silver);
+    border-bottom: 1px solid var(--color-silver);
+    background-color: rgb(248, 248, 248);
+}
+.support-content table > tbody {
+    border-bottom: 1px solid var(--color-silver);
+}
+.support-content table > tbody tr td:not(.support-content table > tbody tr td:nth-child(3)) {
+    /* border: 1px solid red; */
+    text-align: center;
+}
+.support-content table > tbody td:nth-child(3) a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+.support-content table > tbody td:nth-child(3) a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.support-content table > tfoot td {
+    /* border: 1px solid green; */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 5px;
 }
