@@ -132,59 +132,82 @@
             </div>
             <div class="main-content-wrap">
                 <div class="main-content-moviechart"><!-- 무비차트, 상영예정작 전체보기 / 무비차트 -->
-                    <div><!-- 무비차트 ~ 전체보기 -->
-                        <span>무비차트</span>
-                        <span>상영예정작</span>
+                    <div class="moviechart-menu">
+                        <div class="main-content-title"><!-- 무비차트 ~ 전체보기 -->
+                            <span>무비차트</span>
+                            <span>&#124;</span>
+                            <span>상영예정작</span>
+                        </div>
+                        <div>
+                            <a href="#" target="_parent">전체보기<i class="fa-solid fa-angle-right"></i></a>
+                        </div>
                     </div>
-                    <div>
-                        <button>전체보기</button>
-                    </div>
-                    <div><!-- 무비차트 -->
+                    <div class="moviechart-list"><!-- 무비차트 -->
                         <ul>
                             <li><!-- li 안에서도 div로 영역 나누기 가능 -->
                                 <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                                <div><h4>보통의 가족</h5></div>
+                                <div><strong>보통의 가족</strong></div>
                                 <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
                             </li>
                             <li>
                                 <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                                <div><h4>보통의 가족</h5></div>
+                                <div><strong>보통의 가족</strong></div>
                                 <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
                             </li>
                             <li>
                                 <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                                <div><h4>보통의 가족</h5></div>
+                                <div><strong>보통의 가족</strong></div>
                                 <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
                             </li>
                             <li>
                                 <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                                <div><h4>보통의 가족</h5></div>
+                                <div><strong>보통의 가족</strong></div>
                                 <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
                             </li>
                             <li>
                                 <div><img src="/web_publish/cgv_practice/images/movie-chart1.jpg" alt="movie chart1" width="150px"></div>
-                                <div><h4>보통의 가족</h5></div>
+                                <div><strong>보통의 가족</strong></div>
                                 <div><img src="/web_publish/cgv_practice/images/eggGoldenegggreat.png" alt="goldenegg" width="15px"><span>예매율</span></div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div><!-- event 목록 -->
+                <div class="main-content-event"><!-- event 목록 -->
                     <div><!-- event -->
-                        <div><h3>EVENT</h3></div>
-                        <button>전체보기</button>
+                        <div>
+                            <span class="main-content-title">EVENT</span>
+                        </div>
+                        <div>
+                            <a href="#" target="_parent">전체보기<i class="fa-solid fa-angle-right"></i></a>
+                        </div>
                     </div>
-                    <div><!-- 내용 -->
+                    <div class="event-list"><!-- 내용 -->
                         <ul><!-- 해당 페이지의 무비차트나 이벤트탭처럼 여러 항목이 한 그룹 안에 있는 그룹은 li로 나열하는 것이 효율적 -->
                             <li>
-                                <div><img src="/web_publish/cgv_practice/images/event1.jpg" alt="event1" width="250px"></div>
-                                <p><b>[콜렉터블 무비머니]Vol.1 맥스 달튼</b></p>
-                                <p>2024.09.25~2024.10.31</p>
+                                <a href="#" target="_parent">
+                                    <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/42386/17297657794310.jpg" alt="event1" width="250px">
+                                    <p>[CGV] 10월 컬쳐위크</p>
+                                    <p>2024.10.24~2024.10.31</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_parent">
+                                    <img src="https://img.cgv.co.kr/WebApp/contents/eventV4/42466/17301874318690.jpg" alt="event2" width="250px">
+                                    <p>[베놈-라스트댄스] (앵콜) 씨네브리핑 시리즈 10분요약</p>
+                                    <p>2024.09.25~2024.10.31</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_parent">
+                                    <img src="/web_publish/cgv_practice/images/event1.jpg" alt="event3" width="250px">
+                                    <p>[콜렉터블 무비머니]Vol.1 맥스 달튼</p>
+                                    <p>2024.09.25~2024.10.31</p>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div><!-- 특별관 탭-->
+                <div class="main-content-specialhall"><!-- 특별관 탭-->
                     <div><!-- 특별관 -->
                         <div><h3>특별관</h3></div>
                         <button>전체보기</button>
@@ -210,7 +233,7 @@
                         </ul>
                     </div>
                 </div>
-                <div><!-- 패키지, 영화관람권, 기프트카드-->
+                <div class="main-content-package"><!-- 패키지, 영화관람권, 기프트카드-->
                     <div><!-- 패키지 -->
                         <span><b>패키지</b></span><button>더보기</button>
                         <ul>
@@ -242,7 +265,7 @@
                         </ul>
                     </div>
                 </div>
-                <div><!-- 하단 안내사항 탭 -->
+                <div class="main-content-support"><!-- 하단 안내사항 탭 -->
                     <div><!-- 공지사항 -->
                         <span><b>공지사항</b></span>
                         <span><a href="#">[시스템점검] iOS 18 업데이트 관련 예매 서비스 이용 안내</a></span>
@@ -265,9 +288,9 @@
                         <img src="/web_publish/cgv_practice/images/img_qrcode.gif" alt="qrcode" width="50px">
                         <p>QR코드를 스캔하고<br>앱설치 페이지로 바로 이동하세요</p>
                     </div>
-                </div>
-                <div><!-- 광고 -->
-                    <img src="/web_publish/cgv_practice/images/ad1.png" alt="ad1" width="200px">
+                    <div><!-- 광고 -->
+                        <img src="/web_publish/cgv_practice/images/ad1.png" alt="ad1" width="200px">
+                    </div>
                 </div>
             </div>
         </content>

@@ -105,23 +105,27 @@ header {
     position: absolute;
     top: 13px;
     right: 0;
-    width: 200px;
+    width: 250px;
     height: 24px;
     padding: 0 5px;
 }
 .header-bottom-nav div input {
     border: none;
-    height: 18px;
+    width: 200px;
+    height: 30px;
+    padding-left: 5px;
+    margin-right: 5px;
 }
 .header-bottom-nav div i {
     /* border: 1px solid red; */
     position: absolute;
+    display: inline-block;
     top: 5px;
     right: 2;
 }
 
 /******************************************
-* title: index style
+* title: footer style
 * author: yuna
 * final date : 2024/10/28
 *******************************************/
@@ -189,6 +193,39 @@ footer {
 * author: yuna
 * final date : 2024/10/28
 *******************************************/
+/* main content 공통 요소 */
+/*콘텐츠 가운데 정렬*/
+.main-content-moviechart > div,
+.main-content-event,
+.main-content-specialhall,
+.main-content-package,
+.main-content-support {
+    width: 980px;
+    margin: 0 auto;
+}
+/* 전체보기 버튼 */
+.main-content-moviechart .moviechart-menu div:nth-child(2) a,
+.main-content-event > div:first-child > div:nth-child(2) a {
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+    display: inline-block;
+    position: relative;
+    padding: 4px 32px 4px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.main-content-moviechart .moviechart-menu div:nth-child(2) i,
+.main-content-event > div:first-child > div:nth-child(2) i {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    right: 7px;
+}
+/* 콘텐츠 패딩 */
+.main-content-wrap > div {
+    padding: 50px 0;
+}
+
 /* main content */
 content {
     width: 100%;
@@ -205,10 +242,98 @@ content {
     margin: 0 auto;
 }
 .main-content-wrap {
-    width: 980px;
     margin: 0 auto;
 }
 .main-content-moviechart {
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+.main-content-moviechart .moviechart-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.main-content-moviechart .main-content-title  span:first-child {
+    padding-right: 8px;
+}
+.main-content-moviechart .main-content-title  span:nth-child(2) {
+    position: absolute;
+    top: 7px;
+    font-size: 13px;
+    font-weight: 300;
+}
+.main-content-moviechart .main-content-title  span:nth-child(3) {
+    padding-left: 13px;
+    font-weight: 400;
+    color: var(--color-666);
+}
+
+/*무비차트 목록*/
+.main-content-moviechart .moviechart-list ul {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    list-style-type: none;
+}
+.main-content-moviechart .moviechart-list ul li {
+    text-align: center;
+}
+.main-content-moviechart .moviechart-list ul li div:first-child img {
+    width: 170px;
+    border-radius: 10px;
+}
+.main-content-moviechart .moviechart-list ul li div:nth-child(2) strong {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 18px;
+}
+.main-content-moviechart .moviechart-list ul li div:nth-child(3) span {
+    display: inline-block;
+    margin-top: 9px;
+}
+
+/* 이벤트 리스트 */
+.main-content-event > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.main-content-event .event-list ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+.main-content-event .event-list ul li {
+    width: 310px;
+}
+.main-content-event .event-list ul li img {
+    width: 310px;
+    border-radius: 10px;
+}
+.main-content-event .event-list ul li a {
+    display: inline-block;
+    text-decoration: none;
+}
+.main-content-event .event-list ul li a img + p {
+    width: 310px;
+    margin-top: 16px;
+    white-space: nowrap; /*영역을 넘어가는 문장이 다음 줄로 넘어가는 속성 제거*/
+    overflow: hidden;
+    text-overflow: ellipsis; /*말줄임 적용*/
+    font-size: 18px;
+    font-weight: 600;
+}
+.main-content-event .event-list ul li a p + p {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--color-666);
+}
+
+/*특별관*/
+.main-content-specialhall {
     border: 1px solid red;
-    padding-top: 50px;
 }
