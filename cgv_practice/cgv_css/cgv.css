@@ -205,7 +205,8 @@ footer {
 }
 /* 전체보기 버튼 */
 .main-content-moviechart .moviechart-menu div:nth-child(2) a,
-.main-content-event > div:first-child > div:nth-child(2) a {
+.main-content-event > div:first-child > div:nth-child(2) a,
+.main-content-specialhall > div:first-child > a {
     border: 1px solid #e2e2e2;
     border-radius: 15px;
     display: inline-block;
@@ -337,3 +338,11 @@ content {
 .main-content-specialhall {
     border: 1px solid red;
 }
+.main-content-specialhall > div:first-child {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-content-specialhall .main-content-title div:first-child {}
+/*특별관 전체보기 버튼 수정 중*/

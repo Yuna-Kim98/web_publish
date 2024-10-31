@@ -107,13 +107,24 @@ header {
     padding: 0 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
     border-right: 1px solid silver;
     border-left: 1px solid silver;
 }
-.header-bottom-search input {
-    width: 80%;
+.header-bottom-search div input {
+    width: 187px;
     border: none; /* focus 되었을 때만 border가 나타남 */
     padding: 5px;
+}
+.header-bottom-search div i {
+    /* 폰트어썸에서 가져온 아이콘 태그는 span 태그와 속성이 같으므로 글자 취급하여 설정해야 함*/
+    position: absolute;
+    font-size: 25px;
+    color: var(--color-primary);
+    top: 2px;
+    right: 8px;
+    cursor: pointer;
 }
 
 /******************************************
@@ -186,6 +197,23 @@ ul a:hover {
 * author: yuna
 * final date : 2024/10/24
 *******************************************/
+/* up to top buttom*/
+.up-to-top {
+    border: 2px solid black;
+    border-radius: 100%;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 5px;
+    bottom: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.up-to-top > img {
+    width: 15px;
+}
 .content, .content-top, .content-moviechart {
     width: 100%;
     /* margin: 100px; */
@@ -504,6 +532,7 @@ span.special-hashtag {
 }
 .login-form form div:first-child ul:nth-child(2) {
     /* border: 1px solid blue; */
+    align-items: center;
     margin-top: 0;
     border-top: 3px solid var(--color-login-font);
     border-bottom: 3px solid var(--color-login-font);
@@ -535,6 +564,29 @@ span.special-hashtag {
 }
 .login-form ul li {
     padding: 10px;
+}
+.login-form div ul:nth-child(2) li:nth-child(2) div,
+.login-form div ul:nth-child(2) li:nth-child(3) div {
+    border: 1px solid var(--color-primary);
+    width: 263px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.login-form div ul:nth-child(2) li:nth-child(2) div:hover {
+    outline: 1px solid #000;
+}
+.login-form-input > i {
+    padding: 0 15px 0 10px;
+    border-right: 1px solid var(--color-primary);
+}
+.login-form input:not(input[type="checkbox"]) {
+    border: none;
+    padding: 0 5px;
+    margin-left: 10px;
+    outline: none;
+    /* width:  */
 }
 .login-form input:not(input[type="checkbox"]) {
     width: 200px;

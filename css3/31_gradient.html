@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Style</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid silver;
+            margin: 2rem auto;
+        }
+        .box2 {
+            width: 300px;
+            height: 200px;
+            border: 1px solid silver;
+            margin: 2rem auto;
+        }
+        .linear {
+            /* background: linear-gradient(to bottom, #000 0%, #fff 100%); */
+            /* background: linear-gradient(to right, #000 0%, #fff 100%); */
+            color: #fff;
+            background: #ff0000;
+            background: linear-gradient(120deg,#ff0000 0%, #ff9000 80%);
+            background: -webkit-linear-gradient(120deg,#ff0000 0%, #ff9000 80%);
+            background: -moz-linear-gradient(120deg,#ff0000 0%, #ff9000 80%);
+        }
+        .radial {
+            /* background: radial-gradient(circle at center, #000 0%, #fff 100%); */
+            background: #36d6ff;
+            background: radial-gradient(circle farthest-corner at center center, #36d6ff 0%, #c4ff66 80%);
+            background: -webkit-radial-gradient(circle farthest-corner at center center, #36d6ff 0%, #c4ff66 80%);
+            background: -moz-radial-gradient(circle farthest-corner at center center, #36d6ff 0%, #c4ff66 80%);
+        }
+        .ellipse {
+            background: #36d6ff;
+            background: radial-gradient(ellipse farthest-corner at center center, #36d6ff 0%, #ebc9fb 80%);
+            background: -webkit-radial-gradient(ellipse farthest-corner at center center, #36d6ff 0%, #ebc9fb 80%);
+            background: -moz-radial-gradient(ellipse farthest-corner at center center, #36d6ff 0%, #ebc9fb 80%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gradient Style</h1>
+    <div class="box linear">linear gradient</div>
+    <div class="box radial">radial gradient</div>
+    <div class="box2 ellipse">ellipse gradient</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate</title>
+    <style>
+        .translate {
+            /* perspective: 500px; */
+        }
+        .translate img {
+            width: 300px;
+            transition: 0.4s;
+        }
+        .translate img:hover {
+            /* transform: translateX(50px);
+            transform: translateY(50px);
+            요소의 원래 위치를 기준으로 움직임. 때문에 각각 따로 스타일을 줄 경우 마지막에 적힌 스타일만 적용됨.
+            때문에 아래와 같이 한번에 적용 */
+            /* transform: translate(50px, 50px); */
+            /* transform: translateZ(50px); */
+            /* transform: translate(150px, 150px) scale(0.5); */
+            /* transform: rotate(90deg); */
+            /* transform: skewY(30deg); */
+        }
+        .rotate-scale-up-diag-1 {
+            -webkit-animation: rotate-scale-up-diag-1 0.7s linear both;
+            animation: rotate-scale-up-diag-1 0.7s linear both;
+        }
+        @-webkit-keyframes rotate-scale-up-diag-1 {
+            0% {
+            -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+                    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+            }
+            50% {
+            -webkit-transform: scale(2) rotate3d(1, 1, 0, -180deg);
+            transform: scale(2) rotate3d(1, 1, 0, -180deg);
+            }
+            100% {
+            -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
+            transform: scale(1) rotate3d(1, 1, 0, -360deg);
+            }
+        }
+        @keyframes rotate-scale-up-diag-1 {
+            0% {
+            -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+                    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+            }
+            50% {
+            -webkit-transform: scale(2) rotate3d(1, 1, 0, -180deg);
+                    transform: scale(2) rotate3d(1, 1, 0, -180deg);
+            }
+            100% {
+            -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
+            transform: scale(1) rotate3d(1, 1, 0, -360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Translate</h1>
+    <div class="translate">
+        <img src="/web_publish/cgv/images/event2.jpg" alt="">
+    </div>
+    <img src="/web_publish/cgv/images/logoRed.png" alt="" class="rotate-scale-up-diag-1">
+</body>
+</html>
