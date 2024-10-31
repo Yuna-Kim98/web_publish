@@ -517,100 +517,112 @@ span.special-hashtag {
 .login-form form {
     width: 900px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
     color: var(--color-login-font);
 }
-.login-form form div:first-child {
+.login-form form > div:first-child ul {
+    display: flex;
+    justify-content: flex-start;
     width: 541px;
-}
-.login-form form div:first-child ul {
     list-style-type: none;
 }
-.login-form form div:first-child ul:first-child {
-    display: flex;
-}
-.login-form form div:first-child ul:nth-child(2) {
-    /* border: 1px solid blue; */
-    align-items: center;
-    margin-top: 0;
-    border-top: 3px solid var(--color-login-font);
-    border-bottom: 3px solid var(--color-login-font);
-}
-.login-form form div:first-child ul:first-child li {
-    /* border: 1px solid blue; */
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
-.login-form form div:first-child ul:first-child li a {
-    width: 100px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    border: 1px solid white;
-    border-bottom: none;
-    border-left: none;
+.login-form form > div:first-child ul li a {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    color: var(--color-white);
     text-decoration: none;
-    background-color: var(--color-login-font);
-    font-size: small;
+    margin-right: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 37px;
+    font-size: 13px;
     font-weight: bold;
+    text-align: center;
+    background-color: var(--color-login-font);
+    color: #fff;
 }
-.login-form form div:first-child ul:first-child li:first-child a {
+.login-form form > div:first-child ul li:first-child a {
     background-color: var(--color-button);
 }
-.login-form ul li {
-    padding: 10px;
-}
-.login-form div ul:nth-child(2) li:nth-child(2) div,
-.login-form div ul:nth-child(2) li:nth-child(3) div {
-    border: 1px solid var(--color-primary);
-    width: 263px;
-    padding: 5px;
+.login-form form >div:nth-child(2) {
     display: flex;
+}
+.login-form form >div:nth-child(2) > div:first-child {
+    border-top: 2px solid var(--color-login-font);
+    border-bottom: 2px solid var(--color-login-font);
+    width: 541px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+.login-form form >div:nth-child(2) > div:first-child ul {
+    list-style-type: none;
+}
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(2),
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(3) {
+    display: flex;
+    justify-content: center;
     position: relative;
 }
-.login-form div ul:nth-child(2) li:nth-child(2) div:hover {
-    outline: 1px solid #000;
+.login-form > form > div:nth-child(2) > div:first-child ul li:first-child p {
+    margin: 10px 0 10px 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+.login-form-input {
+    border: 1px solid var(--color-primary
+    );
+    display: flex;
+    justify-content: center;
+    width: 264px;
+    height: 42px;
+    margin-bottom: 5px;
 }
 .login-form-input > i {
-    padding: 0 15px 0 10px;
-    border-right: 1px solid var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
 }
-.login-form input:not(input[type="checkbox"]) {
+.login-form-input > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form-input > input {
+    margin: 10px 10px;
+    width: 250px;
     border: none;
-    padding: 0 5px;
-    margin-left: 10px;
     outline: none;
-    /* width:  */
 }
-.login-form input:not(input[type="checkbox"]) {
-    width: 200px;
-    padding: 10px 10px 10px 20px;
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.login-form button {
-    width: 263px;
-    padding: 10px;
-    outline-style: solid;
-    outline-color: var(--color-button);
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(4) .btn-main-color {
+    width: 261px;
+    height: 42px;
+    border: 1px solid #fff;
+    outline: 3px solid var(--color-button);
 }
-.login-form ul > li:nth-child(5) {
-    /* border: 1px solid green; */
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(5) {
+    width: 264px;
+    margin: 5px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 13px;
 }
-.login-form ul > li:nth-child(5) > div:last-child > :nth-child(2) {
-    padding-right: 2px;
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(5) > div:nth-child(2) a {
+    font-size: 12px;
+    color: var(--color-primary);
 }
-.login-form ul > li:nth-child(5) > div:last-child > a {
-    color: var(--color-login-font);
-    font-weight: 700;
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:last-child {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
 }
 
 /******************************************
