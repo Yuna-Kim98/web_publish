@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* color list */
+:root {
+    --color-highlight: rgb(3, 232, 249);
+}
+
+/* content title */
+.content-title {
+    font-size: 25px;
+    font-weight: 700;
+}

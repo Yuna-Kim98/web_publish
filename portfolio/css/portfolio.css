@@ -1,0 +1,404 @@
+/* /******************************************
+* title: header style
+* author: yuna
+* final date : 2024/11/01
+*******************************************/
+.header-wrap {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+.header-wrap .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    /* margin: 0 auto; */
+    /* margin-bottom: 50px; */
+}
+.header-wrap .header-top > div:first-child {
+    display: flex;
+    /* justify-content: ; */
+    width: 150px;
+    margin: 0;
+    padding-left: 0;
+}
+.header-wrap .header-top > div:first-child > img {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    margin-left: 10px;
+}
+.header-wrap .header-top > div:first-child > span {
+    display: flex;
+    width: 100px;
+    margin: 0;
+    margin-left: 5px;
+    top: 10px;
+    right: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    align-items: center;
+}
+.header-wrap .header-top > div:last-child {
+    /* border: 1px solid red; */
+    width: 650px;
+    margin: 0;
+}
+
+.header-wrap .header-top > div:last-child > ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.header-wrap .header-top > div:last-child > ul li {
+    margin-left: 7px;
+}
+.header-wrap .header-top > div:last-child > ul li:last-child {
+    margin-right: 7px;
+}
+.header-wrap .header-top > div:last-child > ul li a {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    display: inline-block;
+    padding: 8px 0;
+    text-decoration: none;
+    color: #ffffff;
+}
+.header-wrap .header-top > div:last-child > ul li a:hover {
+    border: 1px solid var(--color-highlight);
+    border-radius: 5px;
+}
+
+.header-wrap .header-bottom {
+    width: 100%;
+    padding: 10px 0 70px 0;
+    margin: 0 auto;
+    /* margin-bottom: 100px; */
+}
+.header-wrap .header-bottom > div:first-child {
+    width: 300px;
+    align-items: center;
+}
+.header-wrap .header-bottom > div:nth-child(2) {
+    /* border: 1px solid blue; */
+    margin-bottom: 20px;
+}
+.header-wrap .header-bottom > div:nth-child(2) > p {
+    /* border: 1px solid green; */
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 45px;
+    font-weight: 700;
+}
+.header-wrap .header-bottom > div:nth-child(2) > p span {
+    color: var(--color-highlight);
+}
+.header-wrap .header-bottom > div:nth-child(2) > p:last-child {
+    font-size: 20px;
+    padding-top: 5px;
+    font-weight: 400;
+}
+.header-wrap .header-bottom > div:last-child {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.header-wrap .header-bottom > div:last-child a {
+    border: 1px solid green;
+    border-radius: 5px;
+    width: 110px;
+    padding: 5px 7px;
+    text-decoration: none;
+    color: #000;
+    background-color: var(--color-highlight);
+}
+
+/* /******************************************
+* title: content style
+* author: yuna
+* final date : 2024/11/01
+*******************************************/
+/* 공통 부분 */
+/* 각 섹션 p */
+.main-content1 .about-me p:last-child,
+.main-content2 .my-skills p:not(.content-title),
+.main-content3 .my-work div p:last-child,
+.main-content4 .testimonial p:last-child {
+    /* border: 1px solid green; */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.main-content1 .about-me p,
+.main-content2 .my-skills p,
+.main-content3 .my-work p {
+    /* border: 1px solid blue; */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.content-wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+.content-wrap > div {
+    width: 980px;
+}
+.main-content1 {
+    /* border: 1px solid red; */
+    padding: 30px 0;
+}
+.main-content1 .about-me-list ul {
+    /* border: 1px solid blue; */
+    list-style-type: none;
+    padding: 0;
+    padding: 15px 0;
+    /* margin-bottom: 10px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.main-content1 .about-me-list ul li {
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+    background-color: #2b2b2b;
+    width: 310px;
+    padding: 30px 5px;
+} 
+.main-content1 .about-me-list ul li i {
+    display:inline-block;
+    padding: 10px 0;
+    font-size: 60px;
+    color: var(--color-highlight);
+}
+.main-content1 .about-me-list ul li strong {
+    display: inline-block;
+    padding-bottom: 15px;
+    font-size: 20px;
+    color: #fff;
+}
+.main-content1 .about-me-list ul li p {
+    color: #fff;
+}
+.main-content1 div:nth-child(3) {
+    padding: 10px 0;
+}
+.main-content1 div:nth-child(3) ul {
+    list-style-type: none;
+    padding: 0;
+    /* align-items: flex-start; */
+}
+.main-content1 div:nth-child(3) > ul > li {
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.main-content1 div:nth-child(3) > ul > li > div:first-child {
+    width: 100px;
+    margin-right: 5px;
+}
+.main-content1 div:nth-child(3) > ul > li > div:last-child ul li:first-child {
+    font-size: large;
+}
+
+.main-content2 {
+    /* border: 1px solid red; */
+    padding: 30px 40px;
+    color: #fff;
+    background-color: #2b2b2b;
+}
+.main-content2 .my-skills {
+    text-align: center;
+    padding: 10px 0;
+}
+.main-content2 > div:nth-child(2) {
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+}
+.main-content2 .my-skills-list {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 500px;
+    margin-bottom: 10px;
+}
+.main-content2 .my-skills-list > div {
+    padding: 10px 0;
+}
+.main-content2 .my-skills-list strong {
+    /* border: 1px solid black; */
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px 0;
+    color: var(--color-highlight);
+}
+.main-content2 .my-skills-list > div:first-child {
+    height: 100%;
+    background-color: #000;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.main-content2 .my-skills-list > div:first-child ul {
+    list-style-type: none;
+    padding: 10px 0;
+    color: #fff;
+}
+.main-content2 .my-skills-list > div:nth-child(2) > div {
+    height: 250px;
+}
+.main-content2 .my-skills-list > div:nth-child(2) > div:first-child {
+    /* border: 1px solid green; */
+    border-top-right-radius: 10px;
+    background-color: #585858;
+}
+.main-content2 .my-skills-list > div:nth-child(2) > div:last-child {
+    border-bottom-right-radius: 10px;
+    background-color: #474858;
+}
+
+.main-content3 {
+    /* border: 1px solid red; */
+    padding: 30px 40px;
+    color: #fff;
+    background-color: #000;
+    align-items: center;
+    text-align: center;
+}
+.main-content3 > .my-work {
+    /* border: 1px solid blue; */
+    padding: 10px 0;
+}
+.main-content3 .my-work div:nth-child(2) ul,
+.main-content3 > div:nth-child(2) ul {
+    padding: 10px 0;
+    list-style-type: none;
+}
+.main-content3 .my-work div:nth-child(2) ul {
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+    align-items: center;
+    text-align: center;
+}
+.main-content3 .my-work div:nth-child(2) ul li {
+    /* border: 1px solid red; */
+    /* width: 130px; */
+}
+.main-content3 .my-work div:nth-child(2) ul li a {
+    border: 1px solid var(--color-highlight);
+    border-radius: 5px;
+    display: inline-block;
+    width: 120px;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #fff;
+}
+.main-content3 .my-work div:nth-child(2) ul li a:hover {
+    background-color: var(--color-highlight);
+    color: #000;
+}
+.main-content3 > div:nth-child(2) ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+.main-content3 > div:nth-child(2) ul li a {
+    display: inline-block;
+    width: 215px;
+}
+.main-content3 > div:nth-child(2) ul li a img {
+    /* border: 1px solid blue; */
+    border-radius: 5px;
+}
+
+.main-content4 {
+    /* border: 1px solid red; */
+    padding: 30px 40px 60px 40px;
+    align-items: center;
+    text-align: center;
+}
+.main-content4 .testimonial {
+    padding: 10px 0;
+}
+.main-content4 .testimonial .content-title {
+    padding: 10px 0;
+}
+.main-content4 .testimonial-list {
+    /* border: 1px solid blue; */
+    width: 700px;
+}
+.main-content4 .testimonial-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+.main-content4 .testimonial-list ul li {
+    display: flex;
+    /* position: relative; */
+    height: 120px;
+}
+.main-content4 .testimonial-list ul li div:first-child {
+    width: 180px;
+}
+.main-content4 .testimonial-list ul li img {
+    border-radius: 100%;
+    /* position: absolute; */
+    width: 120px;
+    left: 0;
+}
+.main-content4 .testimonial-list ul li:nth-child(2) {
+    margin: 30px 0;
+}
+.main-content4 .testimonial-list ul li:nth-child(2) div:first-child {
+    width: 2600px;
+    /* 수정 필요 */
+}
+.main-content4 .testimonial-list ul li:not(.main-content4 .testimonial-list ul li:nth-child(2)) > div:last-child,
+.main-content4 .testimonial-list ul li:nth-child(2) div:first-child {
+    /* border: 1px solid green; */
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* /******************************************
+* title: footer style
+* author: yuna
+* final date : 2024/11/01
+*******************************************/
+footer {
+    /* border: 1px solid red; */
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 60px 0 20px 0;
+}
+.footer-wrap {
+    width: 500px;
+}
+.footer-wrap > div,
+.footer-wrap > div:first-child p,
+.footer-wrap ul {
+    padding: 10px 0;
+}
+.footer-wrap .content-title + p {
+    font-size: 20px;
+}
+.footer-wrap > div:nth-child(2) ul {
+    display: flex;
+    list-style-type: none;
+    width: 70px;
+}
+.footer-wrap > div:nth-child(2) ul li i {
+    font-size: 25px;
+}
