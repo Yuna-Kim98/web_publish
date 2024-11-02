@@ -198,7 +198,7 @@ footer {
 .main-content-moviechart > div,
 .main-content-event,
 .main-content-specialhall,
-.main-content-package,
+.main-content-giftcon,
 .main-content-support {
     width: 980px;
     margin: 0 auto;
@@ -256,16 +256,19 @@ content {
     position: relative;
     margin-bottom: 20px;
 }
-.main-content-moviechart .main-content-title  span:first-child {
+.main-content-moviechart .main-content-title > a {
+    text-decoration: none;
+}
+.main-content-moviechart .main-content-title a:first-child > span {
     padding-right: 8px;
 }
-.main-content-moviechart .main-content-title  span:nth-child(2) {
+.main-content-moviechart .main-content-title > span:nth-child(2) {
     position: absolute;
     top: 7px;
     font-size: 13px;
     font-weight: 300;
 }
-.main-content-moviechart .main-content-title  span:nth-child(3) {
+.main-content-moviechart .main-content-title > a:nth-child(3) span {
     padding-left: 13px;
     font-weight: 400;
     color: var(--color-666);
@@ -335,14 +338,74 @@ content {
 }
 
 /*특별관*/
-.main-content-specialhall {
-    border: 1px solid red;
-}
 .main-content-specialhall > div:first-child {
-    border: 1px solid blue;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
-.main-content-specialhall .main-content-title div:first-child {}
-/*특별관 전체보기 버튼 수정 중*/
+.main-content-specialhall > div:first-child a i {
+    /* border: 1px solid blue; */
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}
+/* 전체보기 버튼 수정 */
+.main-content-specialhall > .specialhall-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 19px;
+}
+.main-content-specialhall > .specialhall-list > div > img {
+    width: 500px;
+}
+.main-content-specialhall > .specialhall-list > ul {
+    list-style-type: none;
+    padding: 0;
+    width: 440px;
+}
+.main-content-specialhall > .specialhall-list > ul li {
+    border-top: 1px solid #e9e9e9;
+}
+.main-content-specialhall > .specialhall-list > ul li:last-child {
+    border-bottom: 1px solid #e9e9e9;
+}
+.main-content-specialhall > .specialhall-list > ul li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 25px 19px 19px;
+    text-decoration: none;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover {
+    border: 1px solid #000;
+    /* border-top: none; */
+    border-radius: 10px;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover + li {
+    border-top: none;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover > a > span:first-child {
+    font-weight: 600;
+}
+.main-content-specialhall > .specialhall-list > ul li a span:first-child {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+}
+.main-content-specialhall > .specialhall-list > ul li a span:last-child {
+    border: none;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 14px;
+    color: var(--color-666);
+    background-color: #f6f6f6;
+}
+
+/* 기프트콘 목록 */
+.main-content-giftcon {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}
