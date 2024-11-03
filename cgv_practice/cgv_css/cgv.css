@@ -202,6 +202,7 @@ footer {
 .main-content-support {
     width: 980px;
     margin: 0 auto;
+    
 }
 /* 전체보기 버튼 */
 .main-content-moviechart .moviechart-menu div:nth-child(2) a,
@@ -223,8 +224,8 @@ footer {
     right: 7px;
 }
 /* 콘텐츠 패딩 */
-.main-content-wrap > div {
-    padding: 50px 0;
+.main-content-wrap > div:not(.main-content-wrap > div.main-content-support) {
+    padding: 60px 0 0 0;
 }
 
 /* main content */
@@ -405,7 +406,80 @@ content {
 
 /* 기프트콘 목록 */
 .main-content-giftcon {
-    border: 1px solid red;
     display: flex;
     justify-content: space-between;
+}
+.main-content-giftcon > div {
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    padding: 20px 19px 30px;
+    width: 310px;
+    /* height: auto; */
+}
+.main-content-giftcon .giftcon-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-content-giftcon .giftcon-title > span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+}
+.main-content-giftcon .giftcon-title > a {
+    border: 1px solid #f4f4f4;
+    border-radius: 11px;
+    padding: 2px 15px 3px;
+    text-decoration: none;
+    color: var(--color-666);
+    font-size: 12px;
+}
+.main-content-giftcon ul {
+    list-style-type: none;
+    padding: 0;
+}
+.main-content-giftcon ul:not(.main-content-giftcon ul:first-child) {
+    margin-left: 25px;
+}
+.main-content-giftcon ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 27px;
+}
+.main-content-giftcon ul li > div:first-child {
+    width: 75px;
+    height: 76px;
+    position: relative;
+}
+.main-content-giftcon ul li > div:first-child > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.main-content-giftcon ul li > div:last-child {
+    padding-left: 15px;
+}
+.main-content-giftcon ul li > div:last-child > p:first-child {
+    font-size: 14px;
+    font-weight: 500;
+}
+.main-content-giftcon ul li > div:last-child > p:last-child {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 공지사항 */
+.main-content-support {
+    border: 1px solid red;
+    padding: 30px 0 120px;
+    display: flex;
+    justify-content: space-between;
+}
+.main-content-support > div:first-child {
+    border: 1px solid blue;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 736px;
+    height: 236px;
 }
