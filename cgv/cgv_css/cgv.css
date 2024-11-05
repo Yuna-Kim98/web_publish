@@ -1,0 +1,886 @@
+/******************************************
+* title: header style
+* author: yuna
+* final date : 2024/10/24
+*******************************************/
+/* header */
+header {
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 2px solid red;
+}
+
+/* logo ~ 고객센터 */
+.header-top {
+    /* border: 1px solid red; */
+    width: 980px;
+    margin: 0 auto;/* 콘텐츠 중앙 정렬 */
+    /* margin-bottom: 50px */
+    padding: 30px 6px 25px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-top-logo > a > img {
+    width: 117px;
+    position: relative;
+}
+.header-top-logo > span {
+    position: absolute;
+    display: inline-block;
+    top: 60px;
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+.header-top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-top-nav div:first-child {
+    width: 136px;
+}
+.header-top-nav div:nth-child(2) ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+.header-top-nav ul li a img {
+    display: block;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin-left: 50px;
+}
+.header-top-nav ul li a span {
+    position: absolute;
+    /* left: 50%; */
+    width: 70px;
+    margin-left: 34px;
+    text-align: center;
+    color: var(--color-666);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* header menu / 영화 ~ 검색창 */
+.header-bottom {
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid silver;
+}
+.header-bottom-nav {
+    width: 980px;
+    height: 50px;
+    /* left: 0; */
+    margin: 0 auto;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.header-bottom-nav ul {
+    display: flex;
+    list-style-type: none;
+}
+.header-bottom-nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.nav-title-red {
+    color: #fb4357;
+}
+.header-bottom-nav ul li dl {
+    display: none;
+}
+.header-bottom-nav div {
+    border-right: 1px solid var(--color-666);
+    border-left: 1px solid var(--color-666);
+    position: absolute;
+    top: 13px;
+    right: 0;
+    width: 250px;
+    height: 24px;
+    padding: 0 5px;
+}
+.header-bottom-nav div input {
+    border: none;
+    width: 200px;
+    height: 30px;
+    padding-left: 5px;
+    margin-right: 5px;
+}
+.header-bottom-nav div i {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: inline-block;
+    top: 5px;
+    right: 2;
+}
+
+/******************************************
+* title: footer style
+* author: yuna
+* final date : 2024/10/24
+*******************************************/
+footer {
+    width: 100%;
+    height: 450px;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: var(--color-footer-bg);
+}
+.footer-content-top {
+    background-color: rgb(242, 135, 36);
+    height: 180px;
+}
+.footer-content-top img {
+    margin-top: -60px;
+}/* 이미지 잘림 */
+.footer-content {
+    width: 1000px;
+    margin: 0 auto;/* margin으로 중앙 정렬하는 방법 잊지 말 것 */
+}
+.footer-intro > ul {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    border-bottom: 1px solid var(--color-silver);
+}
+.footer-intro ul a {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+.footer-intro ul li:nth-child(8) a {
+    color: var(--color-black);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+ul a:hover {
+    text-decoration: underline;
+}
+.footer-intro div {
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 0;
+}
+.p {
+    margin-top: 20px;
+}
+.p2 {
+    margin-bottom: 20px;
+}
+.p2 > a {
+    text-decoration: none;
+    color: var(--color-primary);
+    cursor: text;
+}
+
+/******************************************
+* title: index style
+* author: yuna
+* final date : 2024/10/28
+*******************************************/
+/* main content 공통 요소 */
+.content {
+    padding: 40px 0;
+}
+/*콘텐츠 가운데 정렬*/
+.main-content-moviechart > div,
+.main-content-event,
+.main-content-specialhall,
+.main-content-giftcon,
+.main-content-support {
+    width: 980px;
+    margin: 0 auto;
+    
+}
+/* 전체보기 버튼 */
+.main-content-moviechart .moviechart-menu div:nth-child(2) a,
+.main-content-event > div:first-child > div:nth-child(2) a,
+.main-content-specialhall > div:first-child > a {
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+    display: inline-block;
+    position: relative;
+    padding: 4px 32px 4px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.main-content-moviechart .moviechart-menu div:nth-child(2) i,
+.main-content-event > div:first-child > div:nth-child(2) i {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    right: 7px;
+}
+/* 콘텐츠 패딩 */
+.main-content-wrap > div:not(.main-content-wrap > div.main-content-support) {
+    padding: 60px 0 0 0;
+}
+
+/* main content */
+content {
+    width: 100%;
+    margin: 0 auto;
+}
+.main-content-trailer {
+    background-color: #000;
+    position: relative;
+}
+.main-content-trailer iframe {
+    display: block;
+    width: 980px;
+    height: 500px;
+    margin: 0 auto;
+}
+.main-content-wrap {
+    margin: 0 auto;
+}
+.main-content-moviechart {
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+.main-content-moviechart .moviechart-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.main-content-moviechart .main-content-title > a {
+    text-decoration: none;
+}
+.main-content-moviechart .main-content-title a:first-child > span {
+    padding-right: 8px;
+}
+.main-content-moviechart .main-content-title > span:nth-child(2) {
+    position: absolute;
+    top: 7px;
+    font-size: 13px;
+    font-weight: 300;
+}
+.main-content-moviechart .main-content-title > a:nth-child(3) span {
+    padding-left: 13px;
+    font-weight: 400;
+    color: var(--color-666);
+}
+
+/*무비차트 목록*/
+.main-content-moviechart .moviechart-list ul {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    list-style-type: none;
+}
+.main-content-moviechart .moviechart-list ul li {
+    text-align: center;
+}
+.main-content-moviechart .moviechart-list ul li div:first-child img {
+    width: 170px;
+    border-radius: 10px;
+}
+.main-content-moviechart .moviechart-list ul li div:nth-child(2) strong {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 18px;
+}
+.main-content-moviechart .moviechart-list ul li div:nth-child(3) span {
+    display: inline-block;
+    margin-top: 9px;
+}
+
+/* 이벤트 리스트 */
+.main-content-event > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.main-content-event .event-list ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+.main-content-event .event-list ul li {
+    width: 310px;
+}
+.main-content-event .event-list ul li img {
+    width: 310px;
+    border-radius: 10px;
+}
+.main-content-event .event-list ul li a {
+    display: inline-block;
+    text-decoration: none;
+}
+.main-content-event .event-list ul li a img + p {
+    width: 310px;
+    margin-top: 16px;
+    white-space: nowrap; /*영역을 넘어가는 문장이 다음 줄로 넘어가는 속성 제거*/
+    overflow: hidden;
+    text-overflow: ellipsis; /*말줄임 적용*/
+    font-size: 18px;
+    font-weight: 600;
+}
+.main-content-event .event-list ul li a p + p {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--color-666);
+}
+
+/*특별관*/
+.main-content-specialhall > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.main-content-specialhall > div:first-child a i {
+    /* border: 1px solid blue; */
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}
+/* 전체보기 버튼 수정 */
+.main-content-specialhall > .specialhall-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 19px;
+}
+.main-content-specialhall > .specialhall-list > div > img {
+    width: 500px;
+}
+.main-content-specialhall > .specialhall-list > ul {
+    list-style-type: none;
+    padding: 0;
+    width: 440px;
+}
+.main-content-specialhall > .specialhall-list > ul li {
+    border-top: 1px solid #e9e9e9;
+}
+.main-content-specialhall > .specialhall-list > ul li:last-child {
+    border-bottom: 1px solid #e9e9e9;
+}
+.main-content-specialhall > .specialhall-list > ul li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 25px 19px 19px;
+    text-decoration: none;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover {
+    border: 1px solid #000;
+    /* border-top: none; */
+    border-radius: 10px;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover + li {
+    border-top: none;
+}
+.main-content-specialhall > .specialhall-list > ul li:hover > a > span:first-child {
+    font-weight: 600;
+}
+.main-content-specialhall > .specialhall-list > ul li a span:first-child {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+}
+.main-content-specialhall > .specialhall-list > ul li a span:last-child {
+    border: none;
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 14px;
+    color: var(--color-666);
+    background-color: #f6f6f6;
+}
+
+/* 기프트콘 목록 */
+.main-content-giftcon {
+    display: flex;
+    justify-content: space-between;
+}
+.main-content-giftcon > div {
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    padding: 20px 19px 30px;
+    width: 310px;
+    /* height: auto; */
+}
+.main-content-giftcon .giftcon-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-content-giftcon .giftcon-title > span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+}
+.main-content-giftcon .giftcon-title > a {
+    border: 1px solid #f4f4f4;
+    border-radius: 11px;
+    padding: 2px 15px 3px;
+    text-decoration: none;
+    color: var(--color-666);
+    font-size: 12px;
+}
+.main-content-giftcon ul {
+    list-style-type: none;
+    padding: 0;
+}
+.main-content-giftcon ul:not(.main-content-giftcon ul:first-child) {
+    margin-left: 25px;
+}
+.main-content-giftcon ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 27px;
+}
+.main-content-giftcon ul li > div:first-child {
+    width: 75px;
+    height: 76px;
+    position: relative;
+}
+.main-content-giftcon ul li > div:first-child > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.main-content-giftcon ul li > div:last-child {
+    padding-left: 15px;
+}
+.main-content-giftcon ul li > div:last-child > p:first-child {
+    font-size: 14px;
+    font-weight: 500;
+}
+.main-content-giftcon ul li > div:last-child > p:last-child {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 공지사항 */
+.main-content-support {
+    border: 1px solid red;
+    padding: 30px 0 120px;
+    display: flex;
+    justify-content: space-between;
+}
+.main-content-support > div:first-child {
+    border: 1px solid blue;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 736px;
+    height: 236px;
+}
+
+/******************************************
+* title: login form
+* author: yuna
+* final date : 2024/10/28
+*******************************************/
+.login-form {
+    margin-top: 30px;
+}
+.login-form form {
+    width: 900px;
+    margin: 0 auto;
+    color: var(--color-login-font);
+}
+.login-form form > div:first-child ul {
+    display: flex;
+    justify-content: flex-start;
+    width: 541px;
+    list-style-type: none;
+}
+.login-form form > div:first-child ul li a {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-decoration: none;
+    margin-right: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 37px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--color-login-font);
+    color: #fff;
+}
+.login-form form > div:first-child ul li:first-child a {
+    background-color: var(--color-button);
+}
+.login-form form >div:nth-child(2) {
+    display: flex;
+}
+.login-form form >div:nth-child(2) > div:first-child {
+    border-top: 2px solid var(--color-login-font);
+    border-bottom: 2px solid var(--color-login-font);
+    width: 541px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form form >div:nth-child(2) > div:first-child ul {
+    list-style-type: none;
+}
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(2),
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.login-form > form > div:nth-child(2) > div:first-child ul li:first-child p {
+    margin: 10px 0 10px 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+.login-form-input {
+    border: 1px solid var(--color-primary
+    );
+    display: flex;
+    justify-content: center;
+    width: 264px;
+    height: 42px;
+    margin-bottom: 5px;
+}
+.login-form-input > i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
+}
+.login-form-input > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form-input > input {
+    margin: 10px 10px;
+    width: 250px;
+    border: none;
+    outline: none;
+}
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(4) .btn-main-color {
+    width: 261px;
+    height: 42px;
+    border: 1px solid #fff;
+    outline: 3px solid var(--color-button);
+}
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(5) {
+    width: 264px;
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(5) > div:nth-child(2) a {
+    font-size: 12px;
+    color: var(--color-primary);
+}
+.login-form > form > div:nth-child(2) > div:first-child > ul > li:last-child {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+/******************************************
+* title: join form style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+.join-form {
+    /* border: 1px solid red; */
+}
+.join-form > div > h1 {
+    margin: 0;
+    padding-left: 0;
+}
+.join-form > div > p {
+    /* border: 1px solid blue; */
+    margin-bottom: 10px;
+}
+.join-form > div, .join-form > form {
+    width: 400px;
+    margin: 0 auto;
+}
+.join-form ul {
+    list-style-type: none;
+}
+.join-form ul li {
+    /* border: 1px solid tomato; */
+    padding-top: 10px;
+}
+.join-form ul li div:not(.join-form ul li:nth-child(6) div) {
+    border: 1px solid var(--color-silver);
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+.join-form ul li:nth-child(6) input,
+.join-form ul li:nth-child(6) select {
+    border: 1px solid var(--color-silver);
+    border-radius: 5px;
+    padding: 10px;
+}
+.join-form ul li:first-child > div, .join-form li:nth-child(6) > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.join-form ul li label {
+    display: inline-block; /* 마진, 들여쓰기 등은 인라인일 때 적용되지 않는 것 기억하기 */
+    margin-right: 10px;
+    text-indent: 7px; /* 들여쓰기 */
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.join-form ul li label + span {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: red;
+}
+.join-form ul li > div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* height: 40px; */
+}
+.join-form ul li > div > input {
+    border: none;
+    /* width: 310px; */
+}
+.join-form ul li:first-child input {
+    width: 70%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) input {
+    width: 40%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) select {
+    width: 40%;
+    padding: 7px 10px;
+}
+.join-form ul li:nth-child(6) span {
+    margin: 0 20px;
+}
+.join-form ul li input:focus { /*커서가 올라갔을 때 작업 설정*/
+    outline: none;
+}
+.join-form ul li > div > input {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+}
+.join-form ul li:first-child > div > button,
+.join-form ul li:last-child > button {
+    margin: 0;
+    width: 100px;
+    padding: 7px 0;
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-button);
+}
+.join-form ul li:last-child > button[type="reset"] {
+    margin-left: 5px;
+    padding: 7px 0;
+    width: 100px;
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+.join-form ul li:first-child > div > button {
+    border-radius: 5px;
+}
+.join-form ul li:last-child {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+/******************************************
+* title: mycgv style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+
+.mycgv div {
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+}
+.mycgv div span {
+    display: inline-block;
+    width: 200px;
+    padding: 20px;
+    margin: 30px 20px;
+    text-align: center;
+    color: var(--color-white);
+    border: 1px solid red;
+    background-color: var(--color-button);
+}
+.mycgv div span:hover {
+    background-color: lightpink;
+}
+
+/******************************************
+* title: notice/news style
+* author: yuna
+* final date : 2024/10/29
+*******************************************/
+.support .center-title {
+    /* border: 1px solid red; */
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0;
+    font-size: 16px;
+    color: var(--color-primary);
+}
+.support-content {
+    /* border: 1px solid red; */
+    width: 800px;
+    margin: 0 auto;
+}
+.support-content > p:first-child {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--color-primary);
+}
+.support-content div {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.support-content div select {
+    width: 100px;
+}
+.support-content div select:hover {
+    outline: none;
+}
+.support-content div select,
+.support-content div input {
+    border: 1px solid var(--color-primary);
+    padding: 5px 3px;
+    margin: 5px 5px 5px 0;
+}
+.support-content div button {
+    left: 280px;
+    top: 5px;
+    /* padding: 3px 10px; */
+    width: 70px;
+    height: 25px;
+    color: #fff;
+    background-color: #000;
+    border: 1px solid var(--color-primary);
+    outline: 1px solid #000;
+}
+.support-content nav {
+    border-bottom: 1px solid var(--color-login-font);
+    margin: 10px 0;
+    z-index: 1;
+}
+.support-content nav ul {
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+}
+.support-content nav ul li a {
+    /* border: 1px solid red; */
+    display: inline-block;
+    align-items: center;
+    width: 90px;
+    padding: 10px 0;
+    margin: 0 3px 0 0;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-white);
+    background-color: var(--color-login-font);
+}
+.support-content nav ul li:first-child a {
+    /* border: 1px solid red; */
+    background-color: var(--color-button);
+    z-index: 2;
+}
+.support-content p { 
+    color: var(--color-primary);
+    margin: 10px 0;
+}
+.support-content table {
+    /* border: 1px solid green; */
+    border-collapse: collapse; /* 중요 */
+    width: 100%;
+    color: var(--color-primary);
+}
+.support-content table th, .support-content table td {
+    /* height: 40px; */
+    padding: 10px 0;
+}
+.support-content table thead th:first-child {
+    width: 10%;
+}
+.support-content table thead th:nth-child(3) {
+    text-align: left;
+}
+.support-content table thead th:nth-child(2),
+.support-content table thead th:nth-child(4) {
+    width: 15%;
+}
+.support-content table thead th:last-child {
+    width: 10%;
+}
+.support-content table > thead {
+    border-top: 1px solid var(--color-silver);
+    border-bottom: 1px solid var(--color-silver);
+    background-color: rgb(248, 248, 248);
+}
+.support-content table > tbody {
+    border-bottom: 1px solid var(--color-silver);
+}
+.support-content table > tbody tr td:not(.support-content table > tbody tr td:nth-child(3)) {
+    /* border: 1px solid red; */
+    text-align: center;
+}
+.support-content table > tbody td:nth-child(3) a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+.support-content table > tbody td:nth-child(3) a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.support-content table > tfoot td {
+    /* border: 1px solid green; */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 5px;
+}

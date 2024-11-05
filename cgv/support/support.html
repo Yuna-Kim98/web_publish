@@ -4,13 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support</title>
-    <link rel="stylesheet" href="/web_publish/cgv/css/commons.css">
-    <link rel="stylesheet" href="/web_publish/cgv/css/cgv.css">
+    <link rel="stylesheet" href="/cgv_css/common.css">
+    <link rel="stylesheet" href="/cgv_css/cgv.css">
 </head>
 <body>
     <!-- header -->
-    <iframe src="/web_publish/cgv/header.html" frameborder="0" width="100%" height="150px"></iframe>
-
+    <header><!--헤더 전체 영역-->
+        <div class="header-top"><!-- 로고 영역, 로그인, 회원가입, MY CGV, 고객센터 -->
+            <div class="header-top-logo">
+                <a href="/index.html" target="_parent"><img src="/images/logoRed.png" alt="logoRed" width="130" ></a>
+                <span>DEEP DIVE SPACE</span>
+            </div>
+            <nav class="header-top-nav">
+                <div><img src="/images/header_card.png" alt="header_card"></div>
+                <div>
+                    <ul>
+                        <li>
+                            <a href="/login/login.html" target="_parent">
+                                <img src="/images/loginPassword.png" alt="login">
+                                <span>로그인</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/join/join.html" target="_parent">
+                                <img src="/images/loginJoin.png" alt="join">
+                                <span>회원가입</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/mycgv/mycgv.html" target="_parent">
+                                <img src="/images/loginMember.png" alt="member">
+                                <span>MY CGV</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/support/support.html" target="_parent">
+                                <img src="/images/loginCustomer.png" alt="customer">
+                                <span>고객센터</span>
+                            </a>
+                        </li>
+                    </ul><!-- menu는 nav 태그 사용할 것 -->
+                </div>
+            </nav>
+        </div>
+        <nav class="header-bottom"><!-- 메뉴섹션. 중요! -->
+            <div class="header-bottom-nav">
+                <ul><!-- 영화 ~ 혜택 -->
+                    <li>
+                        <a href="#" target="_parent"><span>영화</span></a>
+                            <dl>
+                                <dt>영화</dt>
+                                <dd>무비차트</dd>
+                                <dd>아트하우스</dd>
+                                <dd>ICECON</dd>
+                            </dl>
+                    </li>
+                    <li>
+                        <a href="#" target="_parent">극장</a>
+                        <dl>
+                            <dt>극장</dt>
+                            <dd>CGV 극장</dd>
+                            <dd>특별관</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="#" target="_parent" class="nav-title-red">예매</a>
+                        <dl>
+                            <dt>예매</dt>
+                            <dd>빠른예매</dd>
+                            <dd>상영스케줄</dd>
+                            <dd>English Ticketing</dd>
+                            <dd>English Schedule</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="#" target="_parent">스토어</a>
+                        <dl>
+                            <dt>스토어</dt>
+                            <dd>패키지</dd>
+                            <dd>영화관람권</dd>
+                            <dd>기프트카드</dd>
+                            <dd>콤보</dd>
+                            <dd>팝콘</dd>
+                            <dd>음료</dd>
+                            <dd>스낵</dd>
+                            <dd>플레이존</dd>
+                            <dd>씨네샵</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="#" target="_parent">이벤트</a>
+                        <dl>
+                            <dt>이벤트</dt>
+                            <dd>SPECIAL</dd>
+                            <dd>영화/예매</dd>
+                            <dd>멤버십/CLUB</dd>
+                            <dd>CGV 극장별</dd>
+                            <dd>제휴할인</dd>
+                            <dd>당첨자 발표</dd>
+                            <dd>종료된 이벤트</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="#">혜택</a>
+                        <dl>
+                            <dt>혜택</dt>
+                            <dd>CGV 할인정보</dd>
+                            <dd>CLUB 서비스</dd>
+                            <dd>VIP 라운지</dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div>
+                    <input type="search" placeholder="아메바 소녀들">
+                    <i class="fa-solid fa-magnifying-glass"></i><!--버튼 기능 추가 & 돋보기 왜 빠져나오는지?-->
+                </div>
+            </div>
+        </nav>
+    </header>
+    
     <!-- content -->
     <div class="content">
         <div class="support center-layout"><!-- 고객센터 페이지 메인 콘텐츠 부분 -->
@@ -115,5 +227,36 @@
     </div>
 
     <!-- footer -->
-    <iframe src="/web_publish/cgv/footer.html" frameborder="0" width="100%" height="510px"></iframe>
+    <footer><!-- 100% -->
+        <div>
+            <div class="footer-content-top">
+                <div class="footer-content">
+                    <img src="http://adimg.cgv.co.kr/images/202410/SSG/980x240.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="footer-intro">
+                <ul>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">지속가능경영</a></li>
+                    <li><a href="#">IR</a></li>
+                    <li><a href="#">채용정보</a></li>
+                    <li><a href="#">광고/제휴/출점문의</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">편성기준</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">법적고지</a></li>
+                    <li><a href="#">이메일주소무단수집거부</a></li>
+                    <li><a href="#">윤리경영</a></li>
+                    <li><a href="#">사이버감사실</a></li>
+                </ul>
+            </div>
+            <p class="p">(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</p>
+            <p>대표이사 : 허민회 &#8729; 사업자등록번호 : 104-81-45690 &#8729; 통신판매업신고번호 : 2017-서울용산-0662 사업자정보확인</p>
+            <p>호스팅사업자 : CJ올리브네트웍스 &#8729; 대표이메일 : cjcgvmaster@cj.net</p>
+            <p class="p2">
+                <a href="/web_publish/cgv/admin/admin_main.html" target="_parent">&copy;</a>
+                CJ CGV. All Rights Reserved</p> 
+    </footer>
 </html>
