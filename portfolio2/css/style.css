@@ -120,7 +120,6 @@ button:focus {
     border-radius: 4px;
 }
 .header__toggle {
-    border: 1px solid yellow;
     display: none;
     color: var(--color-text);
     font-size: 1.5rem;
@@ -163,6 +162,7 @@ button:focus {
     font-weight: bold;
     color: var(--color-black);
     background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
     border-radius: 4px;
 }
 .home__contact:hover {
@@ -426,4 +426,172 @@ button:focus {
 }
 .contact__link:hover {
     color: var(--color-accent);
+}
+
+/*******************************************
+    media screen - 768 ✖ 1024
+    이모지 단축키 : window key + .(period)
+********************************************/
+@media screen and (max-width: 768px) {
+    .section {
+        padding: 3rem 2rem;
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .description {
+        font-size: 1rem;
+    }
+    .header {
+        flex-direction: column;
+        align-items: start;
+    }
+    .header__toggle {
+        display: block;
+    }
+    .header__menu {
+        display: none;
+    }
+    #home {
+        padding: 5rem 3rem;
+    }
+    .home__title {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .majors {
+        flex-direction: column;
+        align-items: center;
+    }
+    .major {
+        width: 30rem;
+    }
+    .job {
+        justify-content: center;
+    }
+    .skills {
+        grid-template-columns: 1fr; /*기존에 나눠서 한줄에 여러개가 뜨도록 한 그리드를 한줄에 하나만 뜨도록 함*/
+    }
+    /* 스타일을 적용하기 전, 기존에 어떤 display 스타일이 적용되어 있는지 확인 필요
+    grid를 적용했다면 grid-template로, flex가 적용되어 있다면 flex-direction으로 */
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .category {
+        width: 100%;
+    }
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .testimonials {
+        margin: 1.3rem;
+    }
+    .testimonial {
+        flex-direction: column;
+    }
+    .testimonial:nth-child(even) .testimonial__img {
+        order: 0;
+    }
+    .arrow--up {
+        bottom: 1.5rem;
+        right: 2rem;
+        font-size: 2rem;
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+/*******************************************
+    media screen - 412
+    위에서 max-width가 지정되어 있으므로
+    max-width 따로 지정하지 않아도 됨
+********************************************/
+@media screen and (max-width: 412px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+    .title {
+        font-size: 1.5rem;
+    }
+    .description {
+        font-size: 1rem;
+    }
+    .header {
+        flex-direction: column;
+        align-items: start;
+    }
+    .header__logo__img {
+        width: 30px;
+        height: 30px;
+    }
+    .header__logo__title {
+        font-size: 1.5rem;
+    }
+    .header__toggle {
+        display: block;
+    }
+    .header__menu {
+        display: none;
+    }
+    #home {
+        padding: 5rem 1.5rem 3rem;
+    }
+    .home__avatar {
+        width: 200px;
+        height: 200px;
+    }
+    .home__title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .home__description {
+        font-size: 1.1rem;
+    }
+    .majors {
+        flex-direction: column;
+        align-items: center;
+    }
+    .major {
+        width: 20rem;
+        padding: 1rem;
+    }
+    /* .major__title {
+        font-size: 1.3rem;
+    } */
+    .job {
+        justify-content: center;
+    }
+    .skills {
+        grid-template-columns: 1fr;
+    }
+    .categories {
+        display: flex;
+        flex-direction: column;
+    }
+    .category {
+        padding: 0.5rem 2rem;
+        width: 100%;
+    }
+    .projects {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .testimonial {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .testimonial__img {
+        width: 120px;
+        height: 120px;
+    }
+    .testimonial:nth-child(even) .testimonial__img {
+        order: 0;
+    }
+    .arrow--up {
+        bottom: 1.5rem;
+        right: 2rem;
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 }
