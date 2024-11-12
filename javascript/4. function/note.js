@@ -1,1 +1,0 @@
-setTimeout((second) => console.log(`${second}초 후 실행!`), 3000, 3);
