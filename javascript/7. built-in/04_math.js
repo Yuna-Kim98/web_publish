@@ -14,7 +14,7 @@ let num2 = 14832.385;
 let result = Number(num2.toPrecision(6));
 console.log(result);
 
-// Math.round() : 0 ~ 1 사이의 숫자를 랜덤(무작위)으로 반환
+// Math.random() : 0 ~ 1 사이의 숫자를 랜덤(무작위)으로 반환
 console.log(`Math.random() = ${Math.random()}`); 
 
 // 1 ~ 100 사이의 숫자를 랜덤하게 출력
