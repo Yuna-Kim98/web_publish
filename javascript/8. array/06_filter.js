@@ -39,8 +39,8 @@ function searchItem2(array, sItem) {
     return count;
 }
 
-let fList = ['🍋', '🍓', '🍎', '🍊', '🍋']; // 4
-let nList = [1, 2, 4, 5, 7, 4, 6, 4, 33, 90]; // 10
+let fList = ['🍋', '🍓', '🍎', '🍊', '🍋'];
+let nList = [1, 2, 4, 5, 7, 4, 6, 4, 33, 90];
 
 console.log(`count => ${searchItem(fList, '🍋')}`); //2
 console.log(`count => ${searchItem(nList, 4)}`); //3
