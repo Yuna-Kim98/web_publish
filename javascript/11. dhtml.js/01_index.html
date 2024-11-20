@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./01_counter.js"></script>
+    <style>
+        .counter_container {
+            width: 200px;
+        }
+        #number {
+            font-size: 30px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    <div class="counter_container">
+        <div id="number">0</div>
+        <input type="text id=number2">
+        <button type="button" onclick="counter('increment')">increment</button>
+        <button type="button" onclick="counter('decrement')">decrement</button>
+        <!-- 함수 지정시 괄호가 없으면 주소값만 부여되므로 실행을 위해 반드시 괄호를 작성해야 함 -->
+    </div>
+</body>
+</html>
