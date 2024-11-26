@@ -51,8 +51,8 @@ function initform() {
 function searchBoxOffice(ktype, searchDt) {
     boxOffice(ktype, searchDt) // return daily -> Promise 객체로 리턴
         .then((result) => {
-            const type = result.boxOfficeResult.boxofficeType;
-            const range = result.boxOfficeResult.showRange;
+            const type = result.boxOfficeResult.boxofficeType; // 박스오피스 종류 출력
+            const range = result.boxOfficeResult.showRange; // 박스오피스 조회 일자 출력
 
             // ktype을 체크하여 daily, weekly
             let rankList = null;
