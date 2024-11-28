@@ -143,7 +143,7 @@ function onMovieDetail(event) {
         })
         .catch((error) => console.log(error))
 
-        // 모달 닫기 버튼 클릭스 모달 닫기
+        // 모달 닫기 버튼 클릭시 모달 닫기
         closeModalBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
