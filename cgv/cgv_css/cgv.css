@@ -515,6 +515,7 @@ content {
     width: 541px;
     list-style-type: none;
 }
+
 .login-form form > div:first-child ul li a {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -549,12 +550,17 @@ content {
 .login-form form >div:nth-child(2) > div:first-child ul {
     list-style-type: none;
 }
-.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(2),
-.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(3) {
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(2) > div:first-child,
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(3) > div:first-child {
     display: flex;
     justify-content: center;
     /* position: relative; */
 }
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(2) > p,
+.login-form form > div:nth-child(2) > div:first-child ul > li:nth-child(3) > p {
+    display: table-row;
+}
+
 .login-form > form > div:nth-child(2) > div:first-child ul li:first-child p {
     margin: 10px 0 10px 0;
     font-size: 13px;
@@ -669,7 +675,7 @@ content {
 .join-form ul li label + span {
     font-size: 0.8em;
     font-weight: 500;
-    color: red;
+    color: gray;
 }
 .join-form ul li > div {
     padding-top: 5px;
