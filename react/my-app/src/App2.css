@@ -1,0 +1,9 @@
+div.container {
+    background-color: powderblue;
+    display: flex;
+    gap: 20px;
+}
+
+.title {
+    color: white;
+}
