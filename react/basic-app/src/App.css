@@ -1,0 +1,11 @@
+.App-container{
+  display: flex;
+  gap: 20px;
+}
+
+/* .img-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+} */

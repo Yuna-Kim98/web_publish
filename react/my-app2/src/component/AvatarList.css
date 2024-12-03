@@ -1,7 +1,0 @@
-.list {
-    /* border: 1px solid red; */
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}

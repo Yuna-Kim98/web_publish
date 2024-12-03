@@ -1,0 +1,19 @@
+ul.menu-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+ul.menu-list > li:first-child {
+    border: 1px solid rgb(17, 197, 241);
+    border-radius: 5px;
+}
+
+a.menu {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
