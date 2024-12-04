@@ -1,5 +1,5 @@
 export default function Favicon() {
     return (
-        <img src="../public/images/avata.png" alt="favicon"></img>
+        <img src="/images/avata.png" alt="favicon"></img>
     );
 }

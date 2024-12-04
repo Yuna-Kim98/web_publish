@@ -1,0 +1,22 @@
+div.title, div.content {
+    width: 800px;
+    margin: auto;
+}
+
+div.title p {
+    font-weight: bold;
+}
+
+div.content {
+    clear: both;
+}
+
+div.content-detail {
+    display: flex;
+}
+
+.content-detail p {
+    border: 1px solid lightgray;
+    margin: 0;
+    padding: 5px;
+}

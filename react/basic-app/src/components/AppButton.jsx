@@ -1,15 +1,25 @@
+import { useEffect, useState } from 'react';
 import Button from './Button.jsx'
 import ButtonList from './ButtonList.jsx';
 
 export default function AppButton() {
-    const buttonList = [
-        { 'type': 'button', 'name': 'All'},
-        { 'type': 'button', 'name': 'Front-end'},
-        { 'type': 'button', 'name': 'Back-end'},
-        { 'type': 'button', 'name': 'Mobile'},
-        { 'type': 'submit', 'name': 'Submit'},
-        { 'type': 'reset', 'name': 'Reset' }
-    ];
+    const [buttonList, setButtonList] = useState([]);
+    
+    useEffect(() => {
+        fetch('/data/buttons.json')
+            .then((result) => result.json())
+            .then((jsonData) => setButtonList(jsonData))
+            .catch((error) => console.log(error));
+    }, []);
+
+    // const buttonList = [
+    //     { 'type': 'button', 'name': 'All'},
+    //     { 'type': 'button', 'name': 'Front-end'},
+    //     { 'type': 'button', 'name': 'Back-end'},
+    //     { 'type': 'button', 'name': 'Mobile'},
+    //     { 'type': 'submit', 'name': 'Submit'},
+    //     { 'type': 'reset', 'name': 'Reset' }
+    // ];
     return (    
         <>
             <div className='app-button'>
