@@ -4,7 +4,7 @@ import BoxOffice from './BoxOffice.jsx';
 
 export default function AppBoxOffice() {
     const [dailyBoxOffice, SetDailyBoxOffice] = useState([]);
-    const [kmdbList, SetKmdbList] = useState([]);
+    // const [kmdbList, SetKmdbList] = useState([]);
     // console.log(dailyBoxOffice[].movieNm);
     
     
@@ -18,25 +18,25 @@ export default function AppBoxOffice() {
             .catch((error) => console.log(error));
     }, []);
 
-    useEffect(() => {
-        const serviceKey = `EGHVI615PSB5K5YGV5JY`;
-        const title = dailyBoxOffice.map((boxOffice) => boxOffice.movieNm);
-        // console.log(title);
-        let url = `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/`;
-        url += `search_json2.jsp?collection=kmdb_new2&detail=Y`;
-        url += `&title=${title}&ServiceKey=${serviceKey}`;
+    // useEffect(() => {
+    //     const serviceKey = `EGHVI615PSB5K5YGV5JY`;
+    //     const title = dailyBoxOffice.map((boxOffice) => boxOffice.movieNm);
+    //     // console.log(title);
+    //     let url = `http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/`;
+    //     url += `search_json2.jsp?collection=kmdb_new2&detail=Y`;
+    //     url += `&title=${title}&ServiceKey=${serviceKey}`;
 
-        fetch(url)
-            .then((item) => item.json())
-            .then((kmdb) => {
-                // SetKmdbList(kmdb.Data[0].Result[0].posters.split('|')[0])
-                // console.log(kmdbList);
-                console.log(kmdb);
+    //     fetch(url)
+    //         .then((item) => item.json())
+    //         .then((kmdb) => {
+    //             // SetKmdbList(kmdb.Data[0].Result[0].posters.split('|')[0])
+    //             // console.log(kmdbList);
+    //             console.log(kmdb);
                 
-            })
-            .catch((error) => console.log(error));
+    //         })
+    //         .catch((error) => console.log(error));
 
-    }, []);
+    // }, []);
 
     return (
         <>
