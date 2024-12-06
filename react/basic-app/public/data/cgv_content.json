@@ -1,0 +1,101 @@
+{
+    "specialList": [
+        { "text": "SUITE CINEMA", "hashtag": "#호텔 컨셉의 프리미엄관" },
+        { "text": "CINE & LIVINGROOM", "hashtag": "#신개념 소셜 상영관" },
+        { "text": "4DX", "hashtag": "#모션시트 #오감체험" },
+        { "text": "CINE de CHEF", "hashtag": "#쉐프가 있는 영화관" }
+    ],
+
+    "packageList": [
+        { 
+            "title": "패키지",
+            "list": [
+                {
+                    "src": "/images/package1.jpg", 
+                    "alt": "package1", 
+                    "text": "우리 패키지", 
+                    "price": "62,000"
+                },
+                {
+                    "src": "https://img.cgv.co.kr/GiftStore/Product/Pc/List/17170513228970.jpg", 
+                    "alt": "package2", 
+                    "text": "나랑 너 패키지", 
+                    "price": "35,000"
+                },
+                {
+                    "src": "http://img.cgv.co.kr/GiftStore/Product/Pc/List/16778206767040.jpg", 
+                    "alt": "package3", 
+                    "text": "좋은 날 패키지", 
+                    "price": "18,000"
+                }
+            ]
+        },
+        { 
+            "title": "영화관람권",
+            "list": [
+                {
+                    "src": "/images/ticket1.jpg", 
+                    "alt": "movieticket1", 
+                    "text": "CGV 영화관람권", 
+                    "price": "13,000원"
+                },
+                {
+                    "src": "https://img.cgv.co.kr/GiftStore/Product/Pc/List/16104445886810.jpg", 
+                    "alt": "movieticket2", 
+                    "text": "IMAX 영화관람권", 
+                    "price": "13,000원"
+                },
+                {
+                    "src": "https://img.cgv.co.kr/GiftStore/Product/Pc/List/16105061088530.jpg", 
+                    "alt": "movieticket3", 
+                    "text": "4DX 영화관람권", 
+                    "price": "13,000원"
+                }
+            ]
+        },
+        { 
+            "title": "기프트카드",
+            "list": [
+                {
+                    "src": "/images/giftcard.jpg", 
+                    "alt": "giftcard1", 
+                    "text": "PANCONNI A형", 
+                    "price": "금액충전형"
+                },
+                {
+                    "src": "https://img.cgv.co.kr/GiftStore/Product/Pc/List/15814158039890.jpg", 
+                    "alt": "giftcard2", 
+                    "text": "PANCONNI B형", 
+                    "price": "금액충전형"
+                },
+                {
+                    "src": "https://img.cgv.co.kr/GiftStore/Product/Pc/List/15814162227570.jpg", 
+                    "alt": "giftcard3", 
+                    "text": "PANCONNI C형", 
+                    "price": "금액충전형"
+                }
+            ]
+        }
+    ],
+
+    "eventList": [
+        {
+            "src": "https://img.cgv.co.kr/WebApp/contents/eventV4/42386/17297657794310.jpg",
+            "alt": "event1",
+            "title": "[CGV] 10월 컬쳐위크" ,
+            "detail": "2024.10.24~2024.10.31"
+        },
+        {
+            "src": "https://img.cgv.co.kr/WebApp/contents/eventV4/42466/17301874318690.jpg",
+            "alt": "event2",
+            "title": "[베놈-라스트댄스] (앵콜) 씨네브리핑 시리즈 10분요약" ,
+            "detail": "2024.09.25~2024.10.31"
+        },
+        {
+            "src": "/images/event1.jpg",
+            "alt": "event3",
+            "title": "[콜렉터블 무비머니]Vol.1 맥스 달튼" ,
+            "detail": "2024.09.25~2024.10.31"
+        }
+    ]
+}

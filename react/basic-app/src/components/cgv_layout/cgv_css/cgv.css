@@ -135,18 +135,20 @@ header {
 *******************************************/
 footer {
     width: 100%;
-    height: 450px;
+    height: 400px;
     margin: 0 auto;
     margin-top: 60px;
-    background-color: var(--color-footer-bg);
+    background-color: #f8f8f8;
 }
 .footer-content-top {
-    background-color: rgb(242, 135, 36);
+    background-color: #f8f8f8;
     height: 180px;
 }
+
 .footer-content-top img {
     margin-top: -60px;
-}/* 이미지 잘림 */
+}
+
 .footer-content {
     width: 1000px;
     margin: 0 auto;/* margin으로 중앙 정렬하는 방법 잊지 말 것 */
@@ -486,18 +488,125 @@ content {
 
 /* 공지사항 */
 .main-content-support {
-    border: 1px solid red;
-    padding: 30px 0 120px;
+    padding: 30px 0;
+    margin-bottom: 120px;
     display: flex;
     justify-content: space-between;
 }
-.main-content-support > div:first-child {
-    border: 1px solid blue;
-    border-radius: 10px;
+.main-content-support > div {
     display: flex;
     justify-content: space-between;
+    border-radius: 10px;
+}
+.main-content-support > div:first-child {
+    border: 1px solid #e4e4e4;
     width: 736px;
-    height: 236px;
+}
+.support-list {
+    border-right: 1px solid #e4e4e4;
+    width: 510px;
+    padding: 25px;
+}
+.notice-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.support-list-notice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 21px;
+}
+div.border {
+    width: 460px;
+    height: 1px;
+    background-color: #e4e4e4;
+}
+.support-list-notice > a:nth-child(2) {
+    display: inline-block;
+    width: 300px;
+    margin-left: 6px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.support-list-notice > a:nth-child(2):hover {
+    text-decoration: underline;
+}
+.support-list-notice > a:nth-child(3) {
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    border: 1px solid #f4f4f4;
+    border-radius: 11px;
+}
+.support-list > div:nth-child(3) > div:first-child {
+    padding: 19px 0;
+    display: flex;
+    gap: 24px;
+}
+.support-list > div:nth-child(3) > div:first-child > div:last-child > p:first-child {
+    font-weight: 600;
+}
+.support-list > div:nth-child(3) > div:first-child > div:last-child > p {
+    font-size: 14px;
+    line-height: 1.5rem;
+}
+.support-list > div:nth-child(3) > div:last-child > a {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 7px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    background-color: #f6f6f6;
+}
+.main-content-support > div > div:last-child {
+    width: 222px;
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+.main-content-support > div > div:last-child p:not(.main-content-support > div > div:last-child p:first-child) {
+    /*border: 1px solid green;*/
+    font-size: 12px;
+}
+.main-content-support > div > div:last-child p:first-child {
+    margin-top: 2px;
+}
+.main-content-support > div > div:last-child img {
+    margin: 29px auto;
+}
+.support-ad img {
+    width: 211px;
+    border-radius: 10px;
+}
+
+/* 버튼 */
+/* .btn-goto-top {
+    border: 1px solid blue;
+} */
+.btn-goto-top {
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    text-align: center;
+    align-content: center;
+    border: 1px solid var(--color-primary);
+    border-radius: 100%;
+    background-color: white;
+    width: 45px;
+    height: 45px;
+}
+
+.btn-goto-top > img {
+    width: 15px;
 }
 
 /******************************************

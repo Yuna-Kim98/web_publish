@@ -1,0 +1,16 @@
+{
+    "topMenuList": [
+        { "href": "#", "src": "/images/loginPassword.png", "alt":"loginPassword", "name": "로그인" },
+        { "href": "#", "src": "/images/loginjoin.png", "alt":"loginjoin", "name": "회원가입" },
+        { "href": "#", "src": "/images/loginMember.png", "alt":"loginMember", "name": "MY CGV" },
+        { "href": "#", "src": "/images/loginCustomer.png", "alt":"loginCustomer", "name": "고객센터" }
+    ],
+    "bottomNameList": [
+        { "name": "영화" },
+        { "name": "극장" },
+        { "name": "예매" },
+        { "name": "스토어" },
+        { "name": "이벤트" },
+        { "name": "혜택" }
+    ]
+}
