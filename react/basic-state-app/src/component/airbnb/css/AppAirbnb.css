@@ -1,0 +1,55 @@
+.container {
+    /* border: 1px solid blue; */
+    width: 450px;
+    padding: 20px;
+}
+
+div.img {
+    width: 440px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+}
+
+.guest {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    background-color: white;
+    margin: 5px 10px;
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 18px;
+}
+
+.like {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 50px;
+    color: gray;
+}
+
+div.sub-detail-1 > p,
+div.sub-detail-2 > span {
+    font-size: 20px;
+}
+
+div.sub-detail-1 > p {
+    line-height: 10px;
+}
+
+.sub-detail-1 > p:not(.area) {
+    color: gray;
+}
+
+.charge {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
