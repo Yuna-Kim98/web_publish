@@ -1,0 +1,43 @@
+/* * {
+    margin: 0 auto;
+} */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+    display: flex;
+    gap: 20px;
+    text-align: center;
+}
+
+li {
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+}
+
+.new {
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 25px;
+    font-weight: bold;
+    font-style: italic;
+    background-color: rgb(255, 208, 0);
+    color: white;
+}
+
+img {
+    border-radius: 100%;
+}
+
+p {
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 0;
+}

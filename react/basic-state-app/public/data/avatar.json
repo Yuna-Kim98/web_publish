@@ -1,0 +1,18 @@
+[
+    {
+        "img": "/images/people1.webp",
+        "alt": "smith",
+        "isNew": true,
+        "name": "Smith"
+    },
+    {
+        "img": "/images/people2.webp",
+        "alt": "James",
+        "name": "James"
+    },
+    {
+        "img": "/images/people3.webp",
+        "alt": "Kelly",
+        "name": "Kelly"
+    }
+]

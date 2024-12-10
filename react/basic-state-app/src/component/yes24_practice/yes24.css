@@ -1,0 +1,9 @@
+.rankList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.rankList {
+    border: 1px solid red;
+    display: flex;
+}
