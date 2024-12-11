@@ -5,13 +5,15 @@ import './index.css';
 // import AppAirbnb from './component/airbnb/AppAirbnb.jsx';
 // import AppAvatar from './component/avatar/AppAvatar.jsx';
 // import AppCounter from './component/counter/AppCounter.jsx';
-import AppBestSeller from './component/yes24_practice/AppBestSeller.jsx';
+// import AppBestSeller from './component/yes24_practice/AppBestSeller.jsx';
+// import AppOlive from './component/oliveyoung/AppOlive.jsx';
+import AppOliveYoung from './component/oliveyoung_practice/AppOliveYoung.jsx'
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppBestSeller />
+    <AppOliveYoung />
   </React.StrictMode>
 );
 

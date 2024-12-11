@@ -1,9 +1,88 @@
+.book {
+    display: flex;
+    gap: 20px;
+}
+
+.rank {
+    width: 1040px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
 .rankList {
+    border: 1px solid silver;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.cover-container {
+    text-align: center;
+}
+
+.cover-img {
+    width: 120px;
+}
+
+.book-detail-container > div {
+    margin-bottom: 10px;
+}
+
+.book-sample {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: white;
+    border: 1px solid silver;
+    border-radius: 3px;
+}
+
+.recom, .today {
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-right: 7px;
+    color: gray;
+    font-size: 11px;
+}
+
+.book-des {
+    font-size: 13px;
+    color: gray;
+}
+
+.book-type {
+    font-size: 13px;
+    color: gray;
+    margin-right: 5px;
+}
+
+.book-title {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.book-coment {
+    font-size: 13px;
+    color: rgb(0, 138, 202);
+}
+
+.button-list {
     list-style-type: none;
     padding: 0;
 }
 
-.rankList {
-    border: 1px solid red;
+.button-list > li {
+    margin-bottom: 5px;
+}
+
+.button-list > li:first-child {
     display: flex;
+    justify-content: space-between;
+}
+
+.button-list > li:not(:first-child) > button {
+    border: 1px solid silver;
+    border-radius: 3px;
+    width: 130px;
 }

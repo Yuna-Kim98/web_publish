@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Button() {
+    const [qty, setQty] = useState(1);
+
+    const handelClick = (type) => {
+        if (type === '-') {
+            (qty > 1) ? setQty(qty - 1) : alert("1개 이상 구매 가능합니다.");
+        } else if (type === '+') {
+            (qty >= 1) ? setQty(qty + 1) : setQty(qty);
+        }
+    }
+
     return (
-        <ul>
+        <ul className="button-list">
             <li>
                 <input type="checkbox" />
-                <button type='button'>-</button>
-                <span>1</span>
-                <button type='button'>+</button>
+                <button type="button" onClick={() => handelClick('-')}>-</button>
+                <span>{qty}</span>
+                <button type="button" onClick={() => handelClick('+')}>+</button>
             </li>
             <li><button type="button">카트에 넣기</button></li>
             <li><button type="button">바로구매</button></li>
