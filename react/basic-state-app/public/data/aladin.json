@@ -1,0 +1,71 @@
+{
+    "category": [
+        { "name": "소설/시/희곡" },
+        { "name": "에세이" },
+        { "name": "자기계발" },
+        { "name": "사회과학" },
+        { "name": "역사" }
+    ],
+    "books": [
+        { 
+            "img": "https://image.aladin.co.kr/product/4086/97/cover200/8936434128_2.jpg",
+            "title": "[국내도서] 소년이 온다",
+            "type": "domestic",
+            "category": "소설/시/희곡"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/27877/5/cover200/8954682154_3.jpg",
+            "title": "[국내도서] 작별하지 않는다",
+            "type": "domestic",
+            "category": "소설/시/희곡"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/29137/2/cover200/8936434594_2.jpg",
+            "title": "[국내도서] 채식주의자 (리마스터판)",
+            "type": "domestic",
+            "category": "소설/시/희곡"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/35063/62/cover200/k532934196_2.jpg",
+            "title": "[국내도서] 어른의 행복은 조용하다",
+            "type": "domestic",
+            "category": "에세이"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/35238/11/cover200/k452934847_2.jpg",
+            "title": "[국외도서] 타샤의 크리스마스",
+            "type": "overseas",
+            "category": "에세이"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/35225/12/cover200/k752934734_2.jpg",
+            "title": "[국내도서] 일의 감각",
+            "type": "domestic",
+            "category": "자기계발"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/35221/57/cover200/k172934625_1.jpg",
+            "title": "[국외도서] 행동하지 않으면 인생은 바뀌지 않는다",
+            "type": "overseas",
+            "category": "자기계발"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/34121/16/cover200/s812931190_1.jpg",
+            "title": "[국내도서] 그의 운명에 대한 아주 개인적인 생각",
+            "type": "domestic",
+            "category": "사회과학"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/34917/23/cover200/k022933254_1.jpg",
+            "title": "[국외도서] 넥서스",
+            "type": "overseas",
+            "category": "역사"
+        },
+        { 
+            "img": "https://image.aladin.co.kr/product/31424/4/cover200/k482832219_1.jpg",
+            "title": "[국외도서] 사피엔스",
+            "type": "overseas",
+            "category": "역사"
+        }
+    ]
+}

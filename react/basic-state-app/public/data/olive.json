@@ -7,7 +7,7 @@
         "title": "[1위패드/100+100+14매] 메디힐 마데카소사이드 흔적패드 어워즈 한정기획",
         "charge": "39,900원",
         "disCharge": "28,900원",
-        "isSale": true,
+        "isSale": false,
         "isCoupon": false,
         "isToday": true
     },
@@ -21,7 +21,7 @@
         "disCharge": "26,000원",
         "isSale": true,
         "isCoupon": true,
-        "isToday": true
+        "isToday": false
     },
     { 
         "id": "p_0003",
@@ -31,7 +31,7 @@
         "title": "[2024 어워즈/3년 연속 1위] 어노브 딥 데미지 헤어 트리트먼트 EX 더블/듀오 기획4종 택1 (텐더블룸/웜페탈)",
         "charge": "42,000원",
         "disCharge": "29,800원",
-        "isSale": true,
+        "isSale": false,
         "isCoupon": false,
         "isToday": true
     },
@@ -45,6 +45,54 @@
         "disCharge": "36,000원",
         "isSale": true,
         "isCoupon": false,
+        "isToday": false
+    },
+    { 
+        "id": "p_0005",
+        "rank": "05",
+        "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021349504ko.jpg?l=ko",
+        "brand": "마녀공장",
+        "title": "[2024어워즈/4년연속 1위] 마녀공장 퓨어 클렌징 오일 300mlX2 어워즈 한정기획 (+킬패드 3매)",
+        "charge": "49,900원",
+        "disCharge": "29,830원",
+        "isSale": false,
+        "isCoupon": true,
+        "isToday": false
+    },
+    { 
+        "id": "p_0006",
+        "rank": "06",
+        "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0013/A00000013906380ko.jpg?l=ko",
+        "brand": "정샘물",
+        "title": "[2024 어워즈/올영쿠션 1위] 정샘물 에센셜 스킨누더 쿠션 어워즈 한정 기획 (글리터팟+립토퍼+물크림 미니)",
+        "charge": "45,000원",
+        "disCharge": "36,000원",
+        "isSale": false,
+        "isCoupon": false,
+        "isToday": true
+    },
+    { 
+        "id": "p_0007",
+        "rank": "07",
+        "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021402112ko.jpg?l=ko",
+        "brand": "토리든",
+        "title": "[4년 연속 수상]토리든 다이브인 세럼 50ml 트리플 어워즈 한정기획(+다이브인 크림 20ml+다이브인 패드 10매)",
+        "charge": "50,000원",
+        "disCharge": "33,250원",
+        "isSale": true,
+        "isCoupon": false,
+        "isToday": false
+    },
+    { 
+        "id": "p_0009",
+        "rank": "08",
+        "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021415406ko.jpg?l=ko",
+        "brand": "닥터지",
+        "title": "[2024어워즈/수분크림]닥터지 레드 블레미쉬 클리어 수딩 크림 70ml 1+1어워즈기획(+70ml+포어젯세럼10ml)",
+        "charge": "38,000원",
+        "disCharge": "25,920원",
+        "isSale": true,
+        "isCoupon": true,
         "isToday": true
     }
 ]

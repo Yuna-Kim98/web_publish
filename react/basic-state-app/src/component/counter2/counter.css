@@ -1,0 +1,22 @@
+.counter-container {
+    border: 1px solid silver;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.counter-container > div:first-child > span {
+    font-size: 50px;
+}
+
+.counter-container > div:first-child > span:last-child {
+    font-size: 52px;
+    font-weight: bold;
+}
+
+.counter-container > div:nth-child(2) > button:first-child {
+    margin-right: 10px;
+}

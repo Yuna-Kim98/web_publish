@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-export default function Button() {
+export default function Button({qtyChange}) {
     const [qty, setQty] = useState(1);
+    // const [totalQty, setTotalQty] = useState(0);
 
     const handelClick = (type) => {
         if (type === '-') {
@@ -19,7 +20,7 @@ export default function Button() {
                 <span>{qty}</span>
                 <button type="button" onClick={() => handelClick('+')}>+</button>
             </li>
-            <li><button type="button">카트에 넣기</button></li>
+            <li><button type="button" onClick={() => {qtyChange(qty)}}>카트에 넣기</button></li>
             <li><button type="button">바로구매</button></li>
             <li><button type="button">리스트에 넣기</button></li>
         </ul>

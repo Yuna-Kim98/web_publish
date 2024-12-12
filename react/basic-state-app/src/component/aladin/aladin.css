@@ -1,0 +1,10 @@
+.book-list {
+    list-style-type: none;
+    /* padding: 0; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.book-cover {
+    width: 200px;
+}

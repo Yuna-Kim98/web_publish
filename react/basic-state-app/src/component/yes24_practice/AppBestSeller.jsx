@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './yes24.css';
 import BookCover from './BookCover.jsx';
 import BookDetail from './BookDetail.jsx';
@@ -23,32 +23,43 @@ export default function AppBestSeller() {
         }
     ];
 
+    const [totalQty, setTotalQty] = useState(0);
+
+    const totalQtyChagne = (qty) => {
+        setTotalQty(totalQty + qty);
+    }
+
     return (
-        <ul className="rank">
-            {bookList.map((item) => 
-                <li className="rankList">
-                    <div className='book'>
-                        <BookCover img={item.img} alt={item.alt} />
-                        <BookDetail
-                            recom={item.recom}
-                            today={item.today}
-                            des={item.des}
-                            coment={item.coment}
-                            type={item.type}
-                            title={item.title}
-                            writer={item.writer}
-                            company={item.company}
-                            date={item.date}
-                            event={item.event}
-                            charge={item.charge}
-                        />
-                    </div>
-                    <div className='button'>
-                        <Button />
-                    </div>    
-                </li>
-            )}
-        </ul>
+        <>
+            <div>
+                <span>장바구니({totalQty})</span>
+            </div>
+            <ul className="rank">
+                {bookList.map((item) => 
+                    <li className="rankList">
+                        <div className='book'>
+                            <BookCover img={item.img} alt={item.alt} />
+                            <BookDetail
+                                recom={item.recom}
+                                today={item.today}
+                                des={item.des}
+                                coment={item.coment}
+                                type={item.type}
+                                title={item.title}
+                                writer={item.writer}
+                                company={item.company}
+                                date={item.date}
+                                event={item.event}
+                                charge={item.charge}
+                            />
+                        </div>
+                        <div className='button'>
+                            <Button qtyChange={totalQtyChagne} />
+                        </div>    
+                    </li>
+                )}
+            </ul>
+        </>
     );
 }
 

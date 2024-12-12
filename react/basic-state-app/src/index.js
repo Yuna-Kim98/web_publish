@@ -4,16 +4,17 @@ import './index.css';
 // import App from './App';
 // import AppAirbnb from './component/airbnb/AppAirbnb.jsx';
 // import AppAvatar from './component/avatar/AppAvatar.jsx';
-// import AppCounter from './component/counter/AppCounter.jsx';
+// import AppCounter from './component/counter2/AppCounter.jsx';
 // import AppBestSeller from './component/yes24_practice/AppBestSeller.jsx';
 // import AppOlive from './component/oliveyoung/AppOlive.jsx';
-import AppOliveYoung from './component/oliveyoung_practice/AppOliveYoung.jsx'
+// import AppOliveYoung from './component/oliveyoung_practice/AppOliveYoung.jsx'
+import AppAladin from './component/aladin/AppAladin.jsx';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppOliveYoung />
+    <AppAladin />
   </React.StrictMode>
 );
 
