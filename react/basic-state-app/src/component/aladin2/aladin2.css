@@ -1,0 +1,19 @@
+.filter-div {
+    width: 1000px;
+    margin: 15px auto;
+    
+}
+
+.select {
+    margin-left: 10px;
+}
+
+.book-list-container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+}

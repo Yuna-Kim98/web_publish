@@ -8,13 +8,16 @@ import './index.css';
 // import AppBestSeller from './component/yes24_practice/AppBestSeller.jsx';
 // import AppOlive from './component/oliveyoung/AppOlive.jsx';
 // import AppOliveYoung from './component/oliveyoung_practice/AppOliveYoung.jsx'
-import AppAladin from './component/aladin/AppAladin.jsx';
+// import AppAladin from './component/aladin/AppAladin.jsx';
+import AppAladin2 from './component/aladin2/AppAladin2.jsx';
+import Appform from './component/form/AppForm.jsx';
+import CgvLoginForm from './component/form/CgvLoginForm.jsx';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppAladin />
+    <Appform />
   </React.StrictMode>
 );
 
