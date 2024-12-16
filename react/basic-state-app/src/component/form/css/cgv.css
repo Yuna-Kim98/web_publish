@@ -657,8 +657,7 @@ div.border {
     font-weight: bold;
 }
 .login-form-input {
-    border: 1px solid var(--color-primary
-    );
+    border: 1px solid var(--color-primary);
     display: flex;
     justify-content: center;
     width: 264px;
@@ -692,6 +691,7 @@ div.border {
     height: 42px;
     border: 1px solid #fff;
     outline: 3px solid var(--color-button);
+    cursor: pointer;
 }
 .login-form > form > div:nth-child(2) > div:first-child > ul > li:nth-child(5) {
     width: 264px;

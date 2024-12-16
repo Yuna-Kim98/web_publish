@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { validateFormCheck, handelChangeCheck } from '../../apis/validate.js';
 import './css/cgv.css';
 import './css/common.css';
 
@@ -7,17 +8,69 @@ export default function CgvLoginForm() {
     const initFormData = {"id":"", "pwd":""};
     const [formData, setFormData] = useState(initFormData);
 
-    // 폼 이벤트
-    const handleChangeForm = (event) => {
+    // 유효성 체크
+    // const idRef = useRef(null);
+    // const pwdRef = useRef(null);
+    const refs = {
+        idRef: useRef(null), // refs.idRef
+        pwdRef: useRef(null)
+    };
+    const [errorMsg, setErrorMsg] = useState(initFormData);
+
+    // 폼 데이터 변경 이벤트
+    const handleChangeForm = (event) => { 
         const {name, value} = event.target; // 오탈자 주의!!!!!!
+        const param = {
+            "name": name, 
+            "value":value, 
+            "errorMsg":errorMsg, 
+            "setErrorMsg":setErrorMsg
+        };
         setFormData({...formData, [name]:value});
+
+        handelChangeCheck(param);
+        
+        // if (name === "id") {
+        //     value === "" ? setErrorMsg({...errorMsg, ["id"]: "아이디를 입력해주세요."}) : setErrorMsg({...errorMsg, ["id"]: ""});
+        // } else if (name === "pwd") {
+        //     value === "" ? setErrorMsg({...errorMsg, ["pwd"]: "비밀번호를 입력해주세요."}) : setErrorMsg({...errorMsg, ["pwd"]: ""});
+        // }
     }
 
     // 폼 데이터 전송(버튼) 이벤트
     const handleClickLogin = (event) => {
         event.preventDefault(); // 브라우저 이벤트 처리 제어
-        console.log(formData); // 데이터 확인 
+        const param = {
+            // "idRef": idRef, 
+            // "pwdRef": pwdRef, 
+            "refs": refs,
+            "errorMsg": errorMsg, 
+            "setErrorMsg": setErrorMsg
+        };
+        // 넘겨줄 데이터가 많을 때 객체로 생성해서 넘겨줄 수 있음
+
+        // 유효성 체크          
+        if (validateFormCheck(param)) {
+            console.log(formData); // 데이터 확인 
+        }
     }
+
+    // 유효성 체크
+    // const validateFormCheck = () => {
+    //     let result = true;
+    //     if (idRef.current.value === "") {
+    //         // alert("아이디를 입력해주세요.");
+    //         setErrorMsg({...errorMsg, ["id"]: "아이디를 입력해주세요"});
+    //         idRef.current.focus();
+    //         result = false;
+    //     } else if (pwdRef.current.value === "") {
+    //         // alert("비밀번호를 입력해주세요.");
+    //         setErrorMsg({...errorMsg, ["pwd"]: "비밀번호를 입력해주세요"});
+    //         pwdRef.current.focus();
+    //         result = false;
+    //     }
+    //     return result;
+    // }
 
     return (
         <div className="login-form center-layout">
@@ -39,20 +92,20 @@ export default function CgvLoginForm() {
                                 <div className="login-form-input">
                                     <i className="fa-solid fa-user"></i>
                                     <span>&#124;</span>
-                                    <input type="text" name="id" id={formData.id} onChange={handleChangeForm} placeholder="아이디를 입력해주세요" />
+                                    <input type="text" name="id" id={formData.id} ref={refs.idRef} onChange={handleChangeForm} placeholder="아이디를 입력해주세요" />
                                 </div>
                                 <div>
-                                    <p id="error-msg-id"></p>
+                                    <p id="error-msg-id" style={{"color" : "red"}}>{errorMsg.id}</p>
                                 </div>
                             </li>
                             <li>
                                 <div className="login-form-input">
                                     <i className="fa-solid fa-lock"></i>
                                     <span>&#124;</span>
-                                    <input type="password" name="pwd" id={formData.pwd} onChange={handleChangeForm} placeholder="비밀번호를 입력해주세요" />
+                                    <input type="password" name="pwd" id={formData.pwd} ref={refs.pwdRef} onChange={handleChangeForm} placeholder="비밀번호를 입력해주세요" />
                                 </div>
                                 <div>
-                                    <p id="error-msg-pwd"></p>
+                                    <p id="error-msg-pwd" style={{"color" : "red"}}>{errorMsg.pwd}</p>
                                 </div>
                             </li>
                             <li>

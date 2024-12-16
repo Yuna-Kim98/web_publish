@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { validateUserInfo } from '../../apis/validate.js';
 
 export default function UserInfo() {
     // form 데이터 저장소
@@ -6,9 +7,14 @@ export default function UserInfo() {
     const [formData, setFormData] = useState(initForm);
 
     // 유효성 체크 Hook
-    const nameRef = useRef(null);
-    const addRef = useRef(null);
-    const ageRef = useRef(null);
+    // const nameRef = useRef(null);
+    // const addRef = useRef(null);
+    // const ageRef = useRef(null);
+    const refs = {
+        nameRef: useRef(null),
+        addRef: useRef(null),
+        ageRef: useRef(null)
+    };
     
     // input 이벤트
     const handleChangeForm = (event) => {
@@ -17,31 +23,30 @@ export default function UserInfo() {
     }
 
     // 유효성 체크 함수
-    const validateForm = () => {
-        let result = true;
-        if (nameRef.current.value == '') {
-            alert("이름을 입력해주세요.");
-            nameRef.current.focus();
-            result = false;
-        } else if (addRef.current.value === '') {
-            alert("주소를 입력해주세요.");
-            addRef.current.focus();
-            result = false;
-        } else if (ageRef.current.value === '') {
-            alert("나이를 입력해주세요");
-            ageRef.current.focus();
-            result = false;
-        }
-        return result;
-    }
+    // const validateForm = () => {
+    //     let result = true;
+    //     if (nameRef.current.value == '') {
+    //         alert("이름을 입력해주세요.");
+    //         nameRef.current.focus();
+    //         result = false;
+    //     } else if (addRef.current.value === '') {
+    //         alert("주소를 입력해주세요.");
+    //         addRef.current.focus();
+    //         result = false;
+    //     } else if (ageRef.current.value === '') {
+    //         alert("나이를 입력해주세요");
+    //         ageRef.current.focus();
+    //         result = false;
+    //     }
+    //     return result;
+    // }
     
+    // 버튼 클릭 이벤트 함수
     const handleSubmit = (event) => { 
         event.preventDefault();
 
         // 유효성 체크
-        if (validateForm()) {
-            console.log(formData); // 데이터 전송 전 확인
-        }
+        if (validateUserInfo(refs)) console.log(formData); // 데이터 전송 전 확인
     }
 
     return (
@@ -51,15 +56,15 @@ export default function UserInfo() {
                 <ul>
                     <li>
                         <label>Name</label>
-                        <input type="text" name="name" value={formData.name} ref={nameRef} onChange={handleChangeForm} />
+                        <input type="text" name="name" value={formData.name} ref={refs.nameRef} onChange={handleChangeForm} />
                     </li>
                     <li>
                         <label>Address</label>
-                        <input type="text" name="address" value={formData.address} ref={addRef} onChange={handleChangeForm} />
+                        <input type="text" name="address" value={formData.address} ref={refs.addRef} onChange={handleChangeForm} />
                     </li>
                     <li>
                         <label>Age</label>
-                        <input type="text" name="age" value={formData.age} ref={ageRef} onChange={handleChangeForm} />
+                        <input type="text" name="age" value={formData.age} ref={refs.ageRef} onChange={handleChangeForm} />
                     </li>
                     <li>
                         <button type="submit">Send</button>
