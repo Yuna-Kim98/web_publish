@@ -1,32 +1,49 @@
+.container {
+    width: 1040px;
+    margin: 0 auto;
+}
+
 .book {
     display: flex;
     gap: 20px;
 }
 
 .rank {
-    width: 1040px;
+    /* width: 1040px; */
     list-style-type: none;
-    padding: 0;
-    margin: 0 auto;
+    /* padding: 0; */
+    /* margin: 0 auto; */
 }
 
 .rankList {
-    border: 1px solid silver;
+    border-bottom: 1px solid silver;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 30px;
 }
 
 .cover-container {
+    display: flex;
+    text-align: center;
+}
+
+.cover-container > div:first-child > p {
+    font-size: 1.3rem;
     text-align: center;
 }
 
 .cover-img {
     width: 120px;
+    padding-left: 20px;
 }
 
 .book-detail-container > div {
     margin-bottom: 10px;
+}
+
+.book-detail2 > a {
+    text-decoration: none;
+    color: black;
 }
 
 .book-sample {

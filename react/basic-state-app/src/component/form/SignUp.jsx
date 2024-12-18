@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { validateSignUp, handleidCheck } from '../../apis/validate.js';
+import { validateSignUp, handleIdCheck, handlepwdCheck } from '../../apis/validate.js';
 import { errorCheck } from '../../apis/errorCheck.js';
 import { initFormNames } from '../../apis/initial.js';
 
@@ -52,7 +52,6 @@ export default function SignUp() {
     }
 
     // 아이디 중복 확인 이벤트 함수
-    handleidCheck(refs, idMsgRef, errors, setErrors, errorCheck);
     // const handleidCheck = () => {
     //     const id = refs.idRef.current;
     //     if (id.value === "") {
@@ -73,30 +72,28 @@ export default function SignUp() {
     // }
 
     // 비밀번호 확인 이벤트 함수
-    const handlepwdCheck = () => {
-        const pwd = refs.pwdRef.current;
-        const cpwd = refs.cpwdRef.current;
-        if (pwd.value === "") {
-            errorCheck("pwd", pwd.value, errors, setErrors);
-            pwd.focus();
-        } else if (cpwd.value === "") {
-            errorCheck("cpwd", cpwd.value, errors, setErrors);
-            cpwd.focus();
-        } else {
-            if (pwd.value === cpwd.value) {
-                setErrors({...errors, ["cpwd"]: "비밀번호가 일치합니다."});
-                pwdMsgRef.current.style.setProperty("color", "green");
-                pwdMsgRef.current.style.setProperty("font-weight", "bold");
-            } else {
-                setErrors({...errors, ["pwd"]: "비밀번호가 일치하지 않습니다."});
-                setFormData({...formData, ["pwd"]:"", ["cpwd"]: ""});
-                pwd.focus();
-                return false;
-            }
-        }
-
-
-    }
+    // const handlepwdCheck = () => {
+    //     const pwd = refs.pwdRef.current;
+    //     const cpwd = refs.cpwdRef.current;
+    //     if (pwd.value === "") {
+    //         errorCheck("pwd", pwd.value, errors, setErrors);
+    //         pwd.focus();
+    //     } else if (cpwd.value === "") {
+    //         errorCheck("cpwd", cpwd.value, errors, setErrors);
+    //         cpwd.focus();
+    //     } else {
+    //         if (pwd.value === cpwd.value) {
+    //             setErrors({...errors, ["cpwd"]: "비밀번호가 일치합니다."});
+    //             pwdMsgRef.current.style.setProperty("color", "green");
+    //             pwdMsgRef.current.style.setProperty("font-weight", "bold");
+    //         } else {
+    //             setErrors({...errors, ["pwd"]: "비밀번호가 일치하지 않습니다."});
+    //             setFormData({...formData, ["pwd"]:"", ["cpwd"]: ""});
+    //             pwd.focus();
+    //             return false;
+    //         }
+    //     }
+    // }
 
     return (
         <div className="join-form center-layout">
@@ -111,7 +108,16 @@ export default function SignUp() {
                         <span style={{"color" : "red"}} ref={idMsgRef}>{errors.id}</span>
                         <div>
                             <input type="text" name="id" value={formData.id} ref={refs.idRef} onChange={handleChangeSignUp} placeholder="아이디 입력 (6~20자)" />
-                            <button type="button" onClick={handleidCheck(refs, idMsgRef, errors, setErrors, errorCheck)}>중복확인</button>
+                            <button type="button" onClick={() => {
+                                const param = {
+                                    "refs.idRef": refs.idRef,
+                                    "errorCheck": errorCheck,
+                                    "errors": errors,
+                                    "setErrors": setErrors,
+                                    "idMsgRef": idMsgRef
+                                }
+                                handleIdCheck(param)
+                                }}>중복확인</button>
                             <input type="hidden" id="idCheckResult" value="default" />
                         </div>
                     </li>
@@ -126,7 +132,20 @@ export default function SignUp() {
                         <label>비밀번호 확인</label>
                         <span style={{"color" : "red"}} ref={pwdMsgRef}>{errors.cpwd}</span>
                         <div>
-                            <input type="password" name="cpwd" value={formData.cpwd} ref={refs.cpwdRef} onChange={handleChangeSignUp} onBlur={handlepwdCheck} placeholder="비밀번호 재입력" />
+                            <input type="password" name="cpwd" value={formData.cpwd} ref={refs.cpwdRef} onChange={handleChangeSignUp} 
+                            onBlur={() => {
+                                const param = {
+                                    "refs": refs,
+                                    "errorCheck": errorCheck,
+                                    "errors": errors,
+                                    "setErrors": setErrors,
+                                    "pwdMsgRef": pwdMsgRef,
+                                    "formData": formData,
+                                    "setFormData": setFormData
+                                }
+                                handlepwdCheck(param)
+                            }} 
+                            placeholder="비밀번호 재입력" />
                         </div>
                     </li>
                     <li>

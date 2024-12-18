@@ -1,0 +1,153 @@
+{
+    "bookList": [
+        {
+            "rank": "1", 
+            "img": "https://image.yes24.com/goods/13137546/L",
+            "suggest": true,
+            "today": true,
+            "type": "도서",
+            "title": "소년이 온다",
+            "author": "한강",
+            "company" :"창비",
+            "pubDate": "2014년 05월",
+            "price": "13,500",
+            "perSale": "10",
+            "point": "750",
+            "category": "realtime"
+        },
+        {
+            "rank": "2", 
+            "img": "https://image.yes24.com/goods/108422348/L",
+            "suggest": false,
+            "today": true,
+            "type": "도서",
+            "title": "채식주의자",
+            "author": "한강",
+            "company" :"창비",
+            "pubDate": "2022년 03월",
+            "price": "13,500",
+            "perSale": "10",
+            "point": "750",
+            "category": "hotprice"
+        },
+        {
+            "rank": "3", 
+            "img": "https://image.yes24.com/goods/103495056/L",
+            "suggest": true,
+            "today": true,
+            "type": "도서",
+            "title": "작별하지 않는다",
+            "author": "한강",
+            "company" :"문학동네",
+            "pubDate": "2021년 09월",
+            "price": "15,120",
+            "perSale": "10",
+            "point": "840",
+            "category": "day"
+        },
+        {
+            "rank": "4", 
+            "img": "https://image.yes24.com/goods/11467936/L",
+            "suggest": false,
+            "today": false,
+            "type": "도서",
+            "title": "서랍에 저녁을 넣어 두었다",
+            "author": "한강",
+            "company" :"문학과 지성사",
+            "pubDate": "2022년 03월",
+            "price": "10,800",
+            "perSale": "10",
+            "point": "600",
+            "category": "monthweek"
+        },
+        {
+            "rank": "5", 
+            "img": "https://image.yes24.com/goods/60524285/L",
+            "suggest": false,
+            "today": true,
+            "type": "도서",
+            "title": "흰",
+            "author": "한강",
+            "company" :"문학동네",
+            "pubDate": "2022년 03월",
+            "price": "13,050",
+            "perSale": "10",
+            "point": "720",
+            "category": "steady"
+        },
+        {
+            "rank": "6", 
+            "img": "https://image.yes24.com/goods/5926713/L",
+            "suggest": false,
+            "today": false,
+            "type": "도서",
+            "title": "희랍어 시간",
+            "author": "한강",
+            "company" :"문학동네",
+            "pubDate": "2011년 11월",
+            "price": "11,700",
+            "perSale": "10",
+            "point": "650",
+            "category": "realtime"
+        },
+        {
+            "rank": "7", 
+            "img": "https://image.yes24.com/goods/125557465/L",
+            "suggest": false,
+            "today": false,
+            "type": "도서",
+            "title": "하루 한 장 나의 어휘력을 위한 필사 노트",
+            "author": "유선경",
+            "company" :"위즈덤하우스",
+            "pubDate": "2024년 10월",
+            "price": "21,420",
+            "perSale": "10",
+            "point": "1,190",
+            "category": "day"
+        }
+    ],
+    "menuList": [
+        {
+            "name":"종합",
+            "category": "total",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"실시간",
+            "category": "realtime",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"특가",
+            "category": "hotprice",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"일별",
+            "category": "day",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"월별/주별",
+            "category": "monthweek",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"스테디셀러",
+            "category": "steady",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        }
+    ]
+}

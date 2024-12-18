@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import BestBookAvatar from './BestBookAvatar.jsx';
+import BestBookContent from './BestBookContent.jsx';
 import BestBookButton from './BestBookButton.jsx';
 
-export default function BestBook() {
-    const list = [
-        { "img": "https://image.yes24.com/goods/13137546/L" },
-        { "img": "https://image.yes24.com/goods/108422348/L" },
-        { "img": "https://image.yes24.com/goods/103495056/L" }
-    ];
-
-    const [totalQty, setTotalQty] = useState(0);
-    
-    const handelChangeQty = (qty) => {
-        setTotalQty(totalQty + qty)
-    }
-
+export default function BestBook({bookList}) {
     return (
         <>
-            <div>전체카트수량 : {totalQty}</div>
-            {list.map((item) => 
-                <div className='container'>
-                    <img className="book-cover" src={item.img} />
-                    <BestBookButton totalQtyChange={handelChangeQty} />
+            { bookList && bookList.map((book, i) => 
+                <div className="best-book-container">
+                    <BestBookAvatar 
+                        rank={i + 1} 
+                        img={book.img} />
+                    <BestBookContent
+                        suggest={book.suggest}
+                        today={book.today}
+                        type={book.type}
+                        title={book.title}
+                        author={book.author}
+                        company={book.company}
+                        pubDate={book.pubDate}
+                        price={book.price}
+                        perSale={book.perSale}
+                        point={book.point}
+                    />
+                    <BestBookButton className="button-container" />
                 </div>
             )}
         </>

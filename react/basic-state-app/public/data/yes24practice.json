@@ -1,0 +1,133 @@
+{
+    "bookList": [
+        {
+            "rank": "1",
+            "img": "https://image.yes24.com/goods/13137546/L",
+            "recom": true,
+            "today": true,
+            "des": "2024 노벨문학상 수상작가",
+            "alt": "소년이 온다",
+            "coment": "2024 노벨문학상 수상작가",
+            "type": "도서",
+            "title": "소년이 온다",
+            "writer": "한강",
+            "company": "창비",
+            "date": "2014년 05월",
+            "event": "[2024 노벨문학상] 패브릭 북마크/양장노트/문장노트 (택1/포인트 차감)",
+            "charge": "13,500",
+            "category": "realtime"
+        },
+        {
+            "rank": "2",
+            "img": "https://image.yes24.com/goods/108422348/L",
+            "recom": false,
+            "today": true,
+            "des": "2024 노벨문학상 수상작가",
+            "alt": "채식주의자",
+            "coment": "2024 노벨문학상 수상작가, 양장, 개정판",
+            "type": "도서",
+            "title": "채식주의자",
+            "writer": "한강",
+            "company": "창비",
+            "date": "2022년 03월",
+            "event": "[2024 노벨문학상] 패브릭 북마크/양장노트/문장노트 (택1/포인트 차감)",
+            "charge": "13,500",
+            "category": "hotprice"
+        },
+        {
+            "rank": "3",
+            "img": "https://image.yes24.com/goods/103495056/L",
+            "recom": true,
+            "today": true,
+            "des": "2024 노벨문학상 수상작가",
+            "alt": "작별하지 않는다",
+            "coment": "2024 노벨문학상 수상작가 / 2023 메디치상 외국문학상 수상작",
+            "type": "도서",
+            "title": "작별하지 않는다",
+            "writer": "한강",
+            "company": "문학동네",
+            "date": "2021년 09월",
+            "event": "[2024 노벨문학상] 패브릭 북마크/양장노트/문장노트 (택1/포인트 차감)",
+            "charge": "15,120",
+            "category": "day"
+        },
+        {
+            "rank": "4",
+            "img": "https://image.yes24.com/goods/11467936/L",
+            "recom": false,
+            "today": false,
+            "des": "문학과지성 시인선-438 , 2024 노벨문학상 수상작가",
+            "alt": "서랍에 저녁을 넣어 두었다",
+            "coment": "2024 노벨문학상 수상작가",
+            "type": "도서",
+            "title": "서랍에 저녁을 넣어 두었다",
+            "writer": "한강",
+            "company": "문학과지성사",
+            "date": "2013년 11월",
+            "event": "[2024 노벨문학상] 패브릭 북마크/양장노트/문장노트 (택1/포인트 차감)",
+            "charge": "10,800",
+            "category": "monthweek"
+        },
+        {
+            "rank": "5",
+            "img": "https://image.yes24.com/goods/60524285/L",
+            "recom": false,
+            "today": true,
+            "des": "2024 노벨문학상 수상작가",
+            "alt": "흰",
+            "coment": "2024 노벨문학상 수상작가, 양장, 개정판",
+            "type": "도서",
+            "title": "흰",
+            "writer": "한강",
+            "company": "문학동네",
+            "date": "2018년 04월",
+            "event": "[2024 노벨문학상] 패브릭 북마크/양장노트/문장노트 (택1/포인트 차감)",
+            "charge": "13,050",
+            "category": "steady"
+        }
+    ],
+    "menuList": [
+        {
+            "name":"종합",
+            "category": "total",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"실시간",
+            "category": "realtime",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"특가",
+            "category": "hotprice",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"일별",
+            "category": "day",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"월별/주별",
+            "category": "monthweek",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        },
+        {
+            "name":"스테디셀러",
+            "category": "steady",
+            "href":"#",
+            "bg":"white",
+            "color":"#333"
+        }
+    ]
+}

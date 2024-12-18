@@ -115,8 +115,8 @@ export const validateSignUp = (refs, errors, setErrors) => {
 /** 
  * SingUp 컴포넌트의 아이디 중복 확인 체크 함수
 **/
-export const handleidCheck = (refs, idMsgRef, errors, setErrors, errorCheck) => {
-        const id = refs.idRef.current;
+export const handleIdCheck = ({idRef, errorCheck, errors, setErrors, idMsgRef}) => {
+        const id = idRef.current;
         if (id.value === "") {
             errorCheck("id", id.value, errors, setErrors);
             id.focus();
@@ -132,6 +132,34 @@ export const handleidCheck = (refs, idMsgRef, errors, setErrors, errorCheck) => 
                 idMsgRef.current.style.setProperty("font-weight", "bold");
             }
         }
+    }
+
+/** 
+ * SingUp 컴포넌트의 비밀번호 확인 함수
+**/
+export const handlepwdCheck = (param) => { // 받을 때는 보통 구조분해할당으로 받음
+        const pwd = param.refs.pwdRef.current;
+        const cpwd = param.refs.cpwdRef.current;
+        if (pwd.value === "") {
+            param.errorCheck("pwd", pwd.value, param.errors, param.setErrors);
+            pwd.focus();
+        } else if (cpwd.value === "") {
+            param.errorCheck("cpwd", cpwd.value, param.errors, param.setErrors);
+            cpwd.focus();
+        } else {
+            if (pwd.value === cpwd.value) {
+                param.setErrors({...param.errors, ["cpwd"]: "비밀번호가 일치합니다."});
+                param.pwdMsgRef.current.style.setProperty("color", "green");
+                param.pwdMsgRef.current.style.setProperty("font-weight", "bold");
+            } else {
+                param.setErrors({...param.errors, ["pwd"]: "비밀번호가 일치하지 않습니다."});
+                param.setFormData({...param.formData, ["pwd"]:"", ["cpwd"]: ""});
+                pwd.focus();
+                return false;
+            }
+        }
+
+
     }
 
 /** 

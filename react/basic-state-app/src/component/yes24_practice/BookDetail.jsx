@@ -4,8 +4,8 @@ export default function BookDetail(list) {
     return (
         <div className='book-detail-container'>
             <div className='book-des'>
-                {(list.recom === true) ? <span className="recom">강력추천</span> : ''}
-                {(list.today === true) ? <span className="today">오늘의책</span> : ''}
+                { list.recom && <span className="recom">강력추천</span> }
+                { list.today && <span className="recom">오늘의책</span> }
                 <span className="book-des">{list.des}</span>
             </div>
             <div className="book-detail">
@@ -13,7 +13,7 @@ export default function BookDetail(list) {
                 <span className='book-title'>{list.title}</span>
                 <span className="book-coment">&#91;{list.coment}&#93;</span>
             </div>
-            <div>
+            <div className="book-detail2">
                 <a href="">{list.writer}</a><span>저 &#124; </span>
                 <a href="">{list.company}</a><span> &#124; </span>
                 <span>{list.date}</span>
