@@ -192,10 +192,18 @@ export const validateFormSignUp3 = (refs) => {
     for (const item of refsEntries) {
         const name = item[0];
         const ref = item[1];
-        if (ref && ref.current.value === "") {
-            alert(`${msgs[name]}을/를 입력 또는 선택해주세요.`);
-            ref.current.focus();
-            return false;
+        if (name !== "jobRef") {
+            if (ref.current.value === "") {
+                alert(`${msgs[name]}를 입력해주세요.`);
+                ref.current.focus();
+                return false;
+            }
+        } else {
+            if (ref.current.value === "default") {
+                alert(`${msgs[name]}을 선택해주세요.`);
+                ref.current.focus();
+                return false;
+            }
         }
     }
     
@@ -280,5 +288,9 @@ export const signup3ErrorCheck = (name, value, errors, setErrors) => {
         { "name": "intro", "msg": "자기소개를 입력해주세요." }
     ];
 
-    names.map();
+    names.map((item) =>
+        (name === item.name) ? (
+            value === "" ? setErrors({...errors, [item.name]: item.msg}) : setErrors({...errors, [item.name]:""})
+        ) : ""
+    );
 }

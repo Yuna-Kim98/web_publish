@@ -2,9 +2,9 @@
 export default function AvatarComponent({img, alt, isNew, name}) {
     return (
         <>
-            <img src={img} alt={alt} />
+            <img src={img} alt={alt} className="avatar-img" />
             {isNew && <span className="new">new!</span>}
-            <p>{name}</p>
+            <p className="avatar-name">{name}</p>
         </>
     );
 }

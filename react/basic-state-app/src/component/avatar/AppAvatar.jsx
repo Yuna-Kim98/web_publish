@@ -13,9 +13,9 @@ export default function AppAvatar() {
     }, []);
 
     return (
-        <ul>
+        <ul className="avatar-ul">
             {list && list.map((item) => 
-                <li>
+                <li className="avatar-li">
                     <AvatarComponent 
                         img={item.img}
                         alt={item.alt}
