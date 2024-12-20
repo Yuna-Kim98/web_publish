@@ -12,16 +12,17 @@ import './index.css';
 // import AppAladin from './component/aladin/AppAladin.jsx';
 // import AppAladin2 from './component/aladin2/AppAladin2.jsx';
 // import AppForm from './component/form/AppForm.jsx';
-// import CgvLoginForm from './component/form/CgvLoginForm.jsx';
+import CgvLoginForm from './component/form/CgvLoginForm.jsx';
 // import Login2 from './component/form/Login2.jsx';
 import AppRouter from './component/router/AppRouter.jsx';
 import AppRouter2 from './component/router2/AppRouter2.jsx';
+import SignUp from './component/form/SignUp.jsx';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppRouter2 />
+    <SignUp />
   </React.StrictMode>
 );
 

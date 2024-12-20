@@ -1,5 +1,5 @@
 import React from 'react';
-import SkillsCodingList from './SkillsCodingList';
+import SkillsCodingList from './SkillsCodingList.jsx';
 
 export default function SkillsCoding() {
     const list = [

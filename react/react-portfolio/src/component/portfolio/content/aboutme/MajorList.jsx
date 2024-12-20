@@ -1,11 +1,12 @@
 import React from 'react';
-import Major from './Major';
+import Major from './Major.jsx';
 import { faServer, faMobile  } from '@fortawesome/free-solid-svg-icons';
+import { faHtml5 } from '@fortawesome/free-brands-svg-icons';
 
 export default function MajorList() {
     const majorList = [
         {
-            // "icon":faHtml5,
+            "icon":faHtml5,
             "majorName":"Front-end",
             "des":"HTML, CSS, JavaScript, TypeScript, React, WebAPIs"
         },
@@ -24,7 +25,7 @@ export default function MajorList() {
     return (
         <ul className="majors">
             { majorList && majorList.map((item) => 
-                <li>
+                <li className="major">
                     <Major 
                         icon={item.icon}
                         majorName={item.majorName}

@@ -1,7 +1,7 @@
 import React from 'react';
-import Title from './Title';
-import MajorList from './MajorList';
-import JobList from './JobList';
+import Title from '../Title.jsx';
+import MajorList from './MajorList.jsx';
+import JobList from './JobList.jsx';
 
 export default function AboutMe() {
     return (
