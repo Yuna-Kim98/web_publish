@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from '../Title.jsx';
-import TestimonialList from './TestimonialList.jsx';
+import TestimonialBubble from './TestimonialBubble.jsx';
+import SectionWrap from '../SectionWrap.jsx';
 
 export default function Testimonial() {
     const bubleList = [
@@ -28,13 +28,15 @@ export default function Testimonial() {
     ];
 
     return (
-        <section id="testimonial" className="section max-container">
-            <Title title="Testimonial" description="See what they say about me" />
-
+        <SectionWrap 
+            id="testimonial"
+            title="Testimonial"
+            description="See what they say about me"
+        >
             <ul className="testimonials">
                 { bubleList && bubleList.map((item) => 
                     <li className="testimonial">
-                        <TestimonialList 
+                        <TestimonialBubble 
                             img={item.img}
                             alt={item.alt}
                             coment={item.coment}
@@ -44,6 +46,6 @@ export default function Testimonial() {
                     </li>
                 )}
             </ul>
-        </section>
+        </SectionWrap>
     );
 }

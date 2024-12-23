@@ -1,28 +1,12 @@
 import React from 'react';
-import SkillsCodingList from './SkillsCodingList.jsx';
 
-export default function SkillsCoding() {
-    const list = [
-        { "major":"HTML", "percent":"98%" },
-        { "major":"CSS", "percent":"90%" },
-        { "major":"JavaScript", "percent":"90%" },
-        { "major":"TypeScript", "percent":"80%" },
-        { "major":"React", "percent":"79%" },
-        { "major":"NodeJS", "percent":"68%" },
-    ];
-    
+export default function SkillsCoding({major, percent}) {
     return (
-        <article className="skills__coding">
-            <h3 className="skill__title">Coding Skills</h3>
-            <ul>
-                { list && list.map((item) => 
-                    <SkillsCodingList 
-                        major={item.major}
-                        percent={item.percent}
-                    />
-                )}
-            </ul>
-        </article>
+        <>
+            <li className="bar">
+                <div className="bar__metadata"><span>{major}</span><span>{percent}%</span></div>
+                <div className="bar__bg"><div className="bar__value" style={{"width": `${percent}%`}}></div></div>
+            </li>
+        </>
     );
 }
-

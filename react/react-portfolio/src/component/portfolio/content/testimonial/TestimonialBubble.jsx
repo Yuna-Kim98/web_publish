@@ -1,7 +1,7 @@
 import React from 'react';
 import Img from '../../commons/Img.jsx';
 
-export default function TestimonialList({img, alt, coment, name, company}) {
+export default function Testimonial({img, alt, coment, name, company}) {
     return (
         <>
             <Img img={img} alt={alt} className="testimonial__img" />
@@ -12,4 +12,3 @@ export default function TestimonialList({img, alt, coment, name, company}) {
         </>
     );
 }
-

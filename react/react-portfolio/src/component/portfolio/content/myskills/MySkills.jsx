@@ -1,7 +1,7 @@
 import React from 'react';
-import Title from '../Title.jsx';
-import SkillsCoding from './SkillsCoding.jsx';
-import SkillsToolEtc from './SkillsToolEtc.jsx';
+import SectionWrap from '../SectionWrap.jsx';
+import SkillsCodingList from './SkillsCodingList.jsx';
+import SkillsToolEtcList from './SkillsToolEtcList.jsx';
 
 export default function MySkills() {
     const list = [
@@ -28,26 +28,25 @@ export default function MySkills() {
     ];
 
     return (
-        <section id="skill" className="section max-container">
-            <Title 
-                title="My Skills" 
-                description="Skills & Attributes"
-                des2="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        <SectionWrap
+            id="skill"
+            title="My Skill"
+            description="Skills & Attributes"
+            des2="Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                 Nobis beatae, aliquid ratione commodi nam ex voluptate rem 
                 eveniet cupiditate optio natus? Cum, harum eum sint id quod 
                 nulla adipisci. Sunt?"
-            />
-
+        >
             <div className="skills">
-                <SkillsCoding />
+                <SkillsCodingList />
                 {list && list.map((item) => 
-                    <SkillsToolEtc
+                    <SkillsToolEtcList
                         aClass={item.aClass}
                         title={item.title}
                         list={item.list}
                     />
                 )}
-            </div> 
-        </section>
+            </div>
+        </SectionWrap>
     );
 }

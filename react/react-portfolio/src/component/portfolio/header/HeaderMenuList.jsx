@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import HeaderMenu from './HeaderMenu.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars  } from '@fortawesome/free-solid-svg-icons';
+import ToggleButton from './ToggleButton.jsx';
 
 export default function HeaderMenuList() {
     const menuList = [
-        { "className":"header__menu__item active", "href":"#home", "name":"Home" },
-        { "className":"header__menu__item", "href":"#about", "name":"About" },
-        { "className":"header__menu__item", "href":"#skill", "name":"Skills" },
-        { "className":"header__menu__item", "href":"#work", "name":"My work" },
-        { "className":"header__menu__item", "href":"#testimonial", "name":"Testimonial" },
-        { "className":"header__menu__item", "href":"#contact", "name":"Contact" }
+        { "href":"#home", "name":"Home" },
+        { "href":"#about", "name":"About" },
+        { "href":"#skill", "name":"Skills" },
+        { "href":"#work", "name":"My work" },
+        { "href":"#testimonial", "name":"Testimonial" },
+        { "href":"#contact", "name":"Contact" }
     ];
+
     const [select, setSelect] = useState("Home");
+    const [toggle, setToggle] = useState(false); // 메뉴 초기값 false로 설정(display none)
 
     const handleHeaderMenu = (name) => {
         setSelect(name);
+    }
+
+    const handleToggleMenu = (name) => {
+        setToggle(toggle => !toggle); // on, off 개념
     }
 
     return (
@@ -36,9 +41,8 @@ export default function HeaderMenuList() {
                     )}
                 </ul>
             </nav>
-            <button id="menu_toggle" className="header__toggle" aria-label="navigation menu toggle">
-                <FontAwesomeIcon icon={faBars} />
-            </button>
+            {/* <ToggleButton className={toggle ? "show-menu" : "hide-menu"} click={handleToggleMenu} select={select} /> */}
+            <ToggleButton />
         </>
     );
 }
