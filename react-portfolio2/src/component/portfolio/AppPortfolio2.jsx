@@ -6,17 +6,11 @@ import HeaderMenuList from './header/HeaderMenuList.jsx';
 import Content from './content/Content.jsx';
 import Home from './content/Home.jsx';
 import SectionWrap from './content/SectionWrap.jsx';
-import AboutMe from './content/aboutme/AboutMe.jsx';
 import MajorList from './content/aboutme/MajorList.jsx';
 import JobList from './content/aboutme/JobList.jsx';
 import MySkills from './content/myskills/MySkills.jsx';
-import SkillsCodingList from './content/myskills/SkillsCodingList.jsx';
-import SkillsToolEtcList from './content/myskills/SkillsToolEtcList.jsx';
 import MyWork from './content/mywork/MyWork.jsx';
-import MyWorkButtonList from './content/mywork/MyWorkButtonList.jsx';
-import MyWorkProjectList from './content/mywork/MyWorkProjectList.jsx';
 import Testimonial from './content/testimonial/Testimonial.jsx';
-import TestimonialBubble from "./content/testimonial/TestimonialBubble.jsx"
 import Footer from './footer/Footer.jsx';
 import Arrow from './content/Arrow.jsx';
 
@@ -27,7 +21,8 @@ export default function AppPortfolio2() {
             "title": "About me",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure natus, temporibus perspiciatis repudiandae nostrum modi doloremque expedita non eius ipsum! Beatae porro adipisci omnis architecto dignissimos. Iusto ipsa inventore adipisci.",
             "children": [
-                { "component": "About Me" }
+                { "component": "MajorList" },
+                { "component": "JobList" }
             ]
         },
         {
@@ -52,7 +47,7 @@ export default function AppPortfolio2() {
             "title": "Testimonial",
             "description": "See what they say about me",
             "children": [
-                { "component": "TestimonialBubble" }
+                { "component": "Testimonial" }
             ]
         }
     ];
@@ -60,11 +55,9 @@ export default function AppPortfolio2() {
     const componentMap = {
         MajorList, // "MarjorList":MajorList -> value 값만 적어줘도 됨
         JobList,
-        SkillsCodingList,
-        SkillsToolEtcList,
-        MyWorkButtonList,
-        MyWorkProjectList,
-        TestimonialBubble
+        MySkills,
+        MyWork,
+        Testimonial
     };
 
   //자식 컴포넌트 렌더링 :: 재귀함수
@@ -97,7 +90,6 @@ export default function AppPortfolio2() {
                     {section.children.map((child) => renderComponent(child))}
                     </SectionWrap>
                 ))}  
-                {/* <Testimonial /> */}
                 <Arrow />
             </Content>
             <Footer />

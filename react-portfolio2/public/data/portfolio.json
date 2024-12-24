@@ -1,0 +1,74 @@
+{
+    "btnList": [
+        {
+            "className":"category category--selected", 
+            "category":"All", 
+            "count":"8"
+        },
+        {
+            "className":"category", 
+            "category":"Front-end", 
+            "count":"3"
+        },
+        {
+            "className":"category", 
+            "category":"Back-end", 
+            "count":"3"
+        },
+        {
+            "className":"category", 
+            "category":"Mobile", 
+            "count":"2"
+        }
+    ],
+    "projectList": [
+        { 
+            "category": "Front-end",
+            "img":"images/projects/project1.webp", 
+            "title":"Project #1", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Front-end",
+            "img":"images/projects/project2.webp", 
+            "title":"Project #2", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Front-end",
+            "img":"images/projects/project3.webp", 
+            "title":"Project #3", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Back-end",
+            "img":"images/projects/project4.webp", 
+            "title":"Project #4", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Back-end",
+            "img":"images/projects/project5.webp", 
+            "title":"Project #5", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Back-end",
+            "img":"images/projects/project6.webp", 
+            "title":"Project #6", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Mobile",
+            "img":"images/projects/project7.webp", 
+            "title":"Project #7", 
+            "des":"Clone Coding with HTML, CSS" 
+        },
+        { 
+            "category": "Mobile",
+            "img":"images/projects/project8.webp", 
+            "title":"Project #8", 
+            "des":"Clone Coding with HTML, CSS" 
+        }
+    ]
+}
