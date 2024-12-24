@@ -7,7 +7,7 @@ export default function HeaderTop() {
         <div className="header-top">
             <Logo 
                 href='#' 
-                src='images/logoRed.png' 
+                src='images/logoRed.png'
                 text='DEEP DIVE SPACE' 
                 target='_self' 
                 alt='CGV Logo'

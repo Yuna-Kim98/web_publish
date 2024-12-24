@@ -14,7 +14,7 @@ export default function HeaderTopMenuList() {
     return (
         <nav className='header-top-nav'>
             <ul>
-                {list && list.map((menu) => (
+                {list && list.map((menu) => 
                     <li>
                         <HeaderTopMenu 
                             href = {menu.href}
@@ -23,7 +23,7 @@ export default function HeaderTopMenuList() {
                             name = {menu.name}
                         />
                     </li>
-                ))}
+                )}
             </ul>
         </nav>
     );

@@ -10,7 +10,7 @@ export default function MyWorkList() {
     const [select, setSelect] = useState("All"); 
 
     useEffect(() => {
-        fetch("/data/portfolio.json")
+        fetch("data/portfolio.json")
             .then(result => result.json())
             .then((jsonData) => {
                 setBtnList(jsonData.btnList);
