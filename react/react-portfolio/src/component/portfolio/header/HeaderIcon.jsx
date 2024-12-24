@@ -5,7 +5,7 @@ export default function HeaderIcon() {
     return (
         <div className="header__logo">
             <Img className="header__logo__img"
-                img="/images/favicon.ico"
+                img="images/favicon.ico"
                 alt="logo"
             />
             <h1 className="header__logo__title">Judy</h1>

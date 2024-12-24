@@ -1,0 +1,8 @@
+[
+    { "type": "button", "name": "All"},
+    { "type": "button", "name": "Front-end"},
+    { "type": "button", "name": "Back-end"},
+    { "type": "button", "name": "Mobile"},
+    { "type": "submit", "name": "Submit"},
+    { "type": "reset", "name": "Reset" }
+]

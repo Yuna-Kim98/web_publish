@@ -3,14 +3,14 @@ import SectionWrap from '../SectionWrap.jsx';
 import MyWorkButtonList from './MyWorkButtonList.jsx';
 import MyWorkProjectList from './MyWorkProjectList.jsx';
 
-export default function MyWorkList() {
+export default function MyWork() {
     const [btnList, setBtnList] = useState([]);
     const [projectList, setProjectList] = useState([]);
     const [category, setCategory] = useState("All");
     const [select, setSelect] = useState("All"); 
 
     useEffect(() => {
-        fetch("/data/portfolio.json")
+        fetch("data/portfolio.json")
             .then(result => result.json())
             .then((jsonData) => {
                 setBtnList(jsonData.btnList);

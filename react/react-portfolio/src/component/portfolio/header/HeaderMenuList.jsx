@@ -13,14 +13,15 @@ export default function HeaderMenuList() {
     ];
 
     const [select, setSelect] = useState("Home");
-    const [toggle, setToggle] = useState(false); // 메뉴 초기값 false로 설정(display none)
+    const [toggle, setToggle] = useState(false); // 메뉴 초기값 설정(display: none)
 
     const handleHeaderMenu = (name) => {
         setSelect(name);
     }
 
-    const handleToggleMenu = (name) => {
+    const handleToggleBtn = () => {
         setToggle(toggle => !toggle); // on, off 개념
+
     }
 
     return (
@@ -41,8 +42,12 @@ export default function HeaderMenuList() {
                     )}
                 </ul>
             </nav>
-            {/* <ToggleButton className={toggle ? "show-menu" : "hide-menu"} click={handleToggleMenu} select={select} /> */}
-            <ToggleButton />
+            <ToggleButton 
+                ulName={ toggle ? "header__toggle__show" : "header__toggle__hide" }
+                btnClick={handleToggleBtn}
+                click={handleHeaderMenu}
+                select={select}
+            />
         </>
     );
 }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars  } from '@fortawesome/free-solid-svg-icons';
 import HeaderMenu from './HeaderMenu';
 
-export default function ToggleButton({className, click, select}) {
+export default function ToggleButton({ulName, btnClick, click, select}) {
     const menuList = [
         { "href":"#home", "name":"Home" },
         { "href":"#about", "name":"About" },
@@ -15,10 +15,10 @@ export default function ToggleButton({className, click, select}) {
     
     return (
         <>
-            <button id="menu_toggle" className="header__toggle" aria-label="navigation menu toggle">
+            <button id="menu_toggle" className="header__toggle" aria-label="navigation menu toggle" onClick={() => btnClick()}>
                 <FontAwesomeIcon icon={faBars} />
             </button>
-            {/* <ul className={className}>
+            <ul className={ulName}>
                 { menuList && menuList.map((item) => 
                     <li className="header__toggle__list">
                         <HeaderMenu 
@@ -27,10 +27,11 @@ export default function ToggleButton({className, click, select}) {
                             }
                             href={item.href}
                             name={item.name}
+                            click={click}
                         />
                     </li>
                 )}
-            </ul> */}
+            </ul>
         </>
     );
 }

@@ -128,8 +128,10 @@ button:focus {
     right: 1rem;
 }
 
-/* .show-menu {
-    display: block;
+/* 기존 헤더가 생겼을 때 자동으로 토글 메뉴가 없어지게 하려면? 
+    기존 css에서는 display:none으로 주고 반응형에서 display:block으로 변경해주기*/
+.header__toggle__show {
+    display: none;
     justify-content: space-between;
     width: 130px;
     height: auto;
@@ -138,21 +140,20 @@ button:focus {
     position: absolute;
     right: 0;
     top: 64px;
-    border: 1px solid red;
 }
-
+.header__toggle__hide {
+    display: none;
+}
 .header__toggle__list > a {
     display: inline-block;
     color: white;
-    border: 1px solid blue;
     width: 100px;
     margin-top: 10px;
     padding: 5px 0;
 }
-
-.hide-menu {
-    display: none;
-} */
+.header__toggle__list:last-child {
+    margin-bottom : 10px
+}
 
 /*
     home
@@ -476,6 +477,9 @@ button:focus {
     .header__toggle {
         display: block;
     }
+    .header__toggle__show {
+        display: block;
+    }
     .header__menu {
         display: none;
     }
@@ -530,11 +534,11 @@ button:focus {
 }
 
 /*******************************************
-    media screen - 412
+    media screen - 412 -> 425(대형모바일 기기)
     위에서 max-width가 지정되어 있으므로
     max-width 따로 지정하지 않아도 됨
 ********************************************/
-@media screen and (max-width: 412px) {
+@media screen and (max-width: 425px) {
     .section {
         padding: 2rem 1rem;
     }

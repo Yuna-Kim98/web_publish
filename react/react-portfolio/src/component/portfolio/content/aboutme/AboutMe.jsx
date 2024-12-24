@@ -1,6 +1,5 @@
 import React from 'react';
 import SectionWrap from '../SectionWrap.jsx';
-import Title from '../Title.jsx';
 import MajorList from './MajorList.jsx';
 import JobList from './JobList.jsx';
 
