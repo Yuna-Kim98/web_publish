@@ -18,17 +18,17 @@ export default function Speicail() {
 
     const handleSpecialImg = (text) => {
         if (text === "SUITE CINEMA") {
+            setName(text);
             setSpecialImg("https://img.cgv.co.kr//Front/Main/2021/1209/16390080561620.png");
-            setName(text);
         } else if (text === "CINE & LIVINGROOM") {
+            setName(text);
             setSpecialImg("https://img.cgv.co.kr//Front/Main/2022/0616/16553622935690.png");
-            setName(text);
         } else if (text === "4DX") {
+            setName(text);
             setSpecialImg("https://img.cgv.co.kr//Front/Main/2024/1203/17331884315310.png");
-            setName(text);
         } else if (text === "CINE de CHEF") {
-            setSpecialImg("https://img.cgv.co.kr//Front/Main/2021/1130/16382612660560.png");
             setName(text);
+            setSpecialImg("https://img.cgv.co.kr//Front/Main/2021/1130/16382612660560.png");
         }
     }
 

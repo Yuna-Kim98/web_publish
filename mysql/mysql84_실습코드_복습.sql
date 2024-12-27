@@ -1,0 +1,158 @@
+/*
+	SQL(Structured Query Language): 데이터베이스에서 사용하는 구조화된 언어
+    --> DBMS(Database Management System)에 접속하여 CRUD 작업을 수행하는 언어
+		대소문자 구분하지 않음
+    
+    (1) DDL(Data Definition Language) : 데이터 정의어
+		- 데이터를 저장하기 위한 공간을 생성하고 관리하는 논리적인 언어
+        - 명령어 : CREATE, ALTER, TRUNCATE, DROP
+	(2) DML(Data Manipulation Language) : 데이터 조작어(작업어) -> 가장 많이 접하게 되는 언어
+		- 데이터를 CRUD 작업을 수행하는 언어
+        - insert(C), select(R), update(U), delete(D)
+	(3) DCL(Data Control Language) : 데이터 제어어
+		- 데이터에 접근하는 권한을 제어하는 언어
+        - GRANT(부여), DEVOKE(해제)
+	(4) DTL(Data Transacition Language) : 데이터 트랜잭션 제어어
+		- 데이터베이스 작업 처리 단위인 트랜잭션을 관리하는 언어
+        - commit(완료), rollback(취소), savepoint(작업구간별 저장) ...
+*/
+
+/**
+	데이터베이스 선택 및 조회
+    show databases; -- 모든 데이터베이스 목록 출력
+    use [선택한 데이터베이스명]; -- 사용할 데이터베이스 선택
+    select database(); -- 데이터베이스 선택
+    show tables; -- 데이터베이스에 저장된 테이블 전체 조회
+*/
+
+show databases;
+use hrdb2019;
+select database();
+show tables;
+
+/**
+	테이블 구조 확인 : DESC(DESCRIBE)
+    형식 - DESC [테이블명];
+*/
+
+show tables;
+desc department;
+desc employee;
+desc unit;
+desc vacation;
+
+/**
+	테이블 조회(단순) : SELECT
+    형식 - SELECT [컬럼리스트(FILED 리스트)] FROM [테이블명];
+		  SELECT *(전체 컬럼리스트) FROM [테이블명];
+*/
+SHOW TABLES;
+DESC EMPLOYEE;
+SELECT EMP_ID, EMP_NAME FROM EMPLOYEE;
+desc department;
+select dept_id, dept_name from department;
+select * from unit;
+
+show tables;
+desc employee;
+-- 사원 테이블에서 사원아이디, 사원명, 성별, 입사일 조회
+select emp_id, emp_name, gender, hire_date from employee;
+
+-- 사원 테이블에서 사원명, 부서명, 입사일, 폰번호, 연봉을 조회
+show tables;
+desc employee;
+select emp_name, dept_id, hire_date, phone, salary from employee;
+
+-- 부서테이블의 모든 컬럼을 조회
+show tables;
+select * from department;
+
+-- [조회한 컬럼명을 alias(별칭)으로 출력]
+-- 형식 : select [컬림명 as '별칭', 컬럼명 as '별칭'...] from [테이블명];
+-- 사원테이블에서 아이디, 성명, 입사일, 부서명, 연봉 이름으로 컬럼을 조회
+show tables;
+desc employee;
+select emp_id as '아이디', emp_name as '성명', hire_date as '입사일', dept_id as '부서명', salary as '연봉' from employee;
+select emp_id '사원 아이디', emp_name 성명, hire_date 입사일, dept_id 부서명, salary 연봉 from employee;
+
+-- 사원테이블에서 사원명, 부서, 연봉을 조회 
+-- 별칭으로 컬럼명을 수정
+-- 기존 컬럼을 이용하여 가상의 컬럼 생성 - 연봉 10% 인센티브 컬럼
+-- 타입이 숫자인 컬럼은 수식 연산이 가능함
+show tables;
+desc employee;
+select emp_name 사원명, dept_id 부서, salary 연봉, salary*0.1 인센티브 from employee;
+
+-- 현재의 날짜를 조회, 컬럼명을 'date'로 변경
+select curdate();
+select curdate() as 'DATE';
+ 
+/**
+	테이블 조회(단순 -> 테이블 하나만 가지고 조회하는 환경) : SELECT ~ FROM ~ WHERE
+    - 조건절을 추가하여 다양한 쿼리를 실행
+    형식 - SELECT [컬럼리스트(FILED 리스트)] FROM [테이블명] WHERE [조건절];
+*/
+-- 사원 테이블에서 SYS 부서에 근무하는 모든 사원을 조회
+SELECT * FROM EMPLOYEE WHERE DEPT_ID = 'SYS';
+-- 사원 테이블에서 사원명이 '정주고'인 사원을 조회
+SELECT * FROM EMPLOYEE WHERE EMP_NAME = '정주고';
+-- 사원 테이블에서 사원아이디가 'S0011'인 사원의 정보를 모두 조회
+SELECT * FROM EMPLOYEE WHERE EMP_ID = 'S0011';
+-- 사원 테이블에서 연봉이 5800인 사원의 모든 정보 조회
+SELECT * FROM EMPLOYEE WHERE SALARY = 5800;
+-- 사원 테이블에서 여성 사원들의 아이디, 이름, 입사일, 이메일 정보를 조회 
+select emp_id, emp_name, hire_date, email from employee where gender = 'F';
+-- 사원 테이블에서 부서명이 SYS인 사원들의 아이디, 사원명, 입사일을 조회
+-- 출력되는 아이디 컬럼명을 '사원 번호' 별칭 사용
+select emp_id '사원 번호', emp_name, hire_date from employee where dept_id = 'SYS';
+
+-- where절 조건에 별칭으로 조회가 가능한가?
+select emp_id '사원 번호', emp_name, hire_date, dept_id '부서 번호' from employee where '부서 번호' = 'SYS';
+-- 별칭을 사용할 경우 결과를 조회한 후 출력 직전에 컬럼의 이름만 바꾼다. 즉, 필터링이 먼저 이루어지기 때문에 별칭으로 검색이 불가능하다.
+
+-- 사원 테이블에서 마케팅 부서의 모든 사원 정보를 조회
+desc employee;
+select * from employee;
+select * from employee where dept_id = 'MKT';
+-- 사원 테이블에서 입사일이 2014년 8월 1일인 모든 사원 조회
+-- date 타입은 표현은 문자처럼, 처리는 숫자
+select * from employee where hire_date = '2014-08-01';
+-- 사원 테이블에서 연봉이 5000인 사원 정보 조회
+select * from employee where salary = 5000;
+
+/** 
+	NULL 타입 
+	- 숫자 컬럼에서의 null은 가장 큰 숫자로 인식, 문자 컬럼에서는 작은 문자로 인식
+    - NULL은 논리적인 의미를 가지므로 IS 키워드를 비교 연산을 수행
+*/
+-- 사원 테이블에서 eng_name이 null인 모든 사원의 정보 조회
+select * from employee where eng_name is null;
+-- 연봉이 정해지지 않은 모든 사원 조회
+select * from employee where salary is null;
+
+-- ifnull() : NULL 값을 다른 값으로 대체해주는 함수
+-- 형식 : ifnull(null 포함 컬럼명, 대체할 값);
+-- 컬럼리스트에서 호출
+select emp_name, salary, ifnull(salary, 0) as salary2 from employee;
+-- eng_name이 null인 사원들은 'smith' 이름으로 변경 후 조회
+-- 출력되는 컬럼명은 eng_name으로 변경
+select emp_id, emp_name, eng_name, hire_date, ifnull(eng_name, 'smith') as eng_name from employee;
+-- 모든 사원의 아이디, 사원명, 입사일, 퇴사일을 조회
+-- 현재 근무 중인 사원의 퇴사일에 현재의 날짜를 출력해주세요
+select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_date from employee;
+
+
+
+
+
+
+
+
+show databases; -- 모든 데이터베이스 목록을 출력
+use hrdb2019;
+select database();
+show tables;
+select * from employee;
+select * from department;
+select * from unit;
+select * from vacation;
