@@ -96,47 +96,75 @@ select employee_name, employee_id, gender, phone, hire_date, retire_date from em
 **/
 /** customer 테이블 사용 **/
 -- Q01) 고객의 포인트 합을 조회하세요.
+show databases;
+use myshop2019;
+select database();
+show tables;
+
+select * from customer;
+select count(point) '고객 포인트 총합' from customer;
 
 -- Q02) '서울' 지역 고객의 포인트 합을 조회하세요.
+select count(point) '서울 지역 고객의 포인트 총합' from customer where city = '서울';
 
 -- Q03) '서울' 지역 고객의 수를 조회하세요.
+select count(*) from customer where city = '서울';
 
 -- Q04) '서울' 지역 고객의 포인트 합과 평균을 조회하세요.
+select sum(point) '서울 지역 고객 포인트 총합', format(avg(point), 0) '서울 지역 고객 평균 포인트' from customer where city = '서울';
      
 -- Q05) '서울' 지역 고객의 포인트 합, 평균, 최댓값, 최솟값을 조회하세요.
+select format(sum(point), 0) '서울 지역 고객 포인트 합',
+	   format(avg(point), 0) '서울 지역 고객 포인트 평균',
+       format(max(point), 0) '서울 지역 고객 포인트 최댓값',
+       format(min(point), 0) '서울 지역 고객 포인트 최솟값'
+from customer where city = '서울';
 
 -- Q06) 남녀별 고객의 수를 조회하세요.
+select gender 성별, count(*) 고객수 from customer group by gender;
 
 -- Q07) 지역별 고객의 수를 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-
+select city 지역, count(*) 고객수 from customer group by city order by city asc;
  
 -- Q08) 지역별 고객의 수를 조회하세요.
 --      단, 고객의 수가 10명 이상인 행만 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-   
+select city 지역, count(*) 고객수 from customer group by city having 고객수 >= '10';
     
 -- Q09) 남녀별 포인트 합을 조회하세요.
+select gender 성별, concat(format(sum(point), 0), '점') '포인트 총합' from customer group by gender;
     
 -- Q10) 지역별 포인트 합을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
+select city 지역, concat(format(sum(ifnull(point, 0)), 0), '점') '지역별 포인트 합' from customer group by city order by city asc;
     
 -- Q11) 지역별 포인트 합을 조회하세요.
 --      단, 포인트 합이 1,000,000 이상인 행만 포인트 합을 기준으로 내림차순 정렬해서 조회하세요.
-
+select city 지역, format(sum(ifnull(point, 0)), 0) '지역별 포인트 총합' from customer group by city having sum(point) >= '1000000' order by city desc;
       
 -- Q12) 지역별 포인트 합을 조회하세요.
 --      단, 포인트 합을 기준으로 내림차순 정렬해서 조회하세요.
-   
+select city 지역, format(sum(ifnull(point, 0)), 0) '지역별 포인트 총합' from customer group by city order by sum(point) desc;
 
 -- Q13) 지역별 고객의 수, 포인트 합을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
-
+select city 지역,
+	   count(*) 고객수, format(sum(ifnull(point, 0)), 0) '지역별 포인트 총합'
+from customer group by city order by city asc;
 
 -- Q14) 지역별 포인트 합, 포인트 평균을 조회하세요.
 --      단, 포인트가 NULL이 아닌 고객을 대상으로 하며, 지역 이름을 기준으로 오름차순 정렬해서 조회하세요.
+select city,
+	   format(sum(point), 0) '지역별 포인트 총합', format(avg(point), 0) '지역별 포인트 평균'
+from customer 
+where point is not null 
+group by city order by city asc;
 
 -- Q15) '서울', '부산', '대구' 지역 고객의 지역별, 남녀별 포인트 합과 평균을 조회하세요.
 --      단, 지역 이름을 기준으로 오름차순, 같은 지역은 성별을 기준으로 오름차순 정렬해서 조회하세요.
+select city 지역 , gender 성별,
+	   format(sum(point), 0) '지역, 남녀별 포인트 총합', format(avg(point), 0) '지역, 남녀별 포인트 평균'
+from customer where city in ('서울', '부산', '대구') group by city, gender;
 
 
 /** order_header 테이블 사용 **/

@@ -149,6 +149,12 @@ select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_dat
     형식 : select [distinct 컬럼리스트(중복데이터포함)] from [테이블명] where [조건절];
 */
 -- 사원 테이블의 부서 컬럼을 조회
+show databases;
+use hrdb2019;
+select database();
+show tables;
+
+select distinct dept_id from employee;
 
 -- 완전히 중복된 데이터의 경우에만 적용됨
 
@@ -159,44 +165,50 @@ select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_dat
     형식 : select ~ from ~ where ~ order by 컬럼리스트(정렬 기준, 반드시 출력되는 데이터 중 하나여야 함) [asc/desc];
 */
 -- 사원 아이디, 사원명, 입사일, 연봉을 조회
+select emp_id, emp_name, hire_date, salary from employee;
 
 -- 사원 아이디 기준 오름차순, 입사일 기준 내림차순
+select emp_id, emp_name, hire_date, salary from employee order by emp_id asc;
 
 -- 급여를 기준으로 오름차순 정렬 후 조회
+select emp_id, emp_name, hire_date, salary from employee order by salary asc;
 
 -- eng_name이 정해지지 않은 사원들을 최근 입사한 순서대로 조회
+select * from employee where eng_name is null order by hire_date asc;
 
 -- 퇴직한 사원들을 급여가 높은 순으로 조회
+select * from employee where retire_date is not null order by salary desc;
 
 -- 정보시스템 부서의 사원들 중 급여가 높은 순으로 조회
+select * from employee where dept_id = 'SYS' order by salary desc; 
 
 -- 정보시스템 부서의 사원들 중 최근 입사일 기준, 급여가 낮은 순으로 조회
-
+select * from employee order by hire_date desc, salary asc;
 
 /**
 	특정 범위의 데이터 검색 : where [조건절 + 비교연산자]
     형식 : select [컬럼리스트] from [테이블명] where [컬럼명 비교연산자 조건절]
 */
 -- 사원 중 연봉이 5000 이상인 사원들을 조회
-
+select * from employee where salary >= 5000;
 
 -- 입사일이 '2016년 1월 1일' 이전에 입사한 사원들 조회
 -- date 타입은 표현은 문자처럼, 처리방식은 숫자처럼
-
+select * from employee where hire_date < '2016-01-01';
 
 -- 입사일이 2015년 1월 1일 이후이고, 급여가 6000 이상인 사원들을 조회
 -- and(~이고) : 두 개의 조건이 모두 만족한 데이터만 조회
-
+select * from employee where hire_date > '2015-01-01' and salary >= 6000;
 
 -- 입사일이 2015년 1월 1일 이후이거나 또는, 급여가 6000 이상인 사원들을 조회
 -- or(~또는) : 두 개의 조건 중 하나만 만족해도 데이터 조회
-
+select * from employee where hire_date > '2015-01-01' or salary >= 6000;
 
 -- 2015년 1월 1일부터 2017년 12월 31일 사이에 입사한 사원들을 모두 조회
-
+select * from employee where hire_date >= '2015-01-01' and hire_date <= '2017-12-31';
 
 -- 연봉 구간이 5000 이상 7000 미만인 사원들을 모두 조회
-
+select * from employee where salary >= 5000 and salary < 7000;
 
 
 /**
@@ -204,12 +216,7 @@ select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_dat
     형식 : select ~ from ~ where 컬럼명 between [시작구간] and [종료구간];
 */
 -- 2016년 입사자들을 조회
-
-
--- 사원 아이디가 S0001, S0010, S0020인 사원의 모든 정보를 조회
-
-
--- 부서 아이디가 MKT, GEN, HRD인 부서에 속한 모든 사원을 조회
+select * from employee where hire_date between '2016-01-01' and '2016-12-31';
 
 
 /**
@@ -217,32 +224,32 @@ select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_dat
 	형식 : select ~ from ~ where 컬럼명 in (조건1, 조건2, 조건3 ...) ;
 */
 -- 사원 아이디가 S0001, S0010, S0020인 사원의 모든 정보를 조회
-
+select * from employee where emp_id in ('S0001', 'S0010', 'S0020');
 
 -- 부서 아이디가 MKT, GEN, HRD인 부서에 속한 모든 사원을 조회
-
+select * from employee where dept_id in ('MKT', 'GEN', 'HRD');
 
 
 /**
 	와일드 카드 문자 : 특정 문자열 검색
     종류 : %(전체), _(한 문자)
     사용법 : like 연산자와 함께 조건식을 추가하여 사용됨. = 기호 사용 불가
-    형식 : select ~ from ~ where 컬럼명 [와이드 카드 문자를 이용한 특정문자열 검색 조건]
+    형식 : select ~ from ~ where 컬럼명 like [와이드 카드 문자를 이용한 특정문자열 검색 조건]
 */
 -- 영어 이름이 'f'로 시작하는 모든 사원들을 조회
-
+select * from employee where eng_name like 'f%';
 
 -- '한'씨 성을 가진 모든 사원들을 조회
-
+select * from employee where emp_name like '한%';
 
 -- 이메일 주소 2번째 자리에 'a'가 들어가는 모든 사원을 조회
-
+select * from employee where email like '_a%';
 
 -- 이메일 주소가 4자리인 모든 사원을 조회
-
+select * from employee where email like '____@%';
 
 -- 이름에 '삼'이 들어가는 모든 사원을 조회
-
+select * from employee where emp_name like '%삼%';
 
 /****************************************************
 	내장함수(Built-in) : 숫자, 문자, 날짜 함수
@@ -251,92 +258,242 @@ select emp_id, emp_name, hire_date, ifnull(retire_date, curdate()) as retire_dat
 ****************************************************/
 -- 1. 숫자 함수 : abs(), rand(), trunc()...
 -- (1) abs 함수 : 절대값 표현 함수
+select abs(-100) from dual;
 
 
 -- (2) floor 함수 : 소수점을 버리는(삭제) 함수 -> 자릿수 지정 불가능
 -- 	   truncate 함수 : 소수점을 삭제하는 함수 -> 자릿수 지정 가능 truncate(데이터, 자릿수)
 --     ㄴ이전 버전에서는 trunc 명령어도 사용 가능
+select floor(123.456), truncate(123.456, 0) from dual;
 
 
 -- (3) rand 함수 : 임의의 수를 생성
+select rand() from dual;
 
 --     정수만 출력하는 쿼리 생성
+select floor(rand() * 10) from dual;
 
 
 -- (4) mod 함수 : 모듈러 연산을 실행하는 함수 - mod(숫자데이터, 연산숫자)
-
+select mod(100, 2) from dual;
 
 -- 1~3 자리의 정수를 생성하고, 생성한 정수를 2로 나누는 모듈러 함수를 실행하는 쿼리를 완성해주세요
-
+select mod(truncate(rand() * 1000, 0), 2) from dual;
 
 -- 사원 테이블에서 사원 아이디, 사원명, 부서 아이디, 입사일, 연봉, 인센티브(연봉의 20%)를 조회
 -- 인센티브의 소수점 생략
 -- 연봉협상이 아직 진행되지 않은 사원은 모두 0으로 출력(인센티브 포함)
 -- 연봉 5000 미만의 사원들 정보만 출력
-
+select emp_id, emp_name, dept_id, hire_date, salary, truncate((salary * 0.2), 0) as incentive from employee where salary < 5000;
 
 
 -- 2. 문자 함수 : concat(), substring() ...
 -- (1) concat(문자열, 문자열...) : 문자열 결합 
-
+select concat('MySQL', '84') from dual;
 
 -- 사원테이블의 사원명과 영어 이름을 결합하여 새로운 컬럼을 생성하고 컬럼명은 test_name으로 실행
 -- 예시) 홍길동/hong
 -- 영어 이름이 정해지지 않은 사원은 빈 문자열로 치환해서 실행
-
+select concat(emp_name, '/', ifnull(eng_name, '')) test_name from employee;
 
 -- 사원 테이블의 사원 아이디와 1~5자리 사이의 임의의 정수를 결합하여 사원번호라는 새로운 컬럼을 생성하고 조회
 -- 사원 아이디, 사원 번호, 사원명, 입사일, 연봉, 퇴사일 컬럼리스트를 조회
 -- 현재 근무 중인 사원은 현재 날짜 출력
+select emp_id, concat(emp_id, truncate(rand() * 100000, 0)) 사원번호, emp_name, hire_date, salary, ifnull(retire_date, curdate()) from employee;
 
 
 -- (2) substring(문자열, 위치, 추출 자릿수) : 문자열 추출 함수
-
+select substring('1234', 1, 2) from dual;
 
 -- 사원 테이블에서 사원 아이디, 사원명, 입사년도, 입사월, 입사일, 급여를 조회
-
+select emp_id, emp_name, substring(hire_date, 1, 4) 입사년도, substring(hire_date, 6, 2) 입사월, substring(hire_date, 9, 2) 입사일, salary from employee;
 
 -- 2015년도에 입사한 모든 사원들을 조회
-
+select * from employee where substring(hire_date, 1, 4) = 2015; 
 
 -- 2018년도에 정보 시스템 부서에 입사한 모든 사원들을 조회
+select * from employee where substring(hire_date, 1, 4) = 2018 and dept_id = 'SYS';
 
 
 -- (3) left(문자열, 추출숫자), right(문자열, 추출숫자)
-
+select left('hello', 3), right('hello', 2) from dual;
 
 -- 2015년도에 입사한 모든 사원들을 조회
+select * from employee where left(hire_date, 4) = 2015;
 
-
--- 사원들의 폰번호 마지가 4자리를 조회
+-- 사원들의 폰번호 마지막 4자리를 조회
 -- 사원명, 부서아이디, 입사년도, 폰번호(마지막 4자리) 조회
+select emp_name, dept_id, hire_date, right(phone, 4) from employee;
 
 
 -- (4) upper(대문자), lower(소문자)
-
+select upper('hello'), lower('HELLO') from dual;
 -- 단, MySQL에서는 대소문자를 구분하지 않으므로 굳이 사용하지 않음
 
 -- 사원들의 영어이름과 이메일 주소를 모두 대문자로 조회
+select upper(eng_name) eng_name, upper(email) email from employee;
 
 
 -- (5) trim() : 공백 제거
-
+select trim('                 hello'), trim('hello        '), trim('    hel     lo    ') from dual;
 -- 문자 사이의 공백은 문자열로 취급되어 삭제되지 않음
+
 
 -- (6) format(문자열 또는 숫자, 소수점자리) : 문자열의 포맷 수정
 -- 숫자를 3자리씩 콤마로 구분하여 출력하는 포맷 생성
-
+select format(truncate(rand() * 100000000, 0), 0) from dual;
 
 -- 사원 테이블의 사원 아이디, 사원명, 입사일, 연봉을 조회
 -- 연봉 협상 전인 사원은 0으로 변환 후 조회 -> format을 사용할 경우 문자열로 데이터 타입이 바뀌므로 변환을 먼저 해주어야 함
 -- 연봉은 3자리씩 콤마로 구분하여 출력
-
+select emp_id, emp_name, hire_date, format(ifnull(salary, 0), 0) from employee;
 
 -- 사원 아이디, 사원명, 부서 아이디, 입사일, 연봉, 보너스(연봉의 0.05%) 컬럼들을 조회
 -- 연봉과 보너스 컬럼은 3자리 콤마로 구분하여 출력 후 '만원' 추가
 -- 보너스 컬럼은 소수점 1자리까지 출력
+select emp_id, emp_name, dept_id, hire_date, concat(format(salary, 0), '만원') salary, concat(format(salary * 0.05, 0), '만원') as bonus from employee;
 
 
+-- 3. 날짜 함수 : curdate(), now(), sysdate()
+-- (1) curdate() : 현재 시스템(현재 사용 중인 PC) 날짜를 출력. 연월일만 출력
+select curdate();
+
+-- (2) now(), sysdate() : 현재 시스템 날짜를 출력. 연월일 시분초 출력
+select now(), sysdate();
+
+
+-- 4. 형변환 함수 : cast(), convert() -> convert의 경우 오래된 함수로 요즘은 잘 사용하지 않음
+-- cast(변경데이터 as 변경할 데이터타입)
+select 12345 숫자, cast(12345 as char) 문자;
+
+-- 입력폼에서 '20150101' 데이터 날짜를 가진 사원을 조회
+-- MySQL에서는 자동으로 문자를 날짜 타입으로 변환해 검색해주지만, 다른 데이터베이스 프로그램에서는 적용되지 않음
+select * from employee where hire_date = cast('20150101' as date);
+
+-- floor 함수를 적용한 cast 함수
+select floor('12-34-5') 문자, floor(cast('12-34-5' as unsigned integer)) 정수 from dual;
+
+
+-- 5. 문자열 치환 함수 : replace(문자열, old, new)
+select replace('12-34-56', '-', '/') from dual;
+
+-- 사원 테이블의 입사일 포맷 변경 '2015-01-01' --> '2015/01/01'
+select replace(hire_date, '-', '/') hire_date from employee;
+
+
+/***********************************************************
+	그룹함수(집계함수) : sum(), avg(), min(), max(), count() ...
+    - group by : 그룹 함수를 적용하기 위해 일반컬럼을 그룹핑 하는 단위
+    - having : 그룹함수의 조건절을 적용하는 구문
+************************************************************/
+-- 1. sum(숫자 또는 숫자 칼럼)
+-- 사원 테이블에서 모든 사원의 연봉 총합을 조회
+-- 3자리 구분, '만원' 단위 추가
+select concat(format(sum(salary), 0), '만원') 연봉총합 from employee;
+
+
+-- 2. avg(숫자, 숫자컬럼) : 평균값 출력
+-- 사원들의 총연봉, 평균연봉 조회
+-- 3자리 구분, '만원' 단위 추가
+-- 소수점 1자리까지 유지
+-- format 대신 truncate 사용 가능. format은 사용시 자동으로 반올림이 됨
+select concat(format(sum(salary), 0), '만원') 총연봉, concat(format(avg(salary), 0), '만원') 평균연봉 from employee;
+
+
+-- 3. min(숫자, 숫자컬럼) : 최솟값 출력
+-- 사원들의 총연봉, 평균 연봉, 최소 연봉을 출력
+-- 3자리 구분, 만원 추가, 소수점 자리 생략
+select concat(format(sum(salary), 0), '만원') 총연봉, 
+	   concat(format(avg(salary), 0), '만원') 평균연봉, 
+       concat(format(min(salary), 0), '만원') 최소연봉
+from employee;
+
+
+-- 4. max(숫자, 숫자컬럼) : 최댓값 출력
+-- 사원들의 총연봉, 평균 연봉, 최대 연봉을 출력
+-- 3자리 구분, 만원 추가, 소수점 자리 생략
+select concat(format(sum(salary), 0), '만원') 총연봉,
+       concat(format(avg(salary), 0), '만원') 평균연봉,
+       concat(format(max(salary), 0), '만원') 최대연봉
+from employee;
+
+
+-- 5. count(컬럼명) 
+-- 테이블의 row count를 출력
+-- null을 포함한 데이터의 카운트는 계산하지 않는다
+select count(*) from employee;
+
+-- 총사원수, 퇴직한 사원수, 현재사원수를 조회
+-- 인원수 뒤에 '명'단위 추가
+select concat(count(*), '명') 총사원수, concat(count(retire_date), '명') '퇴직한 사원수', concat(count(*) - count(retire_date), '명') '현재 사원수' from employee;
+
+-- 사원 테이블에서 정보시스템 부서의 사원수를 조회
+select concat(count(*), '명') '정보시스템 부서 사원수' from employee where dept_id = 'SYS';
+
+-- 2015년도에 입사한 사원수와 총연봉 조회
+select concat(count(*), '명') '2015년 입사 사원수', concat(format(sum(salary), 0), '만원') 총연봉 from employee where left(hire_date, 4) = '2015'; 
+
+-- 가장 최근 입사자와 오래된 입사자의 입사일 조회
+select max(hire_date), min(hire_date) from employee;
+
+-- HRD 부서 기준 최근 입사자와 오래된 입사자의 입사일 조회
+
+
+-- 마케팅부서 기준 가장 낮은 연봉과 높은 연봉을 조회
+
+
+
+-- 6. group by ~ 적용 : ~별(부서별, 월별 ...) 그룹 함수를 적용해야 하는 경우 사용
+-- group by에 사용된 일반 컬럼은 그룹 함수와 함께 조회 가능
+-- 사원 테이블에서 부서별 사원수 조회
+
+-- 입사년도별 총연봉, 평균연봉, 최저연봉, 최고연봉, 입사사원수를 조회
+
+    
+-- 부서별 총연봉, 평균연봉, 최저연봉, 최고연봉, 입사사원수를 조회
+
+
+
+-- 7. having 절 : group by를 통해 그룹핑한 결과에 조건절을 추가하는 구문
+-- 부서별 평균 연봉 조회
+-- null값이 포함된 경우 0으로 변환
+-- 소수점 자리는 절삭
+-- 부서 아이디 함께 출력
+-- 부서 평균연봉이 6000만원 이상인 부서만 출력
+-- 평균연봉 기준 오름차순으로 정렬
+-- group by까지 작업을 끝낸 후 having이 실행되기 때문에 having 절에서는 alias 사용 가능
+
+-- 입사년도 기준 총연봉, 평균연봉을 조회
+-- 총연봉이 2500 이상인 사원들만 출력
+-- null값을 포함한 경우 0으로 초기화
+
+
+-- 부서별 남녀사원의 사원수 조회
+
+
+
+-- 8. rollup 함수 : reporting을 위한 함수
+-- 형식 : select [컬럼리스트]  from [테이블명] where [조건절] group by [그룹핑 컬럼] with rollup;
+-- 부서별 총연봉을 조회, 연봉이 정해지지 않은 부서는 포함하지 않음
+
+
+-- 입사년도별 평균연봉을 조회
+-- 연봉이 정해지지 않은 부서는 포함하지 않음
+-- 평균 연봉이 4000 이상인 입사년도만 출력
+-- 3자리 구분, '만원' 단위 추가
+-- 리포팅 함수 사용
+
+
+show tables;
+-- 사원들의 휴가사용 내역 조회
+
+
+-- 사원 아이디별 휴가 사용 횟수 조회
+-- 총 휴가 사용일 기준으로 내림차순 정렬
+
+
+-- 2016 ~ 2017년도 사이에 사원 아이디별 휴가사용 횟수 조회
+-- 총휴가사용일 기준으로 내림차순 정렬
 
 
 
