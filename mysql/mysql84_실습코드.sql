@@ -918,7 +918,8 @@ insert into emp_const(emp_id, emp_name, hire_date, salary) values(null, '김철�
 -- 에러 발생. emp_name에 유니크 제약이 있기 때문에 이미 사용 중인 '김철수'는 사용 불가능
 insert into emp_const(emp_id, emp_name, hire_date, salary) values('S003', '김철수', now(), 1000);
 -- solution : 이미 저장된 '김철수' 대신 유니크한 이름으로 진행
-insert into emp_const(emp_id, emp_name, hire_date, salary) values('S004', '이영희', now(), 1000);
+insert into emp_const(emp_id, emp_name, hire_date, salary) 
+values('S003', '이영희', now(), 1000);
 
 -- emp_name에 null값 추가
 -- 유니크 제약만 있기 때문에 null값 허용
