@@ -437,10 +437,10 @@ select concat(count(*), '명') '2015년 입사 사원수', concat(format(sum(sal
 select max(hire_date), min(hire_date) from employee;
 
 -- HRD 부서 기준 최근 입사자와 오래된 입사자의 입사일 조회
-
+select max(hire_date) '가장 최근 입사자', min(hire_date) '가장 오래된 입사자' from employee;
 
 -- 마케팅부서 기준 가장 낮은 연봉과 높은 연봉을 조회
-
+select min(salary), max(salary) from employee where dept_id = 'MKT';
 
 
 -- 6. group by ~ 적용 : ~별(부서별, 월별 ...) 그룹 함수를 적용해야 하는 경우 사용
@@ -448,10 +448,16 @@ select max(hire_date), min(hire_date) from employee;
 -- 사원 테이블에서 부서별 사원수 조회
 
 -- 입사년도별 총연봉, 평균연봉, 최저연봉, 최고연봉, 입사사원수를 조회
-
+select left(hire_date, 4) 입사년도,
+	sum(salary) 총연봉, avg(salary) 평균연봉, min(salary) 최저연봉, max(salary) 최대연봉, count(*) 입사사원수
+    from employee
+    group by left(hire_date, 4);
     
 -- 부서별 총연봉, 평균연봉, 최저연봉, 최고연봉, 입사사원수를 조회
-
+select dept_id 부서,
+	sum(salary) 총연봉, avg(salary) 평균연봉, min(salary) 최저연봉, max(salary) 최대연봉, count(*) 입사사원수
+    from employee
+    group by dept_id;
 
 
 -- 7. having 절 : group by를 통해 그룹핑한 결과에 조건절을 추가하는 구문
@@ -462,43 +468,338 @@ select max(hire_date), min(hire_date) from employee;
 -- 부서 평균연봉이 6000만원 이상인 부서만 출력
 -- 평균연봉 기준 오름차순으로 정렬
 -- group by까지 작업을 끝낸 후 having이 실행되기 때문에 having 절에서는 alias 사용 가능
+select dept_id 부서,
+	concat(format(avg(ifnull(salary, 0)), 0), '만원') '부서별 평균 연봉'
+    from employee
+    group by dept_id
+    having avg(salary) >= 6000
+    order by avg(salary) asc;
 
 -- 입사년도 기준 총연봉, 평균연봉을 조회
 -- 총연봉이 2500 이상인 사원들만 출력
 -- null값을 포함한 경우 0으로 초기화
-
+select left(hire_date, 4) 입사년도,
+	concat(format(sum(ifnull(salary, 0)), 0), '만원') 총연봉,
+	concat(format(avg(ifnull(salary, 0)), 0), '만원') 평균연봉
+from employee
+group by left(hire_date, 4)
+having sum(salary) >= 2500;
 
 -- 부서별 남녀사원의 사원수 조회
-
+select dept_id 부서, gender 성별,
+	count(*) 사원수
+from employee
+group by dept_id, gender;
 
 
 -- 8. rollup 함수 : reporting을 위한 함수
 -- 형식 : select [컬럼리스트]  from [테이블명] where [조건절] group by [그룹핑 컬럼] with rollup;
 -- 부서별 총연봉을 조회, 연봉이 정해지지 않은 부서는 포함하지 않음
-
+select if(grouping(dept_id), '부서총합계', ifnull(dept_id, '_')) 부서,
+	concat(format(sum(ifnull(salary, 0)), 0), '만원') 부서별총연봉
+from employee
+where salary is not null
+group by dept_id
+with rollup;
 
 -- 입사년도별 평균연봉을 조회
 -- 연봉이 정해지지 않은 부서는 포함하지 않음
 -- 평균 연봉이 4000 이상인 입사년도만 출력
 -- 3자리 구분, '만원' 단위 추가
 -- 리포팅 함수 사용
-
+select left(hire_date, 4) 입사연도,
+	concat(format(avg(salary), 0), '만원') 평균연봉
+from employee
+group by left(hire_date, 4)
+with rollup
+having avg(salary) >= 4000;
 
 show tables;
 -- 사원들의 휴가사용 내역 조회
-
+select * from vacation;
 
 -- 사원 아이디별 휴가 사용 횟수 조회
 -- 총 휴가 사용일 기준으로 내림차순 정렬
-
+select emp_id 사원아이디,
+	count(*) 휴가상신횟수,
+    sum(duration) 총휴가사용일
+from vacation
+group by emp_id
+order by count(*) desc;
 
 -- 2016 ~ 2017년도 사이에 사원 아이디별 휴가사용 횟수 조회
 -- 총휴가사용일 기준으로 내림차순 정렬
+select emp_id '사원 아이디',
+	sum(duration) 총휴가사용일
+from vacation
+where left(begin_date, 4) between 2016 and 2017
+group by emp_id with rollup
+order by sum(duration) desc;
+
+select * from vacation;
+
+
+/******************************************
+	DDL : 테이블 생성, 수정, 삭제 작업 진행
+    명령어 : create, alter, drop, truncate
+*******************************************/
+-- 1. 테이블 생성 : create
+-- 형식 : create table [생성할 테이블명] (컬럼명 데이터타입(크기) [제약사항], ...) 
+-- 동일한 이름의 table 생성 불가능
+
+show databases;
+use hrdb2019;
+select database();
+show tables;
+
+-- test 테이블 생성 및 제거
+
+
+-- data type(데이터 타입) : 숫자, 문자, 날짜(시간)
+-- 1. 숫자 데이터 타입
+-- (1) 정수 : smallint(2), int(4) -> 가장 기본적인 데이터 타입, bigint(8)
+-- (2) 실수 : float(4), double(8) -> default 설정
+-- (3) 문자 : char(크기:고정형), varchar(크기:가변형)
+-- 			예) name char(20), name varchar(20)
+-- (4) 텍스트 : text - 긴 문장을 저장하는 데이터 타입
+-- (5) blob 타입 : blob - 큰 바이너리 타입의 데이터 저장
+-- (6) 날짜 : date - 년, 월, 일만 저장, datetime : 시, 분, 초까지 저장
+-- 			 데이터타입에 맞는 날짜 함수 호출 필요
+desc employee;
+select * from employee;
+
+-- emp 테이블 생성
+-- 컬럼리스트 : emp_id 고정형(4), emp_name 가변형(10), retire_date 날짜/시간, salary 정수(5)
+
+
+desc department;
+-- dept  테이블 생성: dept_id 고정형(3), dept_name 가변형(10), loc 가변형(20)
+
+
+-- emp, dept 테이블의 모든 데이터 조회
 
 
 
+-- 2. 테이블 생성(복제) : create table ~ as ~ select 
+-- 물리적으로 메모리 생성 -> 테스트가 끝나고 나면 삭제하는 것이 좋음
+-- 기본키, 참조키 등의 제약사항은 복제 불가능. 복제 후 alter table 명령으로 제약사항 추가
+/* 형식 : create table [생성(복제)할 테이블명]
+		 as
+         select [컬럼리스트]
+			from [테이블명]
+			where [조건절];
+         -> 첫 글자를 따 cas라고 부름
+*/
+-- 정보시스템 부서의 사원들만 별도로 테이블 복제
+-- 테이블명 : employee_sys
+create table employee_sys
+as
+select * from employee where dept_id = 'SYS';
+show tables;
+select * from employee_sys;
+desc employee;
+-- emp_id	char(5)	NO  PRI
+-- emp_name	varchar(4)	NO
+-- eng_name	varchar(20)	YES
+desc employee_sys;
+-- emp_id	char(5)	NO -> 제약 사항 복제 안됨
+-- emp_name	varchar(4)	NO
+-- eng_name	varchar(20)	YES
+
+-- 퇴직한 사원들을 복제하여 employee_retire 테이블로 관리
 
 
+-- 2015년, 2017년 입사자들을 복제하여 별도로 관리
+-- 테이블명 : employee_2015_2017
+
+
+
+/*********************************
+	테이블 제거 : drop table
+    형식 : drop table [제거할 테이블명]
+    DDL 명령어는 명령 즉시 실행된다.
+    복구 불가능.
+**********************************/
+show tables;
+-- employee_2015_2017 테이블 제거
+
+
+-- employee_retire 테이블 제거
+
+
+-- 재직 중인 사원 테이블 생성(복제)
+-- employee_working
+
+
+
+/***********************************************
+	테이블 데이터 제거 : truncate table
+    형식 : truncate table [제거할 데이터를 가진 테이블명]
+    DDL 명령어는 명령 즉시 실행된다.
+    복구 불가능.
+************************************************/
+show tables;
+select * from employee_working;
+
+-- employee_working 테이블의 모든 데이터(row)를 제거
+
+
+
+/**************************************************************
+	테이블 구조 변경 : alter table
+    형식 : alter table [변경할 테이블병]
+    1) 컬럼 추가 : add column [new 컬럼명 데이터타입(크기) 제약사항]
+    2) 컬럼 변경 : modify column [변경할 컬럼명 데이터타입(크기) 제약사항]
+    3) 컬럼 삭제 : drop column [삭제할 컬럼명]
+***************************************************************/
+show tables;
+select * from employee_working;
+-- 데이터가 없는 경우 컬럼 추가, 변경, 삭제하는 명령어를 제약사항 없이 사용할 수 있음
+-- 그러나 데이터가 있을 경우 제약사항이 발생함. 예를 들어 emp_id가 5글자로 정의되어 있을 경우, 데이터 크기를 늘일 수는 있으나 줄일 수는 없는 제약사항이 생김. 
+-- 이는 데이터 유실을 방지하기 위함으로 모든 데이터베이스 프로그램에 동일하게 적용됨.
+desc employee_working;
+
+-- employee_working 테이블에 bonus 컬럼 추가, 데이터 타입은 int, null값 허용
+
+
+-- employee_working 테이블에 dname(부서명) 추가, 데이터타입은 가변형(10), null값 허용
+
+
+-- employee_working 테이블의 이메일 주소 컬럼 크기를 30으로 수정
+
+
+-- employee_working 테이블의 salary 컬럼을 실수타입(double)로 수정
+
+
+select * from employee_sys;
+-- employee_sys 테이블의 이메일 주소 컬럼 크기를 가변형(10)으로 수정
+alter table employee_sys modify column email varchar(10); -- 1개의 데이터가 유실될 가능성이 있으므로 에러 발생
+desc employee_sys;
+select count(*) from employee_sys;
+
+-- employee_working 테이블의 bonus 컬럼 삭제
+-- 컬럼 삭제는 한번에 한개씩만 가능!
+
+
+-- employee_working 테이블의 email, dname 컬럼 삭제
+
+
+-- employee_working 테이블 제거
+
+
+-- employee 테이블에서 HRD 부서에 속한 사원들의 사원 아이디, 사원명, 입사일, 연봉, 보너스(연봉의 10%) 정보를 별칭을 사용하여 조회한 후 employee_hrd 이름으로 복제
+
+
+/*****************************************************
+	DML : insert(c), select(r), update(u), delete(d)
+******************************************************/
+-- 1. insert : 데이터 추가
+-- 형식 : insert into [테이블명](컬럼리스트) values(데이터리스트...);
+
+
+-- S001, 홍길동, 현재날짜, 1000 데이터 추가
+
+
+-- S002, 홍길순, 현재날짜, 2000 데이터 추가
+
+
+-- S003, 김철수, 현재날짜, 3000 데이터 추가
+-- 컬럼리스트 생략시에는 데이터 생성시 컬럼순서대로 insert가 실행된다.
+
+
+-- S004, 이영희, 현재날짜, 연봉협상 전 데이터 추가
+
+
+-- employee 테이블에서 정보시스템 부서의 사원들 정보 중 사원 아이디, 사원명, 입사일, 부서아이디, 연봉을 복제하여 employee_sys 테이블 생성
+-- 2016년 이전에 입사한 사원들
+
+
+-- employee_sys 테이블에 2016년도 이후에 입사한 정보시스템 부서 사원 정보 추가
+-- 서브쿼리를 이용한 데이터 추가
+
+
+-- dept 테이블 구조 확인 및 데이터 추가
+
+-- sys, 정보시스템, 서울
+-- mkt, 마케팅, 뉴욕
+-- hrd, 인사, 부산
+-- acc, 회계, 정해지지않음
+
+
+-- 컬럼리스트를 명시하지 않았을 시 발생할 수 있는 실수
+insert into dept values('영업', null, 'sales');
+select * from dept;
+
+-- 에러 발생!! - 컬럼리스트와 매칭 카운트가 다름
+insert into dept(dept_name, loc) values('영업', null, 'sales');
+
+-- 에러 발생!! - loc의 데이터 크기가 맞지 않음
+insert into dept(dept_name, loc, dept_id) values('영업', null, 'sales');
+-- solution
+
+
+
+/******************************************************
+	constraint(제약사항) : 데이터 무결성의 원칙을 적용하기 위한 규칙
+    - unique : 유니크(중복방지) 제약
+    - not null : null값을 허용하지 않는 제약
+    - primary key(기본키) : unique + not null 제약을 지정
+    - foreign key(= multiple, 참조키) : 타 테이블을 참조하기 위한 제약 
+    - default : 기본으로 저장되는 데이터를 정의하는 제약
+    
+    사용형식 : create table + 제약사항
+			alter table + 제약사항
+    - 단독으로 사용 불가능
+*******************************************************/
+-- DB의 스키마 구조를 통해 각 테이블의 제약사항 확인
+-- information_schema.table_constraints
+
+
+show tables;
+desc emp;
+
+-- emp_const 테이블 생성
+-- 기본키 제약 : emp_id 
+-- 유니크 제약 : emp_name
+-- not null 제약 : salary
+
+
+-- emp_const 테이블에 S001, 홍길동, 현재날짜, 1000 데이터 추가
+
+
+-- emp_const 테이블에 S001, 김철수, 현재날짜, 1000 데이터 추가 - 제약사항 확인용
+-- 에러 발생 - S001은 유니크 제약이 있고 이미 존재하는 데이터이기 때문에 중복되는 데이터는 들어갈 수 없음
+-- primary 키로 설정되어 있는 컬럼은 입력폼에서 아이디 중복체크 기능을 통해 확인함 
+insert into emp_const(emp_id, emp_name, hire_date, salary) values('S001', '김철수', now(), 1000);
+-- solution : 중복된 'S001'을 'S002'로 변경 후 실행
+
+
+-- 에러 발생. emp_id는 not null 제약이 있기 때문에 null값이 들어갈 수 없음
+insert into emp_const(emp_id, emp_name, hire_date, salary) values(null, '김철수', now(), 1000);
+-- solution : null 또는 중복된 값을 배제하여 진행 
+
+-- 에러 발생. emp_name에 유니크 제약이 있기 때문에 이미 사용 중인 '김철수'는 사용 불가능
+insert into emp_const(emp_id, emp_name, hire_date, salary) values('S003', '김철수', now(), 1000);
+-- solution : 이미 저장된 '김철수' 대신 유니크한 이름으로 진행
+
+
+-- emp_name에 null값 추가
+-- 유니크 제약만 있기 때문에 null값 허용
+
+
+-- emp_name 컬럼에 null은 중복 저장 가능 -> 오라클의 경우 null값도 중복을 체크함
+
+
+desc emp_const;
+
+-- 에러 발생. salary에는 유니크 제약이 있기 때문에 null값 저장 불가능
+insert into emp_const(emp_id, emp_name, hire_date, salary) values('S006', '스미스', now(), null);
+-- solution
+
+
+-- emp_const2 테이블 생성 
+-- emp_id : primary key
+-- emp_name : unique
 
 
 
