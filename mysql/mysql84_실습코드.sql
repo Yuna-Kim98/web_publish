@@ -951,6 +951,173 @@ create table emp_const2(
 desc emp_const2;
 select * from information_schema.table_constraints where table_name = 'emp_const2';
 
+-- 제약사항 테스트를 위한 테이블 생성 : const_test
+-- uid 컬럼 : char 4 기본키 제약
+-- name 컬럼 : varchar 10 null 허용x
+-- age 컬럼 : int null 허용 
+-- addr 컬럼 : varchar 30 null 허용
+create table const_test(
+	uid char(4) primary key,
+    name varchar(10) not null,
+    age int,
+    addr varchar(30)
+);
+show tables;
+desc const_test;
+select * from information_schema.table_constraints where table_name = 'const_test';
+-- 제약 사항을 확인하는 명령어는 일종의 사전으로, 주요 제약사항들만 표시가 된다. -> 크기가 너무 커지지 않게 하기 위해
+
+-- dept_id 컬럼 추가 : char(3), default 'hrd', null 허용x
+alter table const_test add column dept_id char(3) default('HRD') not null;
+desc const_test;
+
+-- S001, 홍길동, 20, 서울시, SYS 데이터 추가
+insert into const_test(uid, name, age, addr, dept_id) values('S001', '홍길동', 20, '서울시', 'SYS');
+select * from const_test;
+
+-- S002, 김철수, 20, 서울시, HRD 데이터 추가
+insert into const_test(uid, name, age, addr) values('S002', '김철수', 20, '서울시');
+select * from const_test;
+-- dept_id의 default값이 HRD이므로 작성하지 않아도 자동으로 입력됨
+
+-- salary  컬럼 추가 : int, 3000 이상인 숫자만 등록할 수 있도록 check 제약
+alter table const_test add column salary int check(salary >= 3000);
+desc const_test;
+select * from const_test;
+
+-- S003, 이영희, 30, 부산시, HRD, 3000 데이터 추가
+insert into const_test(uid, name, age, addr, salary) values( 'S004', '이영희', 30, '부산시', 4000);
+select * from const_test; 
+
+-- 상품 테이블 생성 : product_test
+-- 컬럼 : pid - int primary, pname - varchar(30) null 허용x, price - int null 허용, company - varchar(20) null 허용
+-- **auto_increment : 자동 번호 생성 ==> 기본키
+--   오라클 : sequence
+create table product_test(
+	pid		int 	primary key 	auto_increment,
+    pname 	varchar(30) 	not null,
+    price 	int,
+    company	varchar(20)
+);
+show tables;
+desc product_test;
+
+-- 키보드, 100, 삼성 데이터 추가
+insert into product_test(pname, price, company) values('키보드', 100, '삼성');
+
+-- 키보드, 200, 삼성 데이터 추가
+insert into product_test(pname, price, company) values('키보드', 200, '삼성');
+
+-- 모니터, 1200, 엘지 데이터 추가
+insert into product_test(pname, price, company) values('모니터', 1200, '엘지');
+select * from product_test;
+-- pid에 auto_increment를 설정했기 때문에 따로 작성하지 않아도 자동으로 생성, 등록됨 
+
+
+-- 2. update : 데이터 수정
+-- 형식 : update [테이블명] set [컬럼명='업데이트 데이터', ...] where [조건절];
+-- 조건절이 생략될 경우 모든 테이블에 반영되므로 반드시 조건절을 작성해야 한다.
+select * from const_test;
+
+-- 홍길동 사원의 연봉 추가(업데이트) : 3500
+update const_test set salary = 3500 where uid = 'S001'; -- 중복 적용되지 않도록 유니크 값을 기준으로 적용시킴
+
+-- 김철수 사원의 연봉 추가(업데이트) : 5000
+update const_test set salary = 5000 where uid = 'S002';
+select * from const_test;
+
+show tables; 
+-- employee 테이블을 복제하여 cp_employee 테이블 생성
+-- emp_id 컬럼에 기본키 제약 추가
+-- 기본키 제약을 줄 때 한글이나 유니코드는 사용하지 않는 것이 좋음 -> 데이터가 2바이트 혹은 3바이트이기 때문에 제대로 인식하지 못할 수 있음
+-- 중복 없이 유니크하면서 null값이 허용되지 않는 컬럼에 기본키 제약을 추가
+create table cp_employee
+	as
+	select * from employee;
+show tables;
+select * from cp_employee;
+desc cp_employee;
+-- 복제한 테이블에 제약 사항 추가
+alter table cp_employee add constraint pk_emp_id primary key(emp_id);
+select * from information_schema.table_constraints where table_name = 'cp_employee';
+
+-- phone, email 컬럼에 unique 제약 추가
+alter table cp_employee add constraint uk_phone unique(phone);
+alter table cp_employee add constraint uk_email unique(email);
+desc cp_employee;
+
+-- cp_employee 테이블의 phone에 추가된 제약 사항 삭제
+select * from information_schema.table_constraints where table_name = 'cp_employee';
+alter table cp_employee drop constraint uk_phone;
+
+select * from cp_employee;
+-- sys인 부서 아이디를 '정보'로 수정 
+select * from cp_employee where dept_id = 'SYS';
+-- Error Code: 1175. You are using safe update mode -> 업데이트 방지 모드
+-- safe update mode 설정 변경 필요 
+set sql_safe_updates = 0; -- 해제는 0, 설정은 1
+update cp_employee set dept_id = '정보' where dept_id = 'SYS';
+select * from cp_employee where dept_id = '정보';
+
+-- 2016년도 입사한 사원들의 입사일을 현재 날짜로 수정
+select * from cp_employee where left(hire_date, 4) = 2016;
+update cp_employee set hire_date = curdate() where left(hire_date, 4) = 2016;
+select * from cp_employee where left(hire_date, 4) = 2025;
+
+-- 강우동 사원의 영어 이름을 'kang', 퇴사일을 현재날짜로, 부서는 SYS로 수정
+select * from cp_employee where emp_name = '강우동';
+update cp_employee 
+set eng_name = 'kang', retire_date = curdate(), dept_id = 'SYS' 
+where emp_name = '강우동';
+
+-- 트랜잭션 처리방식이 auto commit이 아닌 경우 
+-- 작업 완료 : commit, 작업 취소 : rollback 
+
+
+-- 3. delete : 데이터 삭제
+-- 트랜잭션 관리법에 따라 삭제된 데이터를 복원할 수 있음. auto commit 상태에서는 불가능. 
+-- 형식 : delete from [테이블명] where [조건절];
+commit; -- 현재까지 진행한 모든 작업을 db에 반영. 여기서부터 트랜잭션을 시작 
+select * from cp_employee;
+
+-- 강우동 사원 삭제
+delete from cp_employee where emp_id = 'S0003';
+select * from cp_employee where emp_id = 'S0003';
+
+-- 김삼순 사원 삭제
+commit;
+delete from cp_employee where emp_id = 'S0004';
+select * from cp_employee where emp_id = 'S0004';
+rollback; -- commit 이후의 작업을 취소
+/** 프로그램 개발을 통해 실시간 접속시에는 auto commit으로 실행됨 **/
+
+select * from cp_employee;
+-- 연봉이 7000 이상인 모든 사원 삭제
+set sql_safe_updates = 0;
+select count(*) from cp_employee where salary >= 7000;
+delete from cp_employee where salary >= 7000;
+
+-- cp_employee 테이블에서 정보시스템 부서 직원들 모두 삭제
+select count(*) from cp_employee where dept_id = '정보'; -- 4
+delete from cp_employee where dept_id = '정보';
+
+-- cp_employee 테이블에서 2017년 이후 입사자들을 모두 삭제(터미널)
+select count(*) from cp_employee where left(hire_date, 4) >= 2017;
+
+show tables;
+drop table const_test;
+drop table dept;
+drop table emp;
+drop table emp_const;
+drop table emp_const2;
+drop table employee_sys;
+drop table employee_hrd;
+drop table product_test;
+show tables;
+
+
+
+
 
 
 
