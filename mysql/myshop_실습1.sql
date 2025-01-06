@@ -170,22 +170,71 @@ from customer where city in ('서울', '부산', '대구') group by city, gender
 /** order_header 테이블 사용 **/
     
 -- Q16) 2019년 1월 주문에 대하여 고객아이디별 전체금액 합을 조회하세요.
-
+select * from order_header;
+select customer_id 고객아이디,
+	concat(format(sum(sub_total), 0), '만원') 전체금액합
+from order_header
+group by customer_id;
 
 -- Q17) 주문연도별 전체금액 합계를 조회하세요.
+select left(order_date, 4) 주문연도,
+	concat(format(sum(sub_total), 0), '만원') 전체금액합계
+from order_header
+group by left(order_date, 4);
 
 -- Q18) 2019.01 ~ 2019.06 기간 주문에 대하여 주문연도별, 주문월별 전체금액 합을 조회하세요.
+-- 테이블 데이터에 2019년 데이터를 찾지 못해 oder_header 테이블의 2018년도 데이터로 조회
+select * from order_header;
+select left(order_date, 4) from order_header;
+select substring(order_date, 6, 2) from order_header;
+
+select left(order_date, 4) 주문년도별, substring(order_date, 6, 2) 주문월별,
+	concat(format(sum(sub_total), 0), '만원') 전체금액
+    from order_header
+    where order_date <= '2018-06-30'
+    group by left(order_date, 4), substring(order_date, 6, 2);
 
 -- Q19) 2019.01 ~ 2019.06 기간 주문에 대하여 주문연도별, 주문월별 전체금액 합과 평균을 조회하세요.
+select left(order_date, 4) 주문년도별, substring(order_date, 6, 2) 주문월별,
+	concat(format(sum(sub_total), 0), '만원') 전체금액,
+    concat(format(avg(sub_total), 0), '만원') 평균금액
+    from order_header
+    where order_date <= '2018-06-30'
+    group by left(order_date, 4), substring(order_date, 6, 2);
 
 -- Q20) 주문연도별, 주문월별 전체금액 합과 평균을 조회하고, rollup 함수를 이용하여 소계와 총계를 출력해주세요.
+select left(order_date, 4) 주문년도별, substring(order_date, 6, 2) 주문월별,
+	concat(format(sum(sub_total), 0), '만원') 전체금액,
+    concat(format(avg(sub_total), 0), '만원') 평균금액
+    from order_header
+    where order_date <= '2018-06-30'
+    group by left(order_date, 4), substring(order_date, 6, 2)
+    with rollup;
 
 
 /**
 	테이블 조인
 */
 -- Q01) 전체금액이 8,500,000 이상인 주문의 주문번호, 고객아이디, 사원번호, 주문일시, 전체금액을 조회하세요.
+show databases;
+use myshop2019;
+select database();
+show tables;
+
+select * from order_header; -- 주문번호, 고객 아이디, 사원번호, 주문일시, 전체금액
+select order_id 주문번호, customer_id 고객아이디, employee_id 사원번호, order_date 주문일시, format(sub_total, 0) 전체금액 
+	from order_header
+    where sub_total >= 8500000;
+
 -- Q02) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름도 같이 조회되게 수정하세요.
+select o.order_id 주문번호, o.customer_id 고객아이디, c.customer_name 고객이름, o.employee_id 사원번호, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
+	from order_header o, customer c
+    where o.customer_id = c.cutomer_id
+    and sub_total >= 8500000;
+    
+show tables;
+select * from customer;
+
 -- Q03) Q01 쿼리를 복사해 붙여 넣은 후 직원이름도 같이 조회되게 수정하세요.
 -- Q04) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름, 직원이름도 같이 조회되게 수정하세요.
 -- Q05) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 전체금액이 8,500,000 이상인 '서울' 지역 고객만 조회되게 수정하세요.

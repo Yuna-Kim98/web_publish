@@ -1116,6 +1116,261 @@ drop table product_test;
 show tables;
 
 
+/*******************************************************
+	하나 이상의 테이블 생성 및 연결, 조회
+    - 생성 : create table
+    - 연결 : foreign key(참조키) 제약 추가
+    - 조회(select) : join, subquery
+    ** 데이터베이스의 테이블 설계 과정 : 데이터베이스 모델링
+       -> 데이터 정규화 -> ERD(Entity Relationship Diagram)
+********************************************************/
+show tables;
+desc employee;
+
+-- ERD : Database > Reverse Engeering ...
+-- 정규화 : 데이터베이스 저장 효율성을 높이기 위한 방식 - 데이터 중복 배제, 테이블 분리...
+-- 반정규화 : 분리된 테이블을 하나로 합치는 방식 
+
+-- [kk전자의 인사관리 시스템 : 사원테이블 생성 - 정규화x]
+-- 부서 테이블(kk_department) : 부서 아이디, 부서명, 부서위치 
+show tables;
+create table kk_department(
+	dept_id char(3) primary key,
+    dept_name varchar(30) not null,
+    loc varchar(30)
+);
+desc kk_department;
+select * from information_schema.table_constraints where table_name like 'kk%';
+
+insert into kk_department(dept_id, dept_name, loc) values('SYS', '정보시스템', '서울시 서초구');
+insert into kk_department(dept_id, dept_name, loc) values('HRD', '인사관리', '서울시 종로구');
+insert into kk_department(dept_id, dept_name, loc) values('ACC', '회계관리', '서울시 강남구');
+select * from kk_department;
+
+-- 사원 테이블(kk_employee) 데이터 : 사원 아이디(kid, 기본키), 사원명, 주소, 입사일, 연봉, 부서 아이디
+show tables;
+create table kk_employee(
+	kid		int		primary key 	auto_increment,
+    kname 	varchar(10)		not null,
+    address varchar(20),
+    hire_date	date,
+    salary	int,
+    dept_id 	char(3),
+    constraint fk_kk_employee	foreign key(dept_id) references kk_department(dept_id)
+);
+desc kk_employee;
+select * from information_schema.table_constraints where table_name like 'kk%';
+
+insert into kk_employee(kname, address, hire_date, salary, dept_id) values('홍길동', '서울시 강남구', curdate(), '5000', 'SYS');
+
+-- 에러 발생
+/* Error Code: 1452. Cannot add or update a child row: 
+	a foreign key constraint fails 
+    (`hrdb2019`.`kk_employee`, CONSTRAINT `fk_kk_employee` FOREIGN KEY (`dept_id`) REFERENCES `kk_department` (`dept_id`)) */
+insert into kk_employee(kname, address, hire_date, salary, dept_id) values('스미스', '뉴욕', curdate(), '5000', 'HR');
+-- 참조키 제약이 있는 경우 반드시 참조되는 테이블에 있는 데이터와 이름, 형식이 일치해야 한다. 그렇지 않으면 에러 발생
+
+-- solution : 참조하는 kk_department 테이블의 dept_id 확인
+insert into kk_employee(kname, address, hire_date, salary, dept_id) values('스미스', '뉴욕', curdate(), '5000', 'HRD');
+select * from kk_employee;
+
+/*
+	[학사관리 시스템 설계]
+    1. 과목(subject) 테이블은
+		컬럼 : sid(과목 아이디), sname(과목명), sdate(등록일 : 년월일 시분초)
+        sid는 기본키, 자동으로 생성한다.
+	2. 학생(student) 테이블은 반드시 하나 이상의 과목을 수강해야 한다.
+		컬럼 : stid(학생 아이디) 기본키, 자동생성
+			  sname(학생명) null 허용x
+              gender(성별) 문자 1자, null 허용x
+              sid(과목 아이디)
+              stdate(등록일자 : 년월일 시분초)
+	3. 교수(professor) 테이블은 반드시 하나 이상의 과목을 강의해야 한다.
+		컬럼 : pid(교수 아이디) 기본키, 자동 생성
+			  name(교수명) null 허용x
+              sid(과목 아이디)
+              pdate(등록일자 : 년월일 시분초)
+*/
+
+-- 과목 테이블
+show tables;
+create table subject(
+	sid 	int		primary key		auto_increment,
+    sname 	varchar(20),
+    sdate	datetime
+);
+desc subject;
+select * from subject;
+
+-- 학생 테이블
+create table student(
+	stid	int		primary key		auto_increment,
+    sname	varchar(10) 	not null,
+    gender 	char(1)		not null,
+    sid 	int		not null,
+    constraint fk_student_sid	foreign key(sid) references subject(sid),
+    sdate	datetime
+);
+desc student;
+select * from student;
+
+-- 교수 테이블
+create table professor(
+	pid 	int		primary key		auto_increment,
+    name	varchar(10)		not null,
+    sid 	int		not null,
+    constraint fk_professor_sid		foreign key(sid)	references subject(sid),
+    pdate	datetime
+);
+desc professor;
+select * from professor;
+show tables;
+
+-- 과목 데이터 추가
+desc subject;
+insert into subject(sname, sdate) values('HTML', now());
+insert into subject(sname, sdate) values('JavaScript', now());
+insert into subject(sname, sdate) values('MySQL', now());
+select * from subject;
+
+-- 학생 데이터 추가
+desc student;
+insert into student(sname, gender, sid, sdate) values('홍길동', 'M', '1', now());
+insert into student(sname, gender, sid, sdate) values('김철수', 'M', '2', now());
+insert into student(sname, gender, sid, sdate) values('이영희', 'F', '3', now());
+insert into student(sname, gender, sid, sdate) values('테스트', 'F', '2', now());
+select * from student;
+
+-- 교수 데이터 추가
+desc professor;
+insert into professor(name, sid, pdate) values('이순신', '1', now());
+insert into professor(name, sid, pdate) values('스미스', '2', now());
+insert into professor(name, sid, pdate) values('강감찬', '3', now());
+select * from professor;
+
+-- HTML 과목의 정보를 조회
+select * from subject where sname = 'HTML';
+
+/************************************************************************
+	join : 두 개 이상의 테이블을 연동 -> 테이블 갯수 제한x
+    - 두 개 이상의 테이블을 조합하여 집합을 구성 
+    - cross(catesian) join(합집합) 
+		: 두 개 테이블이 독립적으로 생성된 경우, join 연결고리 x,
+		  professor & student -> professor * student
+	- inner(equi) join(교집합) -> 보통 그냥 join이라고 함
+		: 두 개의 테이블을 join 연결고리를 통해 연동
+*************************************************************************/
+select * from professor;
+select * from student;
+
+-- 1. cross(catesian) join(합집합)  형식
+-- select (컬럼리스트) from(테이블명1 [테이블 별칭], 테이블명2 [테이블 별칭], ...) where [조건절]
+select * from professor, student order by pid;
+select pid, name, p.sid, sname, gender, sdate from professor p, student s;
+
+-- professor, student, department 조인하여 모든 데이트 조회
+select count(*) from professor; -- 3
+select count(*) from student; -- 4
+select count(*) from department;  -- 7
+select * from professor, student, department; -- 84 
+
+-- ansi sql 방식(sequl :: ms-sql)
+select * from professor cross join student cross join department;
+
+
+-- 2. inner join(교집합)  형식
+-- select (컬럼리스트) from(테이블명1 [테이블 별칭], 테이블명2 [테이블 별칭], ...) 
+-- where [테이블명1.조인컬럼 = 테이블명2.조인컬럼]
+-- and [조건절 ~]
+select * from subject;
+select * from professor;
+select * from subject s, professor p where s.sid = p.sid;
+
+insert into professor(name, sid, pdate) values('안중근', 1, now());
+insert into subject(sname, sdate) values('React', now());
+select * from subject;
+
+-- HTML 과목을 강의하는 모든 교수를 조회(mysql, 오라클 버전)
+select * from subject s, professor p where s.sid = p.sid and sname = 'HTML';
+-- ncsql 버전 --> 표준이기 때문에 어떤 프로그램에서든 사용 가능
+select * from subject s inner join professor p on s.sid = p.sid where sname = 'HTML';
+
+-- 이순신 교수가 강의하는 과목의 과목 아이디, 과목명, 교수 아이디, 교수명, 교수 등록일을 조회
+select * from professor;
+select * from subject;
+select s.sid, sname, pid, name, pdate from subject s, professor p where s.sid = p.sid and p.name = '이순신';
+select s.sid, sname, pid, name, pdate from subject s inner join professor p on s.sid = p.sid where p.name = '이순신';
+
+-- HTML 과목을 수강하는 모든 학생을 조회
+select * from subject;
+select * from student;
+select * from subject su, student st where su.sid = st.sid and su.sname = 'HTML';
+select * from subject su inner join student st on su.sid = st.sid where su.sname = 'HTML';
+
+-- HTML 과목을 수강하는 모든 학생과 강의하는 모든 교수를 조회
+select * 
+	from subject su, professor p, student st 
+	where su.sid = p.sid and su.sid = st.sid and su.sname = 'HTML';
+select * 
+	from subject su inner join professor p inner join student st 
+    on su.sid = p.sid and su.sid = st.sid 
+    where su.sname = 'HTML';
+
+-- employee, department, vacation, unit 테이블들의 erd 참조
+-- 모든 사원들의 사원번호, 사원명, 성별, 부서명, 입사일 조회
+-- 사원번호 기준으로 오름차순
+select * from employee;
+select * from department;
+select e.emp_id, e.emp_name, e.gender, d.dept_name, e.hire_date
+	from employee e, department d
+    where e.dept_id = d.dept_id
+    order by emp_id asc;
+select e.emp_id, e.emp_name, e.gender, d.dept_name, e.hire_date
+	from employee e inner join department d
+    on e.dept_id = d.dept_id
+    order by emp_id asc;
+    
+-- 영업부에 속해있는 사원들의 사원번호, 사원명, 입사일, 급여, 부서 아이디, 부서명 조회
+select e.emp_id, e.emp_name, e.hire_date, e.salary, d.dept_id, d.dept_name
+	from employee e, department d
+    where e.dept_id = d.dept_id
+    and dept_name = '영업';
+select e.emp_id, e.emp_name, e.hire_date, e.salary, d.dept_id, d.dept_name
+	from employee e inner join department d
+    on e.dept_id = d.dept_id
+    where dept_name = '영업';
+    
+-- 인사과에 속한 사원들 중에 휴가를 사용한 사원들의 리스트를 모두 조회
+select * from vacation;
+select *
+	from department d, employee e, vacation v
+    where d.dept_id = e.dept_id
+    and e.emp_id = v.emp_id
+    and dept_name = '인사';
+select *
+	from department d inner join employee e inner join vacation v
+    on d.dept_id = e.dept_id
+    and e.emp_id = v.emp_id
+    and dept_name = '인사';
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
