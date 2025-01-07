@@ -229,35 +229,152 @@ select order_id 주문번호, customer_id 고객아이디, employee_id 사원번
 -- Q02) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름도 같이 조회되게 수정하세요.
 select o.order_id 주문번호, o.customer_id 고객아이디, c.customer_name 고객이름, o.employee_id 사원번호, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
 	from order_header o, customer c
-    where o.customer_id = c.cutomer_id
+    where o.customer_id = c.customer_id
     and sub_total >= 8500000;
     
 show tables;
 select * from customer;
 
 -- Q03) Q01 쿼리를 복사해 붙여 넣은 후 직원이름도 같이 조회되게 수정하세요.
+select o.order_id 주문번호, o.customer_id 고객아이디, o.employee_id 사원번호, e.employee_name 직원이름, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
+	from order_header o, employee e
+    where o.employee_id = e.employee_id
+    and sub_total >= 8500000;
+    
+select * from employee;
+
 -- Q04) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름, 직원이름도 같이 조회되게 수정하세요.
+select o.order_id 주문번호, o.customer_id 고객아이디, c.customer_name 고객이름, o.employee_id 사원번호, e.employee_name 직원이름, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
+	from order_header o, customer c, employee e
+    where o.employee_id = e.employee_id
+		and o.customer_id = c.customer_id
+    and sub_total >= 8500000;
+
 -- Q05) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 전체금액이 8,500,000 이상인 '서울' 지역 고객만 조회되게 수정하세요.
+select o.order_id 주문번호, o.customer_id 고객아이디, c.customer_name 고객이름, o.employee_id 사원번호, e.employee_name 직원이름, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
+	from order_header o, customer c, employee e
+    where o.employee_id = e.employee_id
+		and o.customer_id = c.customer_id
+    and sub_total >= 8500000
+    and c.city = '서울';
+
 -- Q06) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 전체금액이 8,500,000 이상인 '서울' 지역 '남자' 고객만 조회되게 수정하세요.
+select o.order_id 주문번호, o.customer_id 고객아이디, c.customer_name 고객이름, o.employee_id 사원번호, e.employee_name 직원이름, o.order_date 주문일시, format(o.sub_total, 0) 전체금액 
+	from order_header o, employee e, customer c
+    where o.employee_id = e.employee_id
+		and o.customer_id = c.customer_id
+	and sub_total >= 8500000
+		and c.city = '서울'
+        and c.gender = 'M';
+
 -- Q07) 주문수량이 30개 이상인 주문의 주문번호, 상품코드, 주문수량, 단가, 지불금액을 조회하세요.
+select * from order_detail;
+select order_id 주문번호, 
+	   product_id 상품코드, 
+       order_qty 주문수량, 
+       unit_price 단가, 
+       line_total 지불금액
+	from order_detail
+    where order_qty >= 30;
+
 -- Q08) 위에서 작성한 쿼리문을 복사해서 붙여 넣은 후 상품이름도 같이 조회되도록 수정하세요.
+show tables;
+select * from product; -- product_id
+
+select o.order_id 주문번호, 
+	   o.product_id 상품코드, 
+       p.product_name 상품이름,
+       o.order_qty 주문수량, 
+       o.unit_price 단가, 
+       o.line_total 지불금액
+	from order_detail o, product p
+    where o.product_id = p.product_id
+    and order_qty >= 30;
+
 -- Q09) 상품코드, 상품이름, 소분류아이디를 조회하세요.
+show tables;
+select * from sub_category; -- 대분류아이디, 카테고리, 카테고리아이디
+select * from product; -- 소분류아이디(상품코드), 상품이름, 대분류아이디
+
+select product_id 상품코드, 
+	   product_name 상품이름, 
+       sub_category_id 대분류아이디 
+	from product;
+
 -- Q10) 위에서 작성한 쿼리문을 복사해서 붙여 넣은 후 소분류이름, 대분류아이디가 조회되게 수정하세요.
+select product_id 상품코드, 
+	   product_name 상품이름, 
+       sub_category_id 소분류아이디 
+	from product;
+
 -- Q11) 다정한 사원이 2019년에 주문한 상품명을 모두 출력해주세요.
+show tables;
+select * from order_header;
+select * from employee;
+select * from order_detail;
+
 -- Q12) 청소기를 구입한 고객아이디, 사원번호, 주문번호, 주문일시를 조회하세요.
+select * from order_header; -- 주문번호, 고객아이디, 사원번호, 주문일시
+select * from order_detail; -- 상품아이디
+select * from product; -- 상품아이디, 상품이름
+
+select oh.order_id, oh.employee_id, oh.order_id, oh.order_date
+	from order_header oh, order_detail od, product p
+    where oh.order_id = od.order_id
+		and od.product_id = p.product_id
+	and p.product_name = '%청소기';
+        
     
 
 /**
 	서브쿼리
 */
--- Q13) 'mtkim', 'odoh', 'soyoukim', 'winterkim' 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.    
+-- Q13) 'mtkim', 'odoh', 'soyoukim', 'winterkim' 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.  
+select * from order_header;
+select order_id, customer_id, order_date, total_due
+	from order_header
+    where customer_id in ('mtkim', 'odoh', 'soyoukim', 'winterkin');
+  
 -- Q14) '전주' 지역 고객의 아이디를 조회하세요.    
+select customer_id 
+	from customer
+	where city = '전주';
+
 -- Q15) 위 두 쿼리문을 조합해서 하위 쿼리를 사용해 '전주' 지역 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.
+select * from order_header;
+select * from customer;
+
+select order_id, customer_id, order_date, total_due
+	from order_header
+    where customer_id in (select customer_id 
+							from customer
+							where city = '전주');
+
 -- Q16) 고객의 포인트 최댓값을 조회하세요.
+select max(point) from customer;
+
 -- Q17) 하위 쿼리를 사용해 가장 포인트가 많은 고객의 이름, 아이디, 등록일, 포인트를 조회하세요.
+select customer_name, customer_id, register_date, point
+	from customer
+    where point = (select max(point) from customer);
+
 -- Q18) 하위 쿼리를 사용해 홍길동(gdhong) 고객보다 포인트가 많은 고객 이름, 아이디, 등록일, 포인트를 조회하세요.
+select customer_name, customer_id, register_date, point
+	from customer 
+    where point > (select point from customer where customer_name = '홍길동');
+
 -- Q19) 하위 쿼리를 사용해 홍길동(gdhong) 고객과 같은 지역의 고객 이름, 아이디, 지역, 등록일, 포인트를 조회하세요.
 --      단, 고객 이름을 기준으로 오름차순 정렬해서 조회하세요.
+select customer_name, customer_id, city, register_date, point
+	from customer
+    where city = (select city from customer where customer_name = '홍길동')
+    order by customer_name;
+
 -- Q20) 하위 쿼리를 사용해 홍길동(gdhong) 고객보다 포인트가 많은 고객 이름, 아이디, 등록일, 포인트를 조회하고, 행번호를 추가하여 출력하세요.
+select row_number() over(order by customer_name) as no,
+	   customer_name, customer_id, register_date, point
+	from customer
+	where point > (select point from customer where customer_name = '홍길동');
+
 
     
