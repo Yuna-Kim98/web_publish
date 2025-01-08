@@ -1495,15 +1495,17 @@ select distinct e.emp_id, e.emp_name, e.hire_date, e.salary, e.dept_id, d.dept_n
 -- 매니저가 없는 모든 사원의 사원번호, 사원명, 입사일, 급여, 부서아이디를 조회
 -- inner join 진행 시 매니저가 없는 사원은 제외됨 
 -- 제외되는 데이터까지 조회하기 위해서 outer join이 필요
+-- 매니저가 있는 사원 정보
 select e.emp_id, e.emp_name, e.hire_date, e.salary, e.dept_id, m.mgr
-	from emp m, emp e
-    where m.mgr = e.emp_id
-    and m.mgr is not null;
-    
-select m.emp_id, m.emp_name, m.hire_date, m.salary, m.dept_id
-	from emp m left join emp e
-    on m.mgr = e.emp_id
-    where m.mgr is null;
+	from emp e, emp m
+    where e.mgr = m.emp_id
+    and e.mgr is not null;
+
+-- 매니저가 없는 사원 정보
+select e.emp_id, e.emp_name, e.hire_date, e.salary, e.dept_id
+	from emp e left outer join emp m -- e: 사원 정보, m: 매니저 정보
+    on e.mgr = m.emp_id
+    where e.mgr is null;
 
 -- 홍길동 사원이 관리하는 사원들의 사원아이디, 사원명, 연봉, 매니저사번, 매니저명
 select m.emp_id, m.emp_name, e.emp_id, e.emp_name, e.salary
@@ -1629,7 +1631,7 @@ select row_number() over(order by e.emp_id) as no,
        e.emp_name, 
        e.dept_id, 
        (select dept_name from department where dept_id = 'HRD') as dname, 
-       vcount
+       v.vcount
 	from employee e,
 		 (select v.emp_id, sum(v.duration) vcount
 			from vacation v
@@ -1641,6 +1643,394 @@ select row_number() over(order by e.emp_id) as no,
             
 
 (select dept_id from department where dept_id = 'HRD');
+
+/**********************************
+	25. 01. 08
+**********************************/
+
+-- 휴가를 사용한 사원 정보만!!
+-- 사원별 휴가 사용 일수를 그룹핑하여 사원아이디, 사원명, 입사일, 연봉, 휴가사용일수를 조회하세요.
+-- 1. 사원별 휴가 사용 일수 그룹핑 작업을 수행하는 인라인뷰
+select emp_id, 
+	   sum(duration) vcount
+	from vacation
+    group by emp_id;
+
+-- 2. 1번의 인라인뷰와 employee 테이블 조인
+select row_number() over(order by v.vcount desc) as no,
+	   e.emp_id, e.emp_name, e.hire_date, e.salary, v.vcount
+	from employee e,
+		 (select emp_id, 
+			     sum(duration) vcount
+			from vacation
+			group by emp_id) v
+	where e.emp_id = v.emp_id;
+    
+-- [전체 사원의 휴가일수 조회 : 휴가를 사용한 사원정보 + 사용하지 않은 사원]
+-- 사원별 휴가사용 일수를 그룹핑하여 사원아이디, 사원명, 입사일, 연봉, 휴가결제횟수, 휴가전체사용일수를 조회해주세요.
+-- 단, 휴가를 사용하지 않은 사원의 휴가결제횟수, 휴가전체사용일수는 0값으로 할당
+-- 1. 사원별 휴가사용 일수 그룹핑 작업 인라인뷰
+select emp_id, 
+	   count(emp_id), sum(duration) -- 휴가 결제 횟수, 휴가 전체 사용 일수
+	from vacation
+    group by emp_id;
+
+-- 2. 1번의 인라인뷰 결과 테이블과 employee 테이블 outer join 작업
+-- ** MySQL에서 outer join은 Ansi SQL 형식만 가능
+select row_number() over(order by count desc) as no,
+	   e.emp_id, 
+       e.emp_name, 
+       e.hire_date, 
+       concat(format(e.salary, 0), '만원') salary, 
+       ifnull(v.count, 0) count, 
+       ifnull(v.vcount, 0) vcount
+	from employee e left outer join
+		 (select emp_id, 
+				 count(emp_id) count, sum(duration) vcount
+			from vacation
+			group by emp_id) v
+	on e.emp_id = v.emp_id;
+    
+-- 스칼라 서브쿼리 : 권장x -> mysql에서만 사용 가능하며 속도가 현저히 느림
+-- HRD 부서 사원들의 사원아이디, 사원명, 부서아이디, 부서명, 소속본부 조회
+select emp_id, 
+	   emp_name, dept_id, 
+       (select dept_name from department where dept_id = 'HRD') as dept_name,
+       (select unit_name 
+			from unit 
+			where unit_id = (select unit_id from department where dept_id = 'HRD')) as unit_name
+	from employee
+    where dept_id = 'HRD';
+
+-- 연봉 순으로 사원들을 정렬하되 상위 5명의 사원만 조회함 -> 인라인뷰 사용
+-- 출력 번호, 사원 아이디, 사원명, 입사일, 부서 아이디, 연봉
+select no,
+	   emp_id, 
+	   emp_name, 
+	   hire_date, 
+	   dept_id, 
+	   salary
+	from (select row_number() over(order by salary desc) as no,
+				emp_id, 
+				emp_name, 
+				hire_date, 
+				dept_id, 
+				salary
+			from employee) t1
+	where no <= 5;
+
+-- 입사일이 가장 빠른 사원 10명의 사원 아이디, 사원명, 부서 아이디를 조회 
+select *
+	from (select row_number() over(order by hire_date) as no,
+			   emp_id, 
+               emp_name, 
+               dept_id, 
+               hire_date 
+			from employee) t1 -- 인라인뷰에서는 별칭 필수인 것 잊지 말기! 
+	where no <= 10;
+
+-- 사원들의 급여합계가 가장 작은 부서의 사원들을 조회 
+select *
+	from employee
+    where dept_id = (select dept_id
+						from (select row_number() over(order by sum(salary)) as no,
+								   dept_id,
+								   sum(salary) as sum
+								from employee
+								where salary is not null
+								group by dept_id) t1
+						where no = 1);
+
+
+/**************************************
+	self join을 서브쿼리로 변경해서 조회 
+**************************************/
+-- 홍길동 사원이 관리하는 모든 사원들의 사원번호, 사원명, 입사일, 급여, 부서아이디, 부서명을 조회
+-- 서브쿼리를 이용하여 실행
+select row_number() over(order by e.emp_id) as no,
+	   e.emp_id, e.emp_name, e.hire_date, d.dept_id, d.dept_name
+	from department d,
+		(select emp_id,
+			   emp_name,
+			   hire_date,
+			   salary,
+			   dept_id,
+			   mgr
+			from emp
+			where mgr = (select emp_id from emp where emp_name = '홍길동')) e
+	where d.dept_id = e.dept_id;
+
+-- HRD 부서를 관리하는 매니저의 사원번호, 사원명, 입사일, 급여, 부서아이디, 부서명을 조회
+select distinct e.emp_id, e.emp_name, e.hire_date, e.salary, e.dept_id, d.dept_name
+	from emp e, emp m, department d
+    where e.emp_id = m.mgr
+		and m.dept_id = d.dept_id
+	and m.dept_id = 'HRD';
+
+select emp_id, emp_name, hire_date, salary, d.dept_id, dept_name
+	from department d,
+		(select emp_id, emp_name, hire_date, salary, dept_id
+			from emp
+			where emp_id = (select distinct mgr from emp where dept_id = 'HRD')) e
+	where d.dept_id = e.dept_id;
+    
+-- 매니저가 없는 모든 사원의 사원번호, 사원명, 입사일, 급여, 부서아이디를 조회
+-- inner join 진행 시 매니저가 없는 사원은 제외됨 
+-- 제외되는 데이터까지 조회하기 위해서 outer join이 필요
+select e.emp_id, e.emp_name, e.hire_date, e.salary, e.dept_id, m.mgr
+	from emp m, emp e
+    where m.mgr = e.emp_id
+    and m.mgr is not null;
+    
+select m.emp_id, m.emp_name, m.hire_date, m.salary, m.dept_id
+	from emp m left join emp e
+    on m.mgr = e.emp_id
+    where m.mgr is null;
+
+-- 부서명, 소속본부 추가 조회
+select emp_id, emp_name, hire_date, salary, d.dept_id, dept_name, unit_name
+	from department d,
+		 unit u,
+         (select emp_id, emp_name, hire_date, salary, dept_id
+			from emp
+			where mgr is null) e
+	where e.dept_id = d.dept_id and d.unit_id = u.unit_id;
+
+-- 누락 데이터 추가 1
+select emp_id, emp_name, hire_date, salary, d.dept_id, dept_name, unit_name
+	from department d inner join unit u on d.unit_id = u.unit_id
+					  right outer join(select emp_id, emp_name, hire_date, salary, dept_id
+										from emp
+										where mgr is null) e on e.dept_id = d.dept_id;
+
+-- 누락 데이터 추가 2
+select emp_id, emp_name, hire_date, salary, d.dept_id, dept_name, unit_name
+	from department d inner join unit u on d.unit_id = u.unit_id
+					  right outer join emp e on e.dept_id = d.dept_id
+	where e.mgr is null;
+
+/** 조인이나 서브쿼리 작업시에는 효율성을 높이기 위해 집합을 작게 만들고 진행하는 것이 좋음 **/
+
+-- 홍길동 사원이 관리하는 사원들의 사원아이디, 사원명, 연봉, 매니저사번, 매니저명
+select m.emp_id, m.emp_name, e.emp_id, e.emp_name, e.salary
+	from emp e, emp m -- e: 매니저가 관리하는 사원 테이블, m: 매니저 테이블
+    where e.mgr = m.emp_id -- 조건에 따라 출력 결과가 달라짐
+    and e.mgr = 'S0001';
+
+
+/************************************************
+	쿼리 결과 합치기 : union, union all
+    형식 : 쿼리1	union/union all 	쿼리2
+    ** 쿼리1, 쿼리2의 실행  결과 컬럼리스트가 동일해야 함
+    - union all : 중복에 상관없이 모든 데이터를 합쳐 출력
+    - union : 중복을 제한 데이터를 합쳐 출력
+************************************************/
+-- HRD 부서의 사원 아이디, 사원명, 부서명, 연봉 
+-- SYS 부서의 사원 아이디, 사원명, 부서명, 연봉 실행 결과 합치기 
+select emp_id, emp_name, dept_id, salary from employee where dept_id = 'HRD' -- 4
+union all
+select emp_id, emp_name, dept_id, salary from employee where dept_id = 'SYS'; -- 6
+
+-- 영업, 정보시스템 부서로 조회
+select emp_id, emp_name, dept_id, salary 
+	from employee 
+    where dept_id = (select dept_id from department where dept_name = '영업')
+union all
+select emp_id, emp_name, dept_id, salary 
+	from employee 
+    where dept_id = (select dept_id from department where dept_name = '정보시스템');
+-- 실시간 처리에는 적합하지 않음
+
+-- 2013 ~ 2016년도 사이에 입사한 사원과 
+-- SYS 부서 사원들의 아이디, 사원명, 부서아이디, 폰번호, 연봉 조회 
+-- union all : 중복허용, 전체 데이터 모두 출력 -> 22
+-- union : 중복허용x, 전체 데이터 모두 출력 -> 17
+select count(*) from (
+select emp_id, emp_name, dept_id, phone, salary
+	from employee
+    where left(hire_date, 4) between '2013' and '2016' -- 16
+union
+select emp_id, emp_name, dept_id, phone, salary
+	from employee
+    where dept_id = 'SYS') t1; -- 6
+
+-- 2013 ~ 2015년도별, 부서들의 연봉 합계가 가장 높은 부서들만 조회
+-- 연도별로 연봉이 가장 높은 부서만 뽑아낸 후 union으로 조합 
+select row_number() over(order by year) as no,
+		year, dept_id, salary
+	from (select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2013'
+						group by year, dept_id) t1
+			where no = 1
+		union 
+		select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2014'
+						group by year, dept_id) t1
+			where no = 1
+		union
+		select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2015'
+						group by year, dept_id) t1
+			where no = 1) t2;
+
+/*****************************************
+	view(뷰) : 논리적인 가상의 테이블 
+    - SQL을 실행하여 생성되는 테이블 
+    - 형식 : create view [생성하는 view명]
+			as 
+            서브쿼리 
+	- 삭제 : drop view [view명]
+*****************************************/
+-- view는 sql을 통해 생성되므로 information_schema라는 사전에 등록됨
+-- 전체 view 리스트 조회시 information_schema.views 사용 
+select * from
+	information_schema.views;
+
+-- employee, department, unit 테이블을 조인한 뷰 생성 
+-- 뷰 이름 : view_emp_dept_unit
+create view view_emp_dept_unit -- > 단축키처럼 실행 
+as
+select e.emp_id,
+	   e.emp_name,
+       e.hire_date,
+       d.dept_id,
+       d.dept_name,
+       u.unit_name
+	from employee e, department d, unit u
+    where e.dept_id = d.dept_id and d.unit_id = u.unit_id
+    order by e.emp_id asc;
+    
+select * from information_schema.views
+	where table_schema = 'hrdb2019';
+
+select * from view_emp_dept_unit
+	where dept_id = 'SYS';
+
+drop view view_emp_dept_unit;
+
+-- 2013 ~ 2015년도별, 부서들의 연봉 합계가 가장 높은 부서들만 조회
+-- view 생성 : view_sum_salary
+create view view_sum_salary
+as
+select row_number() over(order by year) as no,
+		year, dept_id, salary
+	from (select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2013'
+						group by year, dept_id) t1
+			where no = 1
+		union 
+		select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2014'
+						group by year, dept_id) t1
+			where no = 1
+		union
+		select year, dept_id, salary
+			from (select row_number() over(order by sum(salary) desc) as no,
+						   left(hire_date, 4) as year,
+						   dept_id,
+						   sum(salary) as salary
+						from employee
+						where left(hire_date, 4) = '2015'
+						group by year, dept_id) t1
+			where no = 1) t2;
+
+select * from information_schema.views where table_schema = 'hrdb2019';
+select * from view_sum_salary;
+select no, 
+	   concat(year, '년도') as year, 
+       dept_id, 
+       concat(format(salary, 0), '만원') as salary
+	from view_sum_salary;
+
+-- 매니저(홍길동, 오감자, 정주고)에 따라 
+-- 관리하는 모든 사원들의 사원번호, 사원명, 입사일, 급여, 부서아이디, 부서명을 조회하는 서브쿼리 생성 후 뷰로 저장
+-- view 이름 : view_emp_mgr
+create view view_emp_mgr
+as
+select e.emp_id as mgr_id, 
+	   e.emp_name as mgr_name, 
+       m.emp_id, 
+       m.emp_name,
+       m.dept_id,
+       d.dept_name
+	from emp e, emp m, department d -- e: 매니저 정보, m: 매니저가 관리하는 사원 정보
+	where e.emp_id = m.mgr and m.dept_id = d.dept_id
+	order by e.emp_id;
+
+select * from information_schema.views where table_schema = 'hrdb2019';
+select * from view_emp_mgr;
+drop view view_emp_mgr;
+
+-- 홍길동 매니저가 관리하는 사원들 조회 
+select row_number() over(order by mgr_id) no,
+	   emp_id, emp_name, dept_id, dept_name 
+	from view_emp_mgr 
+    where mgr_name = '홍길동';
+-- 정주고 매니저가 관리하는 사원들 조회 
+select row_number() over(order by mgr_id) no,
+	   emp_id, emp_name, dept_id, dept_name 
+	from view_emp_mgr 
+    where mgr_name = '정주고';
+-- 오감자 매니저가 관리하는 사원들 조회 
+select row_number() over(order by mgr_id) no,
+	   emp_id, emp_name, dept_id, dept_name 
+	from view_emp_mgr 
+    where mgr_name = '오감자';
+
+-- [전체 사원의 휴가일수 조회 : 휴가를 사용한 사원 정보 + 사용하지 않은 사원]
+-- 사원별 휴가 결제 횟수, 휴가 전체 사용일수를 그룹핑하여 
+-- 사원 아이디, 사원명, 입사일, 연봉, 휴가 결제 횟수, 휴가 전체 사용일수, 부서아이디, 부서명, 소속본부를 조회 
+-- 단, 휴가를 사용하지 않은 사원의 휴가 결제 횟수, 휴가 전체 사용일수는 0값으로 할당
+-- view 이름 : view_emp_vacation 
+create view view_emp_vacation
+as  
+select e.emp_id,
+	   e.emp_name,
+	   e.hire_date,
+       e.salary,
+       ifnull(v.count, 0) as count,
+       ifnull(v.vcount, 0) as vcount,
+        d.dept_id,
+        d.dept_name,
+        u.unit_name
+	from employee e left outer join
+			(select emp_id,
+					count(emp_id) as count,
+					sum(duration) as vcount
+				from vacation
+				group by emp_id) v on e.emp_id = v.emp_id
+			inner join department d on e.dept_id = d.dept_id
+			left outer join unit u on d.unit_id = u.unit_id
+	order by e.emp_id;
+
+select * from information_schema.views where table_schema = 'hrdb2019';
+select * from view_emp_vacation;
+
 
 
 
