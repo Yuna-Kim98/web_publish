@@ -2032,6 +2032,11 @@ select * from information_schema.views where table_schema = 'hrdb2019';
 select * from view_emp_vacation;
 
 
+/********************************
+	25. 01. 09
+********************************/
+
+
 
 
 
