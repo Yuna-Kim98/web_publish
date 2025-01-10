@@ -796,3 +796,108 @@ select row_number() over(order by point desc) as no,
        point
 	from customer
     where point > (select point from customer where customer_name = '홍길동');
+
+-- 2016 ~ 2019년도까지 주문한 고객의 아이디, 이름, 주문 번호, 주문 총 금액을 조회 
+show tables;
+desc customer;
+desc order_header;
+
+select left(oh.order_date, 4) as year,
+	   oh.customer_id,
+	   c.customer_name,
+       oh.order_id,
+       oh.total_due
+	from customer c, (
+			select * from order_header2016 -- 596
+			union all
+			select * from order_header2017 -- 561
+			union all
+			select * from order_header -- 903
+		) oh
+	where c.customer_id = oh.customer_id;
+
+-- 년도별 주문건수 조회, 총판매합계 조회. 년도 기준 오름차순 정렬 
+-- 년도 : year, 건수 : count, 합계 : sum
+-- '년도', '건', '원'
+select concat(left(oh.order_date, 4), '년도') as year,
+	   concat(count(order_id), '건') as count,
+       concat(format(sum(total_due), 0), '원') as sum
+	from customer c, (
+			select * from order_header2016 -- 596
+			union all
+			select * from order_header2017 -- 561
+			union all
+			select * from order_header -- 903
+		) oh
+	where c.customer_id = oh.customer_id
+    group by year
+    order by year asc;
+
+-- view를 이용하여 order_header_total (2016 ~ 2019) 생성
+select * from information_schema.views where table_schema = 'myshop2019';
+create view order_header_total
+as
+select * from order_header2016
+union all
+select * from order_header2017
+union all
+select * from order_header;
+
+--
+
+select concat(left(t.order_date, 4), '년도') as year,
+	   concat(count(order_id), '건') as count,
+       concat(format(sum(total_due), 0), '원') as sum
+	from customer c, order_header_total t
+	where c.customer_id = t.customer_id
+    group by year
+    order by year asc;
+
+-- 주문년도별, 주문월별,  주문아이디별 주문 아이디별 다정한 사원의 주문 건수 조회
+-- 2016 ~ 2019 : order_header_total (view)
+-- 2016 ~ 2019 detail : order_detail_total (view)
+create view order_detail_total
+as
+select * from order_detail2016 -- 1582
+union all
+select * from order_detail2017 -- 1479
+union all
+select * from order_detail; -- 2425
+-- 총 5486
+
+select * from information_schema.views where table_schema = 'myshop2019';
+select * from order_detail_total; -- 5468
+
+
+
+
+
+
+ 
+select left(order_date, 4) as year,
+	   substring(order_date, 6, 2) as month,
+       -- order_id,
+       count(order_id)
+	from (select e.employee_name,
+			     oh.order_date,
+			     p.product_name,
+			     oh.order_id,
+			     od.drder_detail_id
+			from employee e, order_header_total oh, order_detail_total od, product p
+				where e.employee_id = oh.employee_id
+					and oh.order_id = od.order_id
+					and od.product_id = p.product_id) t1
+	group by left(order_date, 4), substring(order_date, 6, 2) -- , order_id
+	order by year asc;
+
+
+-- 카테고리 활용 : 서브쿼리
+-- 대분류로 '가전제품' 선택 후 소분류 값 가져오기
+select sub_category_name
+	from sub_category
+    where category_id in (select category_id from category where category_name = '가전제품');
+
+-- 소분류에서 대형을 선택한 후 상품명 가져오기
+select product_name 
+	from product
+    where sub_category_id = (select sub_category_id from sub_category where sub_category_name = '대형');
