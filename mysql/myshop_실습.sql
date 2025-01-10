@@ -349,6 +349,20 @@ select distinct oh.order_id,
 			where total_due >= 8500000) oh
     where od.order_id = oh.order_id;
     
+-- order_header 테이블 : order_id, customer_id, order_date, total_due
+select count(*) from order_header; -- 903
+select count(*) from order_header where total_due >= 8500000;
+
+select order_id,
+	   customer_id,
+       employee_id,
+       order_date,
+       total_due
+	from order_header
+    where total_due >= 8500000
+    order by total_due desc;
+
+    
 -- Q02) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름도 같이 조회되게 수정하세요.
 select distinct oh.order_id,
        oh.customer_id,
@@ -363,6 +377,20 @@ select distinct oh.order_id,
 		and oh.order_id = od.order_id
     and oh.total_due >= 8500000;
 
+--
+
+select oh.order_id,
+	   oh.customer_id,
+       c.customer_name,
+       oh.employee_id,
+       oh.order_date,
+       oh.total_due
+	from order_header oh, customer c
+    where oh.customer_id = c.customer_id 
+		and total_due >= 8500000
+    order by total_due desc;
+
+
 -- Q03) Q01 쿼리를 복사해 붙여 넣은 후 직원이름도 같이 조회되게 수정하세요.
 select distinct oh.order_id,
        oh.customer_id,
@@ -374,6 +402,23 @@ select distinct oh.order_id,
     where oh.employee_id = e.employee_id
 		and oh.order_id = od.order_id
     and oh.total_due >= 8500000;
+    
+--
+
+select oh.order_id,
+	   oh.customer_id,
+       c.customer_name,
+       oh.employee_id,
+       e.employee_id,
+       oh.order_date,
+       oh.total_due
+	from order_header oh, customer c, employee e
+    where oh.customer_id = c.customer_id 
+		and oh.employee_id = e.employee_id
+		and total_due >= 8500000
+    order by total_due desc;
+-- 4번 예제의 결과
+
     
 -- Q04) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 고객이름, 직원이름도 같이 조회되게 수정하세요.
 select distinct oh.order_id,
@@ -407,6 +452,39 @@ select distinct oh.order_id,
     and oh.total_due >= 8500000
 		and c.city = '서울';
 
+--
+
+select oh.order_id,
+	   oh.customer_id,
+       c.customer_name,
+       oh.employee_id,
+       e.employee_id,
+       oh.order_date,
+       oh.total_due,
+       c.city
+	from order_header oh, customer c, employee e
+    where oh.customer_id = c.customer_id 
+		and oh.employee_id = e.employee_id
+		and oh.total_due >= 8500000
+        and c.city = '서울'
+    order by total_due desc;
+-- ansi sql
+select oh.order_id,
+	   oh.customer_id,
+       c.customer_name,
+       oh.employee_id,
+       e.employee_id,
+       oh.order_date,
+       oh.total_due,
+       c.city
+	from order_header oh inner join customer c inner join employee e
+    on oh.customer_id = c.customer_id 
+		and oh.employee_id = e.employee_id
+	where oh.total_due >= 8500000
+        and c.city = '서울'
+    order by oh.total_due desc;
+
+
 -- Q06) 위에서 작성한 쿼리문을 복사해 붙여 넣은 후 전체금액이 8,500,000 이상인 '서울' 지역 '남자' 고객만 조회되게 수정하세요.
 select distinct oh.order_id,
        oh.customer_id,
@@ -424,29 +502,297 @@ select distinct oh.order_id,
 		and oh.order_id = od.order_id
     and oh.total_due >= 8500000
 		and c.city = '서울'
-        and c.gender = 'M';
-
+        and c.gender = 'M'
+	order by total_due desc;
 -- 뷰를 생성할 때는 조건절에 세부조건을 생성하지 않고 전체 데이터를 가지고 생성한다.
 
+
 -- Q07) 주문수량이 30개 이상인 주문의 주문번호, 상품코드, 주문수량, 단가, 지불금액을 조회하세요.
+-- 테이블 컬럼명 수정 : alter table [테이블명] rename column [기존 컬럼명] to [변경할 컬럼명];
+desc order_detail;
+alter table order_detail change drder_detail_id order_detail_id int;
+
+select order_id,
+	   order_detail_id,
+	   product_id,
+	   order_qty,
+       unit_price,
+       line_total
+	from order_detail
+    where order_qty >= 30;
+
+
 -- Q08) 위에서 작성한 쿼리문을 복사해서 붙여 넣은 후 상품이름도 같이 조회되도록 수정하세요.
--- Q09) 상품코드, 상품이름, 소분류아이디를 조회하세요.
+select od.order_id,
+	   od.order_detail_id,
+	   od.product_id,
+       p.product_name,
+	   od.order_qty,
+       od.unit_price,
+       od.line_total
+	from order_detail od, product p
+    where od.product_id = p.product_id
+		and order_qty >= 30;
+
+-- ansi sql
+select od.order_id,
+	   od.order_detail_id,
+	   od.product_id,
+       p.product_name,
+	   od.order_qty,
+       od.unit_price,
+       od.line_total
+	from order_detail od inner join product p
+		on od.product_id = p.product_id
+	where order_qty >= 30;
+
+
+-- Q09) 상품코드, 상품이름, 소분류아이디(카테고리 아이디)를 조회하세요.
+select count(*) from product; -- 41
+select product_id, product_name, sub_category_id from product;
+
 -- Q10) 위에서 작성한 쿼리문을 복사해서 붙여 넣은 후 소분류이름, 대분류아이디가 조회되게 수정하세요.
+-- oracle
+desc sub_category;
+select * from sub_category;
+select p.product_id,
+	   p.product_name,
+       s.sub_category_name,
+       p.sub_category_id,
+       s.category_id
+	from product p, sub_category s
+    where p.sub_category_id = s.sub_category_id;
+    
+-- ansi sql
+select s.category_id 대분류아이디,
+       p.sub_category_id 소분류아이디,
+       s.sub_category_name 소분류명,
+       p.product_id 상품아이디,
+       p.product_name 상품명
+	from product p inner join sub_category s
+		on p.sub_category_id = s.sub_category_id;
+
+-- 위에서 작성한 쿼리문을 복사해서 붙여 넣은 후 대분류 이름을 추가해서 조회되게 수정하세요.
+-- oracle
+desc category; -- category_id, category_name
+select sc.category_id 대분류아이디,
+	   c.category_name 대분류명,
+       p.sub_category_id 소분류아이디,
+       sc.sub_category_name 소분류명,
+       p.product_id 상품아이디,
+       p.product_name 상품명
+	from product p, sub_category sc, category c
+    where p.sub_category_id = sc.sub_category_id
+		and sc.category_id = c.category_id;
+
+-- ansi sql
+select sc.category_id 대분류아이디,
+	   c.category_name 대분류명,
+       p.sub_category_id 소분류아이디,
+       sc.sub_category_name 소분류명,
+       p.product_id 상품아이디,
+       p.product_name 상품명
+	from product p inner join sub_category sc inner join category c
+    on p.sub_category_id = sc.sub_category_id
+		and sc.category_id = c.category_id;
+
+-- 대분류, 소분류 별 상품갯수, 총 상품가격 합계, 상품가격 평균
+select category_name,
+	   sub_category_name,
+       count(product_id) count,
+       format(sum(unit_price), 0) sum,
+       format(avg(unit_price), 0) avg
+	from (select distinct sc.category_id,
+				 c.category_name,
+				 p.sub_category_id,
+				 sc.sub_category_name,
+			     p.product_id,
+			     p.product_name,
+                 od.unit_price
+			from product p, sub_category sc, category c, order_detail od
+			where p.sub_category_id = sc.sub_category_id
+				and sc.category_id = c.category_id
+                and p.product_id = od.product_id) t1
+    group by category_name, sub_category_name;
+
+
 -- Q11) 다정한 사원이 2019년에 주문한 상품명을 모두 출력해주세요.
+-- employee, order_header, order_detail, product
+-- oracle
+select e.employee_name,
+	   oh.order_date,
+       p.product_name,
+       oh.order_id,
+       od.order_detail_id
+	from employee e, order_header oh, order_detail od, product p
+    where e.employee_id = oh.employee_id
+		and oh.order_id = od.order_id
+        and od.product_id = p.product_id
+	and employee_name = '다정한'
+		and left(oh.order_date, 4) = '2019';
+
+-- ansi sql
+select e.employee_name,
+	   oh.order_date,
+       p.product_name,
+       oh.order_id,
+       od.order_detail_id
+	from employee e inner join order_header oh inner join order_detail od inner join product p
+		on e.employee_id = oh.employee_id
+			and oh.order_id = od.order_id
+			and od.product_id = p.product_id
+	where employee_name = '다정한'
+		and left(oh.order_date, 4) = '2019';
+
+-- 2019년도 1월의 주문 아이디별 다정한 사원의 주문 건수 조회
+select order_id,
+	   count(order_id)
+	from (select e.employee_name,
+			     oh.order_date,
+			     p.product_name,
+			     oh.order_id,
+			     od.order_detail_id
+			from employee e, order_header oh, order_detail od, product p
+				where e.employee_id = oh.employee_id
+					and oh.order_id = od.order_id
+					and od.product_id = p.product_id
+			and employee_name = '다정한'
+				and left(oh.order_date, 7) = '2019-01') t1
+	group by order_id;
+
+-- 주문년도별, 주문월별,  주문아이디별 주문 아이디별 다정한 사원의 주문 건수 조회
+-- 2019년도만 조회 
+select left(order_date, 4) as year,
+	   substring(order_date, 6, 2) as month,
+       -- order_id,
+       count(order_id)
+	from (select e.employee_name,
+			     oh.order_date,
+			     p.product_name,
+			     oh.order_id,
+			     od.order_detail_id
+			from employee e, order_header oh, order_detail od, product p
+				where e.employee_id = oh.employee_id
+					and oh.order_id = od.order_id
+					and od.product_id = p.product_id
+			and employee_name = '다정한') t1
+	group by left(order_date, 4), substring(order_date, 6, 2) -- , order_id
+    having year = '2019'; -- having절은 group 작업까지 끝난 후 실행되므로 별칭을 설정했을 경우 반드시 별칭으로 실행해야 한다.
+
+
 -- Q12) 청소기를 구입한 고객아이디, 사원번호, 주문번호, 주문일시를 조회하세요.
+-- 행번호 추가
+select * from product where product_name like '%청소기%';
+desc order_header;
+select row_number() over(order by oh.order_date desc) as no,
+	   oh.customer_id, 
+	   oh.employee_id, 
+       oh.order_id, 
+       oh.order_date, 
+       p.product_name
+	from product p, order_detail od, order_header oh
+    where p.product_id = od.product_id
+		and oh.order_id = od.order_id
+	and product_name like '%청소기%';
     
 
 /**
 	서브쿼리
 */
--- Q13) 'mtkim', 'odoh', 'soyoukim', 'winterkim' 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.    
--- Q14) '전주' 지역 고객의 아이디를 조회하세요.    
+-- Q13) 'mtkim', 'soyoukim' 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.
+select * from order_header;
+select order_id,
+	   customer_id,
+       order_date,
+       total_due
+    from order_header
+    where customer_id in ('mtkim', 'soyoukim');
+
+-- 김마트, 김소유 고객의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.
+select * from customer where customer_id in ('mtkim', 'soyoukim');  
+select order_id,
+	   customer_id,
+       order_date,
+       total_due
+    from order_header
+    where customer_id in (select customer_id 
+							from customer 
+                            where customer_name in ('김마트', '김소유'));
+
+desc customer;
+select customer_id from customer where customer_name in ('김마트', '김소유');
+
+
+-- Q14) '전주' 지역 고객의 아이디, 고객명, 고객의 생일을조회하세요.
+select customer_id, 
+	   customer_name,
+       birth_date
+	from customer
+    where city = '전주';
+
+-- '전주' 지역 고객의 주문번호 조회
+desc order_header;
+select * -- order_id
+	from order_header
+    where customer_id in (select customer_id from customer where city = '전주');
+
+
 -- Q15) 위 두 쿼리문을 조합해서 하위 쿼리를 사용해 '전주' 지역 고객 주문의 주문번호, 고객아이디, 주문일시, 전체금액을 조회하세요.
+-- 만약 고객명을 함께 출려하고 싶다면 order_header & customer 조인 해야 함
+select order_id,
+       customer_id,
+       order_date,
+       total_due
+	from order_header
+    where customer_id in (select customer_id from customer where city = '전주');
+
+
 -- Q16) 고객의 포인트 최댓값을 조회하세요.
+select max(point) from customer;
+
+
 -- Q17) 하위 쿼리를 사용해 가장 포인트가 많은 고객의 이름, 아이디, 등록일, 포인트를 조회하세요.
+desc customer;
+select customer_name, 
+	   customer_id, 
+       register_date,
+       point
+	from customer
+	where point = (select max(point) from customer);
+
+
 -- Q18) 하위 쿼리를 사용해 홍길동(gdhong) 고객보다 포인트가 많은 고객 이름, 아이디, 등록일, 포인트를 조회하세요.
+select point from customer where customer_name = '홍길동';
+
+select customer_name,
+	   customer_id, 
+       register_date, 
+       point
+	from customer
+    where point > (select point from customer where customer_name = '홍길동');
+
+
 -- Q19) 하위 쿼리를 사용해 홍길동(gdhong) 고객과 같은 지역의 고객 이름, 아이디, 지역, 등록일, 포인트를 조회하세요.
 --      단, 고객 이름을 기준으로 오름차순 정렬해서 조회하세요.
--- Q20) 하위 쿼리를 사용해 홍길동(gdhong) 고객보다 포인트가 많은 고객 이름, 아이디, 등록일, 포인트를 조회하고, 행번호를 추가하여 출력하세요.
+select city from customer where customer_name = '홍길동';
 
-    
+select customer_name,
+	   customer_id,
+       city,
+       register_date,
+       point
+	from customer
+    where city = (select city from customer where customer_name = '홍길동')
+    order by customer_name;
+
+
+-- Q20) 하위 쿼리를 사용해 홍길동(gdhong) 고객보다 포인트가 많은 고객 이름, 아이디, 등록일, 포인트를 조회하고, 행번호를 추가하여 출력하세요.
+select point from customer where customer_name = '홍길동';
+
+select row_number() over(order by point desc) as no,
+	   customer_name,
+       customer_id,
+       register_date,
+       point
+	from customer
+    where point > (select point from customer where customer_name = '홍길동');
