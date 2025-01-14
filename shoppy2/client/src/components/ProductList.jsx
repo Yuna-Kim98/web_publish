@@ -17,6 +17,9 @@ export default function ProductList() {
         rows.push(list.slice(i, i+3));
     }
     console.log('rows --> ', rows);
+    // [{}, {}, {}]
+    // [{}, {}, {}]
+    // [{}]
 
     return (
         <div>

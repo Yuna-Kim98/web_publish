@@ -6,7 +6,7 @@ export default function Home() {
         <div className='content'>
             <div className='banner'>
                 <h3>Shop with US</h3>
-                <h5>Best Products, High Quality</h5>
+                <p>Best Products, High Quality</p>
             </div>
             <ProductList />
         </div>
