@@ -33,4 +33,4 @@ server.get('/param/:name', (req, res) => {
 // server.use();
 
 // server.listen(8080, function () {});
-server.listen(8080, () => { console.log('서버 실행 중'); }); // 서버 포트 번호 지정 -> http://localhost:8080ㅁㄴ
+server.listen(8080, () => { console.log('서버 실행 중'); }); // 서버 포트 번호 지정 -> http://localhost:8080

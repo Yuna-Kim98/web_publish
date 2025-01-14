@@ -1,0 +1,58 @@
+[
+    {
+        "pid" : "1",
+        "image" : "images/1.webp",
+        "alt" : "product 1",
+        "name" : "분홍 후드티",
+        "price" : "15000",
+        "info" : "분홍색 후드티"
+    },
+    {
+        "pid" : "1",
+        "image" : "images/2.webp",
+        "alt" : "product 2",
+        "name" : "검정 후드티",
+        "price" : "15000",
+        "info" : "검정색 후드티"
+    },
+    {
+        "pid" : "3",
+        "image" : "images/3.webp",
+        "alt" : "product 3",
+        "name" : "베이지색 원피스",
+        "price" : "15000",
+        "info" : "베이지색 원피스"
+    },
+    {
+        "pid" : "4",
+        "image" : "images/4.webp",
+        "alt" : "product 4",
+        "name" : "숏팬츠",
+        "price" : "15000",
+        "info" : "숏팬츠"
+    },
+    {
+        "pid" : "5",
+        "image" : "images/5.webp",
+        "alt" : "product 5",
+        "name" : "티셔츠",
+        "price" : "15000",
+        "info" : "티셔츠"
+    },
+    {
+        "pid" : "6",
+        "image" : "images/6.webp",
+        "alt" : "product 6",
+        "name" : "검은색 원피스",
+        "price" : "15000",
+        "info" : "검은색 원피스"
+    },
+    {
+        "pid" : "7",
+        "image" : "images/7.webp",
+        "alt" : "product 7",
+        "name" : "자켓",
+        "price" : "15000",
+        "info" : "자켓"
+    }
+]
