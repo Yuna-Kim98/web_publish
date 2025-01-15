@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ProductAvata from './ProductAvata.jsx';
 
@@ -16,17 +17,16 @@ export default function ProductList() {
     for (let i = 0; i < list.length; i+=3) {
         rows.push(list.slice(i, i+3));
     }
-    console.log('rows --> ', rows);
-    // [{}, {}, {}]
-    // [{}, {}, {}]
-    // [{}]
+    // console.log('rows --> ', rows);
 
     return (
         <div>
             { rows.map((rowArray) => 
                 <div className='product-list'>
                     { rowArray.map((product) => 
-                        <ProductAvata img={product.image} alt={product.alt} />
+                        <Link to={`/products/${product.pid}`}>
+                            <ProductAvata key={product.pid} img={product.image} alt={product.alt} />
+                        </Link>
                     ) }
                 </div>
             ) }

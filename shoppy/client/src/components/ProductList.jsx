@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ProductAvata from './ProductAvata.jsx';
 import axios from 'axios'; // 외부 라이브러리이므로 import 반드시 필요
+import { Link } from 'react-router-dom';
 
 export default function ProductList() {
     const [list, setList] = useState([]); // list 변경시 실시간 업데이트
 
     useEffect(() => {
-        axios.get('data/products.json') // node 서버 환경에서 네트워크를 통해 데이터를 가져옴
+        axios.get('/data/products.json') // node 서버 환경에서 네트워크를 통해 데이터를 가져옴
             .then((res) => setList(res.data))
             .catch((error) => console.log(error));
 
@@ -30,7 +31,9 @@ export default function ProductList() {
             { rows.map((rowArray) => // 1차원 배열 map
                 <div className='product-list'>
                     { rowArray.map((product) => // 2차원 배열 map
-                        <ProductAvata img={product.image} />
+                        <Link key={product.pid} to={`/products/${product.pid}`}>
+                            <ProductAvata img={product.image} />
+                        </Link>
                     ) }
                 </div>
             ) }
