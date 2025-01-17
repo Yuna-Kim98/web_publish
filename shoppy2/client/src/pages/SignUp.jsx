@@ -11,7 +11,7 @@ export default function Signup() {
         acc[name] = '';
         return acc;
     }, {});
-    console.log('init --> ', init);
+    // console.log('init --> ', init);
 
     // ref 초기 데이터
     const refs = useRef(
@@ -68,6 +68,7 @@ export default function Signup() {
 
         errCheck(name, value, errMsg, setErrMsg);
     }
+    // console.log('errMsg --> ', errMsg);
 
     // onSubmit
     const handleSignUpSubmit = (event) => {
@@ -84,7 +85,7 @@ export default function Signup() {
                     { names && names.map((name) => (
                         <li>
                             <label for="" ><b>{labels[name]}</b></label>
-                            <span>{errMsg.name}</span>
+                            <span>{errMsg[name]}</span>
                             <div>
                                 {/* 삼항연산자 사용 */}
                                 { name !== 'emailname' ? (
@@ -108,13 +109,13 @@ export default function Signup() {
                                     <input type="text" 
                                             name={name}
                                             // id = "emailname"
-                                            ref={refs.enRef}
+                                            ref={refs.current[name.concat('Ref')]}
                                             onChange={handleSignUpForm}
                                             placeholder="이메일 주소" />
                                     <span>@</span>       
-                                    <select name={name}
+                                    <select name='emaildomian'
                                             // id="emaildomain"
-                                            ref={refs.current['emaildomainRef']}  >
+                                            ref={refs.current['emaildomainRef']}>
                                         <option value="default">선택</option>
                                         <option value="naver.com">naver.com</option>
                                         <option value="gmail.com">gmail.com</option>

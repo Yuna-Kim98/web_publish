@@ -33,8 +33,9 @@ export const signUpValidate = (refs, errMsg, setErrMsg) => {
         'nameRef': '이름',
         'phoneRef': '휴대폰번호',
         'emailnameRef': '이메일 주소',
-        'emaildomianRef': '이메일 도메인'
+        'emaildomainRef': '이메일 도메인'
     };
+    console.log(msg);
     // const property = {
     //     'idRef': 'id',
     //     'pwdRef': 'pwd',
@@ -49,12 +50,13 @@ export const signUpValidate = (refs, errMsg, setErrMsg) => {
         const newName = item[0].replace("Ref", '');
         const ref = item[1]; // 주소값
 
-        console.log('name --> ', name);
-        console.log('msg --> ', msg);
-        console.log('msg[name] --> ', msg[name]);
-        console.log('newname --> ', newName);
+        // console.log('name --> ', name);
+        // console.log('msg --> ', msg);
+        // console.log('msg[name] --> ', msg[name]);
+        // console.log('newname --> ', newName);
+        // console.log('ref --> ', ref);
 
-        if (name !== "emaildomain") {
+        if (name !== "emaildomainRef") { // 가져온 refs을 활용할 것
             if (ref.current.value === '') {
                 // alert(`${msg[name]}을/를 입력해주세요.`);
                 // setErrMsg({...errMsg, [property[name]]: `${msg[name]}을/를 입력해주세요.`});
@@ -69,7 +71,9 @@ export const signUpValidate = (refs, errMsg, setErrMsg) => {
                 return false;
             }
         }
+        
     }
+    
     return true;
 }
 
