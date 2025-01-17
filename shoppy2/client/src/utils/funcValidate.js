@@ -18,33 +18,53 @@ export const validate = (refs, errMsg, setErrMsg) => {
 }
 
 
-/*************************
- * 회원가입 폼 체크
-**************************/
+/*****************************
+ *  title : 회원가입 폼 체크
+******************************/
 // Object.entries() : 자바스크립트 객체를 배열로 변환해주는 메소드
 // {key:value} -> [key, value]
-export const signUpValidate = (refs, msgRefs) => {
-    const refsEntries = Object.entries(refs);
-    const msgRefsEntries = Object.entries(msgRefs);
+export const signUpValidate = (refs, errMsg, setErrMsg) => {
+    const refsEntries = Object.entries(refs.current); // -> [name, ref]
     console.log('refsEntries -->', refsEntries);
+    const msg = {
+        'idRef': '아이디',
+        'pwdRef': '비밀번호',
+        'cpwdRef': '비밀번호 확인',
+        'nameRef': '이름',
+        'phoneRef': '휴대폰번호',
+        'emailnameRef': '이메일 주소',
+        'emaildomianRef': '이메일 도메인'
+    };
+    // const property = {
+    //     'idRef': 'id',
+    //     'pwdRef': 'pwd',
+    //     'cpwdRef': 'cpwd',
+    //     'nameRef': 'name',
+    //     'phoneRef': 'phone',
+    //     'enRef': 'emailname'
+    // };
 
-    for (let i = 0; i < refsEntries.length; i++) {
-        const item = refsEntries[i];
-        const msgItem = msgRefsEntries[i];
+    for (const item of refsEntries /* = Object.entries(refs); */) {
         const name = item[0];
-        const ref = item[1]; // 데이터 입력폼 객체 주소
-        const msgName = msgItem[0];
-        const msgRef = msgItem[1]; // 데이터 입력폼의 메시지 객체 주소
+        const newName = item[0].replace("Ref", '');
+        const ref = item[1]; // 주소값
 
-        if (name !== 'edRef') {
+        console.log('name --> ', name);
+        console.log('msg --> ', msg);
+        console.log('msg[name] --> ', msg[name]);
+        console.log('newname --> ', newName);
+
+        if (name !== "emaildomain") {
             if (ref.current.value === '') {
-                msgRef.current.style.setProperty('color', 'red');
+                // alert(`${msg[name]}을/를 입력해주세요.`);
+                // setErrMsg({...errMsg, [property[name]]: `${msg[name]}을/를 입력해주세요.`});
+                setErrMsg({...errMsg, [newName]: `${msg[name]}을/를 입력해주세요.`});
                 ref.current.focus();
                 return false;
             }
         } else {
             if (ref.current.value === 'default') {
-                alert('이메일 도메인을 선택해주세요.');
+                alert(`${msg[name]}을 선택해주세요.`);
                 ref.current.focus();
                 return false;
             }
@@ -53,6 +73,9 @@ export const signUpValidate = (refs, msgRefs) => {
     return true;
 }
 
+/***************************************
+ *  title : 회원가입 폼 에러메세지 체크
+****************************************/
 export const errCheck = (name, value, errMsg, setErrMsg) => {
     const names = [
         { 'name': 'id', 'msg': '아이디을/를 입력해주세요.' },

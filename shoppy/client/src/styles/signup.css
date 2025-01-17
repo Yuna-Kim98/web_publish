@@ -70,7 +70,7 @@
     /* border: 1px solid red; */
     font-size: 0.7em;
     font-weight: 300;
-    color: var(--color-button);
+    color: #797878;
     margin-left: 10px;
 }
 .signup-form ul li:first-child input{

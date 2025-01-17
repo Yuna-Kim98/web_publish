@@ -56,8 +56,9 @@ export default function Login() {
                                     onChange={handleChageForm}
                                     placeholder="아이디를 입력해주세요" />
                         </div>
-                        <p id="error-msg-id">{errMsg.id}</p>
+                        {/* <p style={{marginTop : '10px' , fontSize : '0.8em', color: 'red'}} id="error-msg-id">{errMsg.id}</p> */}
                     </li>
+                    <li><span style={{fontSize : '0.8em', color: 'red'}} id="error-msg-id">{errMsg.id}</span></li>
                     <li>
                         <div className="login-form-input">
                             <span className="login-form-input-icons"><FaLock/></span>
@@ -68,8 +69,8 @@ export default function Login() {
                                     onChange={handleChageForm}
                                     placeholder="패스워드를 입력해주세요" />
                         </div>
-                        <p id="error-msg-pwd">{errMsg.pwd}</p>
                     </li>
+                    <li><p style={{fontSize : '0.8em', color: 'red'}} id="error-msg-pwd">{errMsg.pwd}</p></li>
                     <li>
                         <button type="submit" className="login-button">로그인</button>
                     </li>

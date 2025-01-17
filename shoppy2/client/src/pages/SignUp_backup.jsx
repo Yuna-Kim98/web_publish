@@ -3,42 +3,17 @@ import '../styles/signup.css';
 import { signUpValidate, errCheck } from '../utils/funcValidate.js'
 
 export default function Signup() {
-    const names = ['id', 'pwd', 'cpwd', 'name', 'phone', 'emailname'];
-    const namesKor = ['아이디','비밀번호', '비밀번호 확인', '이름', '휴대폰 번호', '이메일 주소'];
+    const init = {
+        'id': '',
+        'pwd': '',
+        'cpwd': '',
+        'name': '',
+        'phone': '',
+        'emailname': '',
+        'emaildomain': 'default'
+    };
+    const names = ['id', 'pwd', 'cpwd', 'name'];
 
-    // 폼 초기 데이터
-    const init = names.reduce((acc, name) => {
-        acc[name] = '';
-        return acc;
-    }, {});
-    console.log('init --> ', init);
-
-    // ref 초기 데이터
-    const refs = useRef(
-        names.reduce((acc, name) => {
-        acc[name.concat('Ref')] = React.createRef();
-        return acc;
-        }, {})
-    );
-    refs.current.emaildomainRef = React.createRef();
-
-    // 폼 label 이름 데이터
-    const labels = names.reduce((acc, name, idx) => {
-        acc[name] = namesKor[idx];
-        return acc;
-    }, {});
-
-    // const init = {
-    //     'id': '',
-    //     'pwd': '',
-    //     'cpwd': '',
-    //     'name': '',
-    //     'phone': '',
-    //     'emailname': '',
-    //     'emaildomain': 'default'
-    // };
-
-    // const names = ['id', 'pwd', 'cpwd', 'name'];
     // const initForm = (initArray) => {
     //     const init = initArray.reduce((acc, key) => {
     //         acc[key] = '';
@@ -47,21 +22,20 @@ export default function Signup() {
     //     return init;
     // };
 
-    // const refs = {
-    //     idRef : useRef(null),
-    //     pwdRef : useRef(null),
-    //     cpwdRef : useRef(null),
-    //     nameRef : useRef(null),
-    //     phoneRef : useRef(null),
-    //     enRef : useRef(null),
-    //     edRef : useRef(null) 
-    // };
-
+    const refs = {
+        idRef : useRef(null),
+        pwdRef : useRef(null),
+        cpwdRef : useRef(null),
+        nameRef : useRef(null),
+        phoneRef : useRef(null),
+        enRef : useRef(null),
+        edRef : useRef(null) 
+    };
     // const [formData, setFormData] = useState(initForm(names));
     const [formData, setFormData] = useState(init);
     const [errMsg, setErrMsg] = useState(init);
 
-    // onChange
+    // 폼 데이터 입력 & 에러 메시지
     const handleSignUpForm = (event) => {
         const {name, value} = event.target;
         setFormData({...formData, [name]: value});
@@ -69,7 +43,7 @@ export default function Signup() {
         errCheck(name, value, errMsg, setErrMsg);
     }
 
-    // onSubmit
+    // 가입하기 버튼 이벤트
     const handleSignUpSubmit = (event) => {
         event.preventDefault();
         // 유효성 체크
@@ -81,59 +55,7 @@ export default function Signup() {
             <h1 className="center-title">SIGINUP</h1>
             <form className="signup-form" onSubmit={handleSignUpSubmit}>
                 <ul>
-                    { names && names.map((name) => (
-                        <li>
-                            <label for="" ><b>{labels[name]}</b></label>
-                            <span>{errMsg.name}</span>
-                            <div>
-                                {/* 삼항연산자 사용 */}
-                                { name !== 'emailname' ? (
-                                    <>
-                                    <input type="text" 
-                                            name={name}
-                                            // id={name}
-                                            ref={refs.current[name.concat('Ref')]}
-                                            onChange={handleSignUpForm}
-                                            placeholder = "아이디 입력(6~20자)" />
-                                    {
-                                        name === 'id' && // id일 때만 중복확인 버튼이 출력되게 함
-                                        <>
-                                        <button type="button" >중복확인</button>
-                                        <input type="hidden" id="idCheckResult" value="default" />
-                                        </>
-                                    }
-                                    </>
-                                ) : (
-                                    <>
-                                    <input type="text" 
-                                            name={name}
-                                            // id = "emailname"
-                                            ref={refs.enRef}
-                                            onChange={handleSignUpForm}
-                                            placeholder="이메일 주소" />
-                                    <span>@</span>       
-                                    <select name={name}
-                                            // id="emaildomain"
-                                            ref={refs.current['emaildomainRef']}  >
-                                        <option value="default">선택</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="daum.net">daum.net</option>
-                                    </select>
-                                    </>
-                                )}
-                            </div>
-                        </li>
-                    ))}
-
-
-
-
-
-
-
-
-                    {/* <li>
+                    <li>
                         <label for="" ><b>아이디</b></label>
                         <span>{errMsg.id}</span>
                         <div>
@@ -215,7 +137,7 @@ export default function Signup() {
                                 <option value="daum.net">daum.net</option>
                             </select>
                         </div>
-                    </li> */}
+                    </li>
                     <li>
                         <button type="submit">가입하기</button>
                         <button type="reset">가입취소</button>
