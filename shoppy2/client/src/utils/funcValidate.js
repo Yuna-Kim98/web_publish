@@ -35,7 +35,7 @@ export const signUpValidate = (refs, errMsg, setErrMsg) => {
         'emailnameRef': '이메일 주소',
         'emaildomainRef': '이메일 도메인'
     };
-    console.log(msg);
+    // console.log(msg);
     // const property = {
     //     'idRef': 'id',
     //     'pwdRef': 'pwd',
@@ -95,4 +95,53 @@ export const errCheck = (name, value, errMsg, setErrMsg) => {
             value === '' ? setErrMsg({...errMsg, [item.name]: item.msg}) : setErrMsg({...errMsg, [item.name]: ''})
         ) : ''
     );
+}
+
+/***************************************
+ *  title : 아이디 중복 확인 버튼 이벤트
+****************************************/
+export const handleIdCheck = (idRef, pwdRef, errMsg, setErrMsg, setIdCheck) => {
+    if (idRef.current.value === '') {
+        alert('아이디를 입력해주세요.');
+        setErrMsg({...errMsg, ['id'] : '아이디을/를 입력해주세요.'});
+        idRef.current.focus();
+    } else {
+        const did = 'test';
+        if (idRef.current.value === did) {
+            alert('이미 사용 중인 아이디입니다.');
+            setErrMsg({...errMsg, ['id'] : '아이디을/를 입력해주세요.'});
+            idRef.current.value = '';
+            idRef.current.focus();
+        } else {
+            alert('사용 가능한 아이디입니다.');
+            setIdCheck('complete');
+            setErrMsg({...errMsg, ['pwd']: '비밀번호을/를 입력해주세요.'});
+            pwdRef.current.focus();
+        }
+    }
+}
+
+/***************************************
+ *  title : 비밀번호 확인
+****************************************/
+export const handlePwdCheck = (pwdRef, cpwdRef, nameRef, errMsg, setErrMsg) => {
+    if (pwdRef.current.value === '') {
+        setErrMsg({...errMsg, ['pwd']: '비밀번호을/를 입력해주세요.'});
+        pwdRef.current.focus();
+    } else if (cpwdRef.current.value === '') {
+        if (document.activeElement !== cpwdRef.current) {
+            setErrMsg({...errMsg, ['cpwd']: '비밀번호 확인을/를 입력해주세요.'});
+            cpwdRef.current.focus();
+        }
+    } else {
+        if (pwdRef.current.value === cpwdRef.current.value) {
+            setErrMsg({...errMsg, ['cpwd']: '비밀번호가 일치합니다.'});
+            nameRef.current.focus();
+        } else {
+            setErrMsg({...errMsg, ['cpwd']: '비밀번호가 일치하지 않습니다.'});
+            pwdRef.current.value = '';
+            cpwdRef.current.value = '';
+            pwdRef.current.focus();
+        }
+    }
 }
