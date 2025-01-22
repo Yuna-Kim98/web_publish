@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Pagination({page, totalPages, currentPage, setPage}) {
+export default function Pagination2({page, totalPages, currentPage, setPage}) {
     const handleFirst = () => {
         setPage(1);
     }
@@ -64,8 +64,3 @@ export default function Pagination({page, totalPages, currentPage, setPage}) {
         page, totalPages, currentPage, setPage
     3. 추가 수정 있을 예정입니다~
 ******/
-
-/*********
- * 참고 페이지
-    - https://imdaxsz.tistory.com/37
-***********/

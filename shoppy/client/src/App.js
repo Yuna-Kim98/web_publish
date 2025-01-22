@@ -7,6 +7,7 @@ import Carts from './pages/Carts.jsx';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import DetailProduct from './pages/DetailProduct.jsx';
+import DetailProduct2 from './pages/DetailProduct2.jsx';
 import './styles/shoppy.css';
 
 export default function App() {
@@ -35,7 +36,7 @@ export default function App() {
             <Route path='/cart' element={<Carts cartList={cartList} />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
-            <Route path='/products/:pid' element={<DetailProduct addCart={addCart} />} />
+            <Route path='/products/:pid' element={<DetailProduct2 addCart={addCart} />} />
           </Route>
         </Routes>
       </BrowserRouter>

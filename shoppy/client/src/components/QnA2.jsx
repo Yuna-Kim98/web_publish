@@ -1,56 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Pagination2 from './Pagination2.jsx';
+import Pasination2 from './Pagination2.jsx'
 
-export default function Qna() {
-    // Date
+export default function QnA2() {
+    /** Date **/
     let date = new Date;
     let year = date.getFullYear().toString();
     let month = date.getMonth() + 1;
     let day = date.getDate();
     let display = `${year}. ${month}. ${day}`;
 
+    // pagination
     const [data, setData] = useState([]); // 데이터 관리
-    const [page, setPage] = useState(1);
-
-    
-
+    const [page, setPage] = useState(1); // 페이지 관리(시작 페이지)
+    const itemsPerPage = 6; // 한 페이지에 보여줄 데이터 갯수
+    const totalItem = data.length; // 데이터 총 갯수
+    const totalPages = Math.ceil(totalItem / itemsPerPage); // 총 페이지 갯수 계산
+    const currentPage = 1;
+    const [sliceData, setSliceData] = useState([]); // 현재 페이지에서 보여줄 리스트(slice)
     // 리스트 slice 범위
-    const itemsPerPage = 6; // 한 페이지에 보여줄 게시글 갯수
     const endIdx = (page * itemsPerPage); 
     const startIdx = endIdx - itemsPerPage;
 
-    // Data
+    /** Data 호출 **/ 
     useEffect(() => {
         axios.get('/data/qna.json')
-            .then((res) => {
-                if (page === 1) {
-                    setData(res.data.slice(startIdx, endIdx));
-                } else if (page === 2) {
-                    setData(res.data.slice(startIdx, endIdx));
-                }
-            })
+            .then((res) => {setData(res.data)})
             .catch((error) => console.log(error));
     }, []);
 
-    // 페이지 핸들링 함수
-    const handlePage = (num) => {
-        if (num === 1) {
-            setPage(1);
-            setData(data.slice());
-        }
-        setPage(num);
-        console.log(num);
-    }
+    /** sliceData 관리 :: 페이지 변경 or 리스트 변동 시 출력 데이터 재정의 **/ 
+    useEffect(() => {
+        setSliceData(data.slice(startIdx, endIdx));
+    }, [page, data]);
 
     return (
         <div className='product-detail-tab-qna'>
             <div>
                 <button>상품문의</button>
             </div>
-            <table>
+            <table className='una'>
                 <tbody>
-                { data && data.map((list) => (
+                { sliceData && sliceData.map((list) => (
                         <tr>
                             <td><button type='button'>{list.state}</button></td>
                             <td>
@@ -62,11 +53,7 @@ export default function Qna() {
                 )) }
                 </tbody>
             </table>
-            {/* <Pagination2 /> */}
-            <ul>
-            <li><a onClick={() => handlePage(1)}>1</a></li>
-            <li><a onClick={() => handlePage(2)}>2</a></li>
-        </ul>
-        </div>
+            <Pasination2 page={page} totalPages={totalPages} currentPage={currentPage} setPage={setPage} />
+        </div> 
     );
 }

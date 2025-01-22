@@ -9,12 +9,27 @@ import QnA from "../components/QnA.jsx";
 import ReturnDelivery from '../components/ReturnDelivery.jsx'
 import QnA2 from "../components/QnA2.jsx";
 import ProductDetailTab from "../components/ProductDetailTab.jsx";
+import QnA2copy from "../components/QnA2copy.jsx";
 
 export default function DetailProduct({ addCart }) {
+    const tabList = [
+        {'name': 'DETAIL'},
+        {'name': 'REVIEW'},
+        {'name': 'Q&A'},
+        {'name': 'RETURN & DELIVERY'}
+    ];
+
+
     const { pid } = useParams();
     const [product, setProduct] = useState({});
     const [size, setSize] = useState("XS"); 
-    const [category, setCategory] = useState('qna');
+    const [category, setCategory] = useState('Q&A');
+
+    const [select, setSelect] = useState('Q&A');
+    const handleChangeSelect = (name) => {
+        setSelect(name);
+        setCategory(name);
+    }
 
     useEffect(() => {
         axios
@@ -120,18 +135,19 @@ export default function DetailProduct({ addCart }) {
                 </ul>
             </div>  
             {/* DETAIL / REVIEW / Q&A / RETURN & DELIVERY  */}
-            <div className="product-detail-tab">
-                <ul>
-                    <li><label onClick={handleDetail}>DETAIL</label></li>
-                    <li><label onClick={handleReview}>REVIEW</label></li>
-                    <li><label onClick={handleQnA}>Q&A</label></li>
-                    <li><label onClick={handleReturnDelivery}>RETURN & DELIVERY</label></li>
+            <div className="product2-detail-tab">
+                <ul className="product2-detail-tab-ul">
+                    { tabList && tabList.map((item) => (
+                        <li className={ select === item.name ? "product2-detail-tab-li onClick" : "product2-detail-tab-li" }>
+                            <a onClick={() => handleChangeSelect(item.name)}>{item.name}</a>
+                        </li>
+                    )) }
                 </ul>
-                <div>
-                    { category === 'detail' ? <Detail /> : null }
-                    { category === 'review' ? <Review /> : null }
-                    { category === 'qna' ? <QnA /> : null }
-                    { category === 'returndelivery' ? <ReturnDelivery /> : null }
+                <div className="una-qna-list">
+                    { category === 'DETAIL' ? <Detail /> : null }
+                    { category === 'REVIEW' ? <Review /> : null }
+                    { category === 'Q&A' ? <QnA /> : null }
+                    { category === 'RETURN & DELIVERY' ? <ReturnDelivery /> : null }
                 </div>
             </div>
         </div>

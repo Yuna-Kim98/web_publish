@@ -15,7 +15,7 @@ export default function ReturnDeliveryTableList() {
 
 
 return (
-  <>
+<>
                 {
                     tables.map((title, index) => (
                     <tr key={index}>
