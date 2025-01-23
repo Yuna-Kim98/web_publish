@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageList from '../commons/ImageList.jsx';
 import DetailInfo from './DetailInfo.jsx';
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Detail() {
     const [detailImgList, setDetailImgList] = useState([]);
@@ -59,7 +60,7 @@ export default function Detail() {
             <button type='button' 
                     className={ button === true ? "product-detail-button-show" : "product-detail-button-hide"}
                     onClick={handleButton}>
-            상품 정보 고시 더보기
+            상품 정보 고시 더보기 <IoIosArrowDown />
             </button> 
             {/* 버튼 이벤트 연동 수정 필요 */}
         </div>
