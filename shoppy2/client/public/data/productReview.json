@@ -1,0 +1,41 @@
+{
+    "barList": [
+        {
+            "title": "사이즈",
+            "subTitle1": "적당함",
+            "subTitle2": "작음",
+            "subTitle3": "큼",
+            "percent1": "78",
+            "percent2": "7",
+            "percent3": "27"
+        },
+        {
+            "title": "색상",
+            "subTitle1": "같음",
+            "subTitle2": "비슷함",
+            "subTitle3": "다름",
+            "percent1": "78",
+            "percent2": "7",
+            "percent3": "27"
+        },
+        {
+            "title": "소재",
+            "subTitle1": "같음",
+            "subTitle2": "비슷함",
+            "subTitle3": "다름",
+            "percent1": "78",
+            "percent2": "7",
+            "percent3": "27"
+        }
+    ],
+    "reviewImg": [
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" },
+        { "img": "https://plus.unsplash.com/premium_photo-1672681083051-5dce4251ebb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RofGVufDB8fDB8fHww" }
+    ]
+}

@@ -5,11 +5,8 @@ import { PiGiftThin } from "react-icons/pi";
 import axios from "axios";
 import Detail from "../components/Detail.jsx";
 import Review from '../components/Review.jsx'
-import QnA from "../components/QnA.jsx";
-import ReturnDelivery from '../components/ReturnDelivery.jsx'
 import QnA2 from "../components/QnA2.jsx";
-import ProductDetailTab from "../components/ProductDetailTab.jsx";
-import QnA2copy from "../components/QnA2copy.jsx";
+import ReturnDelivery from '../components/ReturnDelivery.jsx'
 
 export default function DetailProduct({ addCart }) {
     const tabList = [
@@ -19,30 +16,27 @@ export default function DetailProduct({ addCart }) {
         {'name': 'RETURN & DELIVERY'}
     ];
 
-
     const { pid } = useParams();
     const [product, setProduct] = useState({});
     const [size, setSize] = useState("XS"); 
     const [category, setCategory] = useState('Q&A');
-
     const [select, setSelect] = useState('Q&A');
-    const handleChangeSelect = (name) => {
-        setSelect(name);
-        setCategory(name);
-    }
-
+    
     useEffect(() => {
         axios
             .get("/data/products.json") // http://localhost:3000/data/products.json
             .then((res) => {
                 res.data.filter((product) => {
-                    if (product.pid === pid) setProduct(product);
+                    if (product.pid === pid) { 
+                        setProduct(product); 
+                        // setImgList(product.imgList);
+                    }
                 });
             })
             .catch((error) => console.log(error));
     }, []); 
-    //장바구니 추가 버튼 이벤트
 
+    //장바구니 추가 버튼 이벤트
     const addCartItem = () => {
       //장바구니 추가 항목 : { pid, size, count, price }
       // alert(`${pid} --> 장바구니 추가 완료!`);
@@ -56,20 +50,10 @@ export default function DetailProduct({ addCart }) {
         addCart(cartItem); // App.js의 addCart 함수 호출
     };  
 
-    // 카테고리 선택 이벤트
-    const handleDetail = () => {
-        setCategory('detail');
-    }
-
-    const handleReview = () => {
-        setCategory('review');
-    }
-
-    const handleQnA = () => {
-        setCategory('qna');
-    }
-    const handleReturnDelivery = () => {
-        setCategory('returndelivery');
+    // 카테고리 선택 & 카테고리 변경 이벤트
+    const handleChangeSelect = (name) => {
+        setSelect(name);
+        setCategory(name);
     }
 
     return (
@@ -77,6 +61,7 @@ export default function DetailProduct({ addCart }) {
             <div className="product-detail-top">
                 <div className="product-detail-image-top">
                     <img src={product.image} />
+                    {/* <ImageList className="product-detial-image-top-list" imgList={imgList} /> */}
                     <ul className="product-detail-image-top-list">
                         <li>
                             <img src={product.image} alt="" />
@@ -146,7 +131,7 @@ export default function DetailProduct({ addCart }) {
                 <div className="una-qna-list">
                     { category === 'DETAIL' ? <Detail /> : null }
                     { category === 'REVIEW' ? <Review /> : null }
-                    { category === 'Q&A' ? <QnA /> : null }
+                    { category === 'Q&A' ? <QnA2 /> : null }
                     { category === 'RETURN & DELIVERY' ? <ReturnDelivery /> : null }
                 </div>
             </div>

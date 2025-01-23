@@ -42,20 +42,24 @@ export default function DetailProduct({ addCart }) {
     };  
 
     // 카테고리 선택 이벤트
-    const handleDetail = () => {
-        setCategory('detail');
-    }
+    // const handleDetail = () => {
+    //     setCategory('detail');
+    // }
 
-    const handleReview = () => {
-        setCategory('review');
-    }
+    // const handleReview = () => {
+    //     setCategory('review');
+    // }
 
-    const handleQnA = () => {
-        setCategory('qna');
-    }
-    const handleReturnDelivery = () => {
-        setCategory('returndelivery');
-    }
+    // const handleQnA = () => {
+    //     setCategory('qna');
+    // }
+    // const handleReturnDelivery = () => {
+    //     setCategory('returndelivery');
+    // }
+
+    // const handleChageTab = (name) => {
+    //     setCategory(name);
+    // }
 
     return (
         <div className="content">
@@ -122,10 +126,10 @@ export default function DetailProduct({ addCart }) {
             {/* DETAIL / REVIEW / Q&A / RETURN & DELIVERY  */}
             <div className="product-detail-tab">
                 <ul>
-                    <li><label onClick={handleDetail}>DETAIL</label></li>
-                    <li><label onClick={handleReview}>REVIEW</label></li>
-                    <li><label onClick={handleQnA}>Q&A</label></li>
-                    <li><label onClick={handleReturnDelivery}>RETURN & DELIVERY</label></li>
+                    <li><label onClick={() => {setCategory('detail')}}>DETAIL</label></li>
+                    <li><label onClick={() => {setCategory('review')}}>REVIEW</label></li>
+                    <li><label onClick={() => {setCategory('qna')}}>Q&A</label></li>
+                    <li><label onClick={() => {setCategory('returndelivery')}}>RETURN & DELIVERY</label></li>
                 </ul>
                 <div>
                     { category === 'detail' ? <Detail /> : null }

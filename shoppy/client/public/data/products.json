@@ -4,7 +4,12 @@
         "image" : "/images/1.webp",
         "name" : "분홍 후드티",
         "price" : "15000",
-        "info" : "분홍색 후드티"
+        "info" : "분홍색 후드티",
+        "imgLIst" : [
+            "/images/1.webp",
+            "/images/1.webp",
+            "/images/1.webp"
+        ]
     },
     {
         "pid" : "2",

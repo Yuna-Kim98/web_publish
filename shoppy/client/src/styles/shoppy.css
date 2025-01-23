@@ -37,7 +37,7 @@ p {
 .content {
   width: 1400px;
   margin: auto;
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
 }
 
 /**
@@ -117,7 +117,7 @@ p {
 }
 
 .product-detail-top {
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   width: 1200px;
   height: 800px;
   display: flex;
@@ -139,7 +139,7 @@ p {
   /* background-color: var(--color-primary); */
   background-color: #777;
   color: var(--color-white);
-  height: 100px;
+  height: auto;
   font-size: 12px;
   padding: 10px 20px;
 }
@@ -296,7 +296,10 @@ p {
   align-items: center;
   justify-content: center;
   border: 1px solid silver;
-  border-left: none;
+  /* border-left: none; */
+  /* cursor: pointer; */
+}
+.product-detail-tab>ul>li > label {
   cursor: pointer;
 }
 
