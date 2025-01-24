@@ -6,13 +6,13 @@ export default function ImageList({className, imgList}) {
     return (
         <ul className={className}>
             { name !== 'review' ? (
-                imgList && imgList.map((image) => 
-                    <li><img src={image.img} alt="" /></li>
+                imgList && imgList.map((item) => 
+                    <li><img src={item.img} alt="" /></li>
                 )
             ) : (
-                imgList && imgList.map((image, i) => 
+                imgList && imgList.map((item, i) => 
                     <li>
-                        <img src={image.img} alt="" />
+                        <img src={item.img} alt="" />
                         { i === 8 &&
                             <>
                                 <p></p>

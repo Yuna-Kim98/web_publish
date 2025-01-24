@@ -1,7 +1,12 @@
 [
     {
         "pid" : "1",
-        "image" : "/images/1.webp",
+        "image" : "https://product-image.wconcept.co.kr/productimg/image/img0/93/301463993_SU51811.jpg",
+        "imgs": [
+            { "img": "https://product-image.wconcept.co.kr/productimg/image/img0/93/301463993_SU51811.jpg" },
+            { "img": "https://product-image.wconcept.co.kr/productimg/image/img0/93/301463993_add1_PG41257.jpg" },
+            { "img": "https://product-image.wconcept.co.kr/productimg/image/img0/93/301463993_SU51811.jpg" }
+        ],
         "alt" : "product 1",
         "name" : "분홍 후드티",
         "price" : "15000",

@@ -13,6 +13,8 @@ export default function DetailProduct({ addCart }) {
     const [size, setSize] = useState("XS");
     const [category, setCategory] = useState('DETAIL');
     const [select, setSelect] = useState('DETAIL');
+    const [imgs, setImgs] = useState([]);
+    const [mainImg, setMainImg] = useState("https://product-image.wconcept.co.kr/productimg/image/img0/93/301463993_SU51811.jpg");
 
     const tabList = [
         {'name': 'DETAIL'},
@@ -26,7 +28,10 @@ export default function DetailProduct({ addCart }) {
             .get("/data/products.json") // http://localhost:3000/data/products.json
             .then((res) => {
                 res.data.filter((product) => {
-                    if (product.pid === pid) setProduct(product);
+                    if (product.pid === pid) {
+                        setProduct(product);
+                        setImgs(product.imgs);
+                    }
                 });
             })
         .catch((error) => console.log(error));
@@ -51,22 +56,22 @@ export default function DetailProduct({ addCart }) {
         setCategory(name);
         setSelect(name);
     }
+    
+    const handleChangeMainImg = (img) => {
+        setMainImg(img);
+    }
 
     return (
         <div className="content">
             <div className="product-detail-top">
                 <div className="product-detail-image-top">
-                    <img src={product.image} />
+                    <img src={mainImg} />
                     <ul className="product-detail-image-top-list">
-                        <li>
-                            <img src={product.image} alt="" />
-                        </li>
-                        <li>
-                            <img src={product.image} alt="" />
-                        </li>
-                        <li>
-                            <img src={product.image} alt="" />
-                        </li>
+                        { imgs && imgs.map((item) => 
+                            <li onClick={() => handleChangeMainImg(item.img)}>
+                                <img src={item.img} alt="" />
+                            </li>
+                        ) }
                     </ul>
                 </div>
 

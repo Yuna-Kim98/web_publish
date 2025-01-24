@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from '../commons/Pagination.jsx';
+import Pagination2 from '../commons/Pagination2.jsx';
 
 export default function QnA() {
     const [qnaData, setQnaData] = useState([]);
@@ -46,10 +47,9 @@ export default function QnA() {
                     )}
                 </tbody>
             </table>
-            <Pagination className="qna-paginate-ul" 
-                        page={page} 
+            <Pagination2 className="qna-paginate-ul" 
                         totalPages={totalPages} 
-                        currentPage={currentPage} 
+                        page={page} 
                         setPage={setPage} />
         </div>
     );
