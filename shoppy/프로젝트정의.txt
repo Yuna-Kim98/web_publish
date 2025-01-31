@@ -19,6 +19,25 @@ React Project
     mvc 패턴 정리
     mvc 패턴에 따른 데이터 처리 방식 숙지
     DB 연동 방식과 SQL 쿼리
+2-1. 서버 생성
+    리액트폴더명 > mkdir 서버폴더명
+
+    리액트폴더명/서버폴더명/npm init --yes              : 프로젝트 초기화 -Node 모듈설치
+    리액트폴더명/서버폴더명/npm i express --save        : 익스프레스 서버 라이브러리 설치
+    리액트폴더명/서버폴더명/npm i mysql2                : mysql 연동 라이브러리 다운
+    리액트폴더명/서버폴더명/npm i cors                  : 리액트 연동 시 특정 도메인 허용 라이브러리 설치
+    리액트폴더명/서버폴더명/npm i nodemon --save-dev
 
 3. MySQL
     SQL Query 정리 : CRUD, Join, SubQuery, View...
+
+
+!!! 웹서버 !!!
+- 웹 서버 = (UI + Sever) + DB
+  localhost:8000
+  이 경우(기존의 웹 서버 방식) 서버가 다운되면 UI까지 다운됨
+
+- UI : React - 3000대의 port로 별도 서비스
+  Server : NodeJs - 9000대의 port로 별도 서비스
+  DB : MySQL - 별도 서비스
+  이 경우 서버가 다운되도 UI는 살아있도록 별도 관리할 수 있음

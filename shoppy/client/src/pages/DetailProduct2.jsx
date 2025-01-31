@@ -19,8 +19,8 @@ export default function DetailProduct({ addCart }) {
     const { pid } = useParams();
     const [product, setProduct] = useState({});
     const [size, setSize] = useState("XS"); 
-    const [category, setCategory] = useState('Q&A');
-    const [select, setSelect] = useState('Q&A');
+    const [category, setCategory] = useState('DETAIL');
+    const [select, setSelect] = useState('DETAIL');
     
     useEffect(() => {
         axios

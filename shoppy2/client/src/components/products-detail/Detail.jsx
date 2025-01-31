@@ -62,7 +62,6 @@ export default function Detail() {
                     onClick={handleButton}>
             상품 정보 고시 더보기 <IoIosArrowDown />
             </button> 
-            {/* 버튼 이벤트 연동 수정 필요 */}
         </div>
     );
 }
