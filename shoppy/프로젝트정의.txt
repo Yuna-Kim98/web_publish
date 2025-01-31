@@ -22,11 +22,11 @@ React Project
 2-1. 서버 생성
     리액트폴더명 > mkdir 서버폴더명
 
-    리액트폴더명/서버폴더명/npm init --yes              : 프로젝트 초기화 -Node 모듈설치
+    리액트폴더명/서버폴더명/npm init --yes              : 프로젝트 초기화 :: Node 모듈설치
     리액트폴더명/서버폴더명/npm i express --save        : 익스프레스 서버 라이브러리 설치
     리액트폴더명/서버폴더명/npm i mysql2                : mysql 연동 라이브러리 다운
     리액트폴더명/서버폴더명/npm i cors                  : 리액트 연동 시 특정 도메인 허용 라이브러리 설치
-    리액트폴더명/서버폴더명/npm i nodemon --save-dev
+    리액트폴더명/서버폴더명/npm i nodemon -g --save-dev
 
 3. MySQL
     SQL Query 정리 : CRUD, Join, SubQuery, View...
