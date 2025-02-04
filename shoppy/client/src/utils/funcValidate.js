@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /*****************************
  *  title : 로그인 폼 체크
 ******************************/
@@ -27,17 +29,21 @@ export const handleDuplicateIdCheck = (idRef, pwdRef, idMsgRef, setIdCheckResult
         idRef.current.focus();
         return false;
     } else {
-        const did = 'test';
-        if (idRef.current.value === did) {
-            alert('이미 사용 중인 아이디 입니다.');
-            idRef.current.focus();
-            return false;
-        } else {
-            alert('사용 가능한 아이디 입니다.');
-            setIdCheckResult('complete');
-            pwdRef.current.focus();
-            return false;
-        }
+        // 아이디 중복 체크 <--> 서버 연동
+        axios.post('http://localhost:9000/member/idcheck', {"id": idRef.current.value})
+            .then(res => {
+                if (res.data.result === 1) {
+                    alert('이미 사용 중인 아이디 입니다.');
+                    idRef.current.focus();
+                    return false;
+                } else {
+                    alert('사용 가능한 아이디 입니다.');
+                    setIdCheckResult('complete');
+                    pwdRef.current.focus();
+                    return false;
+                }
+            })
+            .catch(error => console.log(error));
     }
 }
 
@@ -109,6 +115,9 @@ export const signUpValidate = (refs, msgRefs) => {
                 ref.current.focus();
                 return false;
             }
+            else {
+                msgRef.current.style.setProperty('color', 'silver');
+            }
         } else {
             if (ref.current.value === 'default') {
                 alert('이메일 도메인을 선택해주세요.');
@@ -120,19 +129,22 @@ export const signUpValidate = (refs, msgRefs) => {
     return true;
 }
 
-// export const errCheck = (name, value, errMsg, setErrMsg) => {
-//     const names = [
-//         { 'name': 'id', 'msg': '아이디을/를 입력해주세요.' },
-//         { 'name': 'pwd', 'msg': '비밀번호을/를 입력해주세요.' },
-//         { 'name': 'cpwd', 'msg': '비밀번호 확인을/를 입력해주세요.' },
-//         { 'name': 'name', 'msg': '이름을/를 입력해주세요.' },
-//         { 'name': 'phone', 'msg': '휴대폰번호을/를 입력해주세요.' },
-//         { 'name': 'emailname', 'msg': '이메일 주소을/를 입력해주세요.' }
-//     ];
+/***************************************
+ *  title : 회원가입 폼 에러메세지 체크
+****************************************/
+// export const errCheck = (name, value, ) => {
+//     // const names = [
+//     //     { 'name': 'id', 'msg': '아이디을/를 입력해주세요.' },
+//     //     { 'name': 'pwd', 'msg': '비밀번호을/를 입력해주세요.' },
+//     //     { 'name': 'cpwd', 'msg': '비밀번호 확인을/를 입력해주세요.' },
+//     //     { 'name': 'name', 'msg': '이름을/를 입력해주세요.' },
+//     //     { 'name': 'phone', 'msg': '휴대폰번호을/를 입력해주세요.' },
+//     //     { 'name': 'emailname', 'msg': '이메일 주소을/를 입력해주세요.' }
+//     // ];
 
 //     names.map((item) =>
 //         (name === item.name) ? (
-//             value === '' ? setErrMsg({...errMsg, [item.name]: item.msg}) : setErrMsg({...errMsg, [item.name]: ''})
+//             value === '' ? msgRef.current.style.setProperty('color', 'red') : msgRef.current.style.setProperty('color', 'silver')
 //         ) : ''
 //     );
 // }

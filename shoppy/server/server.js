@@ -1,8 +1,6 @@
 import express from 'express';
-import mainRouter from './router/mainRouter.js';
-import helloRouter from './router/helloRouter.js';
-import employeeRouter from './router/employeeRouter.js';
 import cors from 'cors';
+import memberRouter from './router/memberRouter.js';
 
 /** 서버 생성 및 포트 지정 **/
 const server = express();
@@ -15,9 +13,7 @@ server.use(cors()); // 다른 도메인의 요청작업을 받아서 현재 실�
 
 /** 서버의 요청 처리를 위한 미들웨어 정의 **/
 // use를 사용할 경우 대표주소로 설정된다는 것을 주의할 것!
-server.use('/', mainRouter);
-server.use('/hello', helloRouter);
-server.use('/employee', employeeRouter);
+server.use('/member', memberRouter); 
 
 
 

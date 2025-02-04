@@ -9,6 +9,7 @@ export default function Signup() {
     const {refs} = useInitSignupRefs(names);
 
     // const [formData, setFormData] = useState(initForm(names));
+    // const [formData, setFormData] = useState({...initFormData, "emaildomain": ''});
     const [formData, setFormData] = useState(initFormData);
     const [errMsg, setErrMsg] = useState(initFormData);
     const [idCheck, setIdCheck] = useState('default');
@@ -107,7 +108,8 @@ export default function Signup() {
                                     <span>@</span>       
                                     <select name='emaildomian'
                                             // id="emaildomain"
-                                            ref={refs.current['emaildomainRef']}>
+                                            ref={refs.current['emaildomainRef']}
+                                            onChange={handleSignUpForm}>
                                         <option value="default">선택</option>
                                         <option value="naver.com">naver.com</option>
                                         <option value="gmail.com">gmail.com</option>

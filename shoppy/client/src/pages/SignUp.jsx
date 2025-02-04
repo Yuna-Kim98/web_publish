@@ -1,9 +1,12 @@
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/signup.css';
-import { signUpValidate, handleDuplicateIdCheck, handlePwdCheck } from '../utils/funcValidate.js';
+import { signUpValidate, handleDuplicateIdCheck, handlePwdCheck, errCheck } from '../utils/funcValidate.js';
 import { initSignup, useInitSignupRefs } from '../utils/funcInitialize.js';
 
 export default function Signup() {
+    const navigate = useNavigate();
     const {names, placeholders, labels, initFormData} = initSignup();
     const {refs, msgRefs} = useInitSignupRefs(names); // 위에서 initSignup이 실행됐기 때문에 names를 받아 쓸 수 있음
     
@@ -13,6 +16,7 @@ export default function Signup() {
     // console.log('msgRefs --> ', msgRefs);
 
     const [formData, setFormData] = useState(initFormData);
+    // console.log('formData --> ', formData);
     const [idCheckResult, setIdCheckResult] = useState('default');
 
     // onChange : 폼 데이터 입력 & 에러 메시지
@@ -20,6 +24,7 @@ export default function Signup() {
         const {name, value} = event.target;
         // console.log('name, value --> ', name, value);
         setFormData({...formData, [name]: value});
+        // errCheck(name, value, errMsg, setErrMsg);
     }
 
     // onSubmit : 가입하기 버튼 이벤트
@@ -35,8 +40,28 @@ export default function Signup() {
                 alert('중복 확인을 진행해 주세요.');
                 return false;
             } else {
-                // setIdCheckResult('complete');
                 console.log('submit --> ', formData);
+                // 서버 --> DB 테이블에 insert
+                // get : url 통해 호출 및 데이터 전달 => 패킷의 Header와 함께 넘어감 => req.params :: 데이터가 작고 보안이 필요없을 때 사용(url 길이에 제한이 있고 보안이 약하기 때문)
+                // post : url 주소로 경로 호출, 데이터 전달 => 패킷의 Body와 함꼐 넘어감 => req.body :: 데이터가 크고 보안이 필요할 때 사용
+                // axios.post('경로', 전송할 객체{});
+                axios.post('http://localhost:9000/member/signup', formData) // => controller로 데이터 전송. post 메소드이기 때문에 url에 나타나지 않고 리액트 안에서만 확인 가능함
+                    .then(res => {
+                        if (res.data.result_rows === 1) {
+                            alert('회원가입에 성공하셨습니다.');
+                            // 3초 후 로그인 페이지 이동 --> useNavigate
+                            setTimeout(() => {
+                                navigate('/login');
+                            }, 1000);
+                            // window.location.href = '/login'; -> 리액트가 아닌 윈도우에서 실행함
+                        } else {
+                            alert('회원가입에 실패하셨습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        alert('회원가입에 실패하셨습니다.');
+                        console.log(error);
+                    }); 
             }
         }
     }
@@ -112,8 +137,10 @@ export default function Signup() {
                                                     onChange={handleSignUpForm}
                                                     placeholder="이메일 주소" />
                                             <span>@</span>       
-                                            <select name={name}
-                                                    ref={refs.current['emaildomainRef']}  >
+                                            <select name='emaildomain'
+                                                    ref={refs.current['emaildomainRef']}
+                                                    onChange={handleSignUpForm}
+                                                    >
                                                 <option value="default">선택</option>
                                                 <option value="naver.com">naver.com</option>
                                                 <option value="gmail.com">gmail.com</option>
