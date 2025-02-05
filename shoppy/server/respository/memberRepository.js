@@ -5,7 +5,7 @@ import { db } from './db.js';
 **/
 export const getIdCheck = async({id}) => { // 구조분해할당(idData :: json)
     const sql = `select count(id) as result from shoppy_member where id = ?`; // count 함수를 쓰면 결과를 0, 1로 받아 정확한 값을 받도록 함
-    const [result, fields] = await db.execute(sql, [id]); // 데이터는 반드시 배열형태여야 함
+    const [result, fields] = await db.execute(sql, [id]); // 데이터는 반드시 배열형태여야 함. result가 2차원 배열이기 때문에 배열로 구조분해할당
 
     // console.log('result --> ', result[0]);
     return result[0];
@@ -18,8 +18,8 @@ export const getIdCheck = async({id}) => { // 구조분해할당(idData :: json)
 export const registerMember = async(formData) => {
     // 1. sql 생성
     const sql = `
-        insert into shoppy_member(id, pwd, name, phone, emailname, emaildomain, zipcode, address, mdate)
-            values(?, ?, ?, ?, ?, ?, ?, ?, now())
+    insert into shoppy_member(id, pwd, name, phone, emailname, emaildomain, zipcode, address, mdate)
+    values(?, ?, ?, ?, ?, ?, ?, ?, now())
     `;
     const values = [
         formData.id,
@@ -31,10 +31,24 @@ export const registerMember = async(formData) => {
         null,
         null
     ];
-
+    
     // 2. db 객체를 이용해 sql 실행 후 결과 가져오기
     const [result, fields] = await db.execute(sql, values);
-
+    
     // 3. 호출한 곳(controller)으로 결과값 리턴
     return {"result_rows": result.affectedRows};
+}
+
+/**
+ * 로그인 - select
+**/
+export const checkLogin = async({id, pwd}) => { // 데이터 예시 : { id: 'test', pwd: '1111' }
+    const sql = `
+        select count(*) as result_rows
+        from shoppy_member
+        where id = ? and pwd = ?
+    `;
+    const [result] = await db.execute(sql, [id, pwd]);
+    // result = [{result_rows : 1}]
+    return result[0];
 }

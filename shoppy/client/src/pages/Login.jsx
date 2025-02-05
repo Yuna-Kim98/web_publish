@@ -1,10 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { validate } from "../utils/funcValidate.js"
+import { AuthContext } from '../auth/AuthContext.js';
+import axios from 'axios';
 
 export default function Login() {
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const refs = {
         idRef : useRef(null),
         pwdRef : useRef(null)
@@ -33,8 +39,31 @@ export default function Login() {
     const handleLoginSubmit = (event) => {
         event.preventDefault();
         if (validate(refs, errMsg, setErrMsg)) {
-            console.log('send data --> ', formData); // 조건식이기 때문에 반환받는 값이 있어야 실행됨
-            // React --> 노드 서버(express) 데이터 전송
+            console.log('send data --> ', formData); // 조건식이기 때문에 반환받는 값이 있어야 실행됨!!!
+
+            // 브라우저의 로컬스토리지 영역에 아이디, 패스워드 저장
+            // localStorage.setItem("userId", formData.id);
+            // localStorage.setItem("userPwd", formData.pwd);
+            // localStorage.removeItem("userId");
+            // localStorage.clear();
+
+            // React --> 노드 서버(express) 데이터 전송 로그인
+            axios.post('http://localhost:9000/member/login', formData) // req.body
+                .then(res => {
+                    console.log('result --> ', res.data) // res.data = result_rows = 1
+                    if (res.data.result_rows === 1) {
+                        alert('로그인 성공!');
+                        localStorage.setItem("token", res.data.token);
+                        setIsLoggedIn(true);
+                        navigate('/');
+                    } else {
+                        alert('로그인 실패!');
+                    }
+                }) 
+                .catch(error => {
+                    alert('로그인 실패!');
+                    console.log(error);
+                });
         }
     }
 

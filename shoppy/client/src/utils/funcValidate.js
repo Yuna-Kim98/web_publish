@@ -15,6 +15,7 @@ export const validate = ({idRef, pwdRef}, errMsg, setErrMsg) => {
         pwdRef.current.focus();
         return false;
     }
+    return true;
 }
 
 

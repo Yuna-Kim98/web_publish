@@ -24,3 +24,6 @@ select * from shoppy_member;
 
 -- 'test1' 아이디 중복체크 : count 함수로 결과 반환
 select count(id) as result from shoppy_member where id = 'test1';
+
+--  login
+select count(*) as result_rows from shoppy_member where id = 'test1' and pwd = '2222';
