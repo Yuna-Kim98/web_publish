@@ -40,6 +40,9 @@ export default function Header({cartCount}) {
                     <Link to='/signup'>
                         <button type='button'>SignUp</button>
                     </Link>
+                    <Link to='/products/new'>
+                        { isLoggedIn && <button type='button'>New Product</button> }
+                    </Link>
                 </nav>
             </div>
         </div>

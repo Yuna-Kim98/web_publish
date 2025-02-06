@@ -6,7 +6,6 @@ import { FaLock } from "react-icons/fa";
 import { validate } from "../utils/funcValidate.js"
 import { AuthContext } from '../auth/AuthContext.js';
 import axios from 'axios';
-import ImageUpload from '../components/ImageUpload.jsx';
 
 export default function Login() {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -71,7 +70,6 @@ export default function Login() {
     return (
         <div className="content">
             <h1 className="center-title">LOGIN</h1>
-            <ImageUpload />
             <form className="login-form" onSubmit={handleLoginSubmit}>
                 <ul>
                     <li>
