@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import memberRouter from './router/memberRouter.js';
 import uploadRouter from './router/uploadRouter.js';
+import productRouter from './router/productRouter.js';
 import path from 'path';
 
 /** 서버 생성 및 포트 지정 **/
@@ -20,6 +21,7 @@ server.use("/upload_files", express.static(path.join("upload_files"))); // 저�
 // use를 사용할 경우 대표주소로 설정된다는 것을 주의할 것!
 server.use('/member', memberRouter); 
 server.use('/uploads', uploadRouter);
+server.use('/product', productRouter);
 
 
 

@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ImageUpload from '../components/ImageUpload.jsx';
 import axios from 'axios';
 
 export default function NewProduct() {
+    const navigate = useNavigate();
     const productNameRef = useRef(null);
-    // const productPrice 
     const [fname, setFnames] = useState({});
     const [preview, setPreview] = useState('');
     let [formData, setFormData] = useState({});
@@ -25,12 +26,17 @@ export default function NewProduct() {
             return false;
         } else {
             // 서버 전송
-            formData = {...formData, "upload_file": fname.uploadFileName, "source_file": fname.sourceFileName};
+            formData = {...formData, "uploadFile": fname.uploadFileName, "sourceFile": fname.sourceFileName};
             console.log('formData --> ', formData);
 
             axios.post('http://localhost:9000/product/new', formData)
                 .then(res => {
-                    console.log('res.data --> ', res.data);
+                    if (res.data.result_rows === 1) {
+                        alert('상품이 등록되었습니다.');
+                        navigate('/all');
+                    } else {
+                        alert('상품 등록 실패');
+                    }
                 })
                 .catch(err => console.log(err));
         }

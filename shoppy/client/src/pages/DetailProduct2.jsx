@@ -25,7 +25,15 @@ export default function DetailProduct({ addCart }) {
     useEffect(() => {
         axios
             .get("/data/products.json") // http://localhost:3000/data/products.json
+            // .get('http://localhost:9000/product/all')
             .then((res) => {
+                console.log('detailproduct:: res.data -->', res.data);
+                // res.data.filter((product) => {
+                //     console.log('product --> ', product);
+                //     if (product.pid === pid) {
+                //         setProduct(product); 
+                //     } 
+                // });
                 res.data.filter((product) => {
                     if (product.pid === pid) { 
                         setProduct(product); 

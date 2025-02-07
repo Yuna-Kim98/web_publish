@@ -7,9 +7,16 @@ export default function ProductList() {
     const [list, setList] = useState([]); // list 변경시 실시간 업데이트
 
     useEffect(() => {
-        axios.get('/data/products.json') // node 서버 환경에서 네트워크를 통해 데이터를 가져옴
+        /* axios.get('/data/products.json') // node 서버 환경에서 네트워크를 통해 데이터를 가져옴
             .then((res) => setList(res.data))
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error)); */
+
+        axios.get('http://localhost:9000/product/all')
+            .then(res => {
+                console.log('ProductList :: res.data --> ', res.data);
+                setList(res.data);
+            })
+            .catch(err => console.log(err));
 
         // fetch('data/products.json') // 자바스크립트에서 데이터를 가져올 때 사용
         //     .then((data) => data.json())
@@ -32,7 +39,7 @@ export default function ProductList() {
                 <div className='product-list'>
                     { rowArray.map((product) => // 2차원 배열 map
                         <Link key={product.pid} to={`/products/${product.pid}`}>
-                            <ProductAvata img={product.image} />
+                            <ProductAvata img={`${product.image}`} />
                         </Link>
                     ) }
                 </div>
