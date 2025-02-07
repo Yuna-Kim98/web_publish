@@ -1,4 +1,6 @@
 import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
 
 // multer 라이브러리로 파일을 업로드 폴더에 저장
 const storage = multer.diskStorage({
@@ -19,9 +21,24 @@ export const fileUpload = (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            const oldFile = req.body.oldFile;
+
+            if (oldFile) {
+                // oldFile 존재 시 업로드 폴더에서 삭제
+                const oldFilePath = path.join("upload_files/", oldFile);
+                if (fs.existsSync(oldFilePath)) {
+                    try {
+                        fs.unlinkSync(oldFilePath);
+                    } catch (error) {
+                        console.error("이전 파일 삭제 실패: ", error);
+                    }
+                }
+            }
+
             res.json({
                 "uploadFileName": res.req.file.path, // 저장된 폴더의 파일명. multer가 보낸 파일 경로를 불러오기 때문에 경로가 res.req.
-                "sourceFileName": req.file.originalname // 사용자가 선택한 원래 파일명. 저장될 때 넘어온 파일명 경로 req.
+                "sourceFileName": req.file.originalname, // 사용자가 선택한 원래 파일명. 저장될 때 넘어온 파일명 경로 req.
+                "oldFile": res.req.file.filename
             });
         }
     }); // 콜백함수 : 별도로 실행할 함수 작성

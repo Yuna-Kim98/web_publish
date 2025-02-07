@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
 export default function ImageUpload({getFileName}) {
     const formData = new FormData(); // 서버로 이미지 파일 전송시 객체로 묶어서 전송하기 위해 사용
+    const [oldFile, setOldFile] = useState('');
 
     const handleFileUpload = (e) => {
-        formData.append("file", e.target.files[0]); // 파일 1개만 formData에 저장
+        formData.append("file", e.target.files[0]); // 파일 1개만 formData에 저장. 선택한 새로운 파일
+        formData.append("oldFile", oldFile); // 새로운 파일을 선택했을 때 기존에 있던 파일이 삭제되고 새 파일이 저장되도록 함`
 
         // 서버 전송
-        axios.post('http://localhost:9000/uploads', formData)
+        axios.post('http://localhost:9000/uploads', formData, {
+            header : { "Content-type": "multiple/form-data" } // 파일과 문자 데이터 추가시
+        })
             .then(res => {
-                console.log('res --> ', res.data);
                 getFileName(res.data);
+                setOldFile(res.data.oldFile);
             })
             .catch(err => console.log(err));
     }
+    // console.log('oldFile --> ', oldFile);
 
     return (
         <div>
