@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageUpload from '../components/ImageUpload.jsx';
+import ImageUploadMultiple from '../components/ImageUploadMultiple.jsx';
 import axios from 'axios';
 
 export default function NewProduct() {
@@ -11,9 +12,9 @@ export default function NewProduct() {
     let [formData, setFormData] = useState({});
 
     const getFileName = (fileNames) => {
-        // console.log('fileNames --> ', fileNames);
         setFnames(fileNames);
-        setPreview(`http://localhost:9000/${fileNames.uploadFileName}`);
+        // setPreview(`http://localhost:9000/${fileNames.uploadFileName}`);
+        console.log('NewProduct fileNames --> ', fileNames);
     }
 
     // 등록 이벤트 처리
@@ -66,10 +67,14 @@ export default function NewProduct() {
                         <input type="text" name='description' onChange={handleChange} />
                     </li>
                     <li>
+                        <label>파일 업로드(다중)</label>
+                        <ImageUploadMultiple getFileName={getFileName} />
+                    </li>
+                    {/* <li>
                         <label>파일 업로드</label>
                         <ImageUpload getFileName={getFileName} />
                         { preview && <img src={preview} alt="preview image" style={{width: '100px'}} /> }
-                    </li>
+                    </li> */}
                     <li>
                         <input type="text" name='upload' value={fname.uploadFileName} />
                         <input type="text" name='source' value={fname.sourceFileName} />
