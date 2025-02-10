@@ -23,21 +23,24 @@ export const fileUploadMultiple = (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log('업로드파일리스트 --> ', req.files);
+            const oldFileArray = req.body.oldFile.split(","); // 문자열을 배열로 변경
+            console.log('oldFileArray --> ', oldFileArray);
 
             // const oldFile = req.body.oldFile;
-
-            // if (oldFile) {
-            //     // oldFile 존재 시 업로드 폴더에서 삭제
-            //     const oldFilePath = path.join("upload_files/", oldFile);
-            //     if (fs.existsSync(oldFilePath)) {
-            //         try {
-            //             fs.unlinkSync(oldFilePath);
-            //         } catch (error) {
-            //             console.error("이전 파일 삭제 실패: ", error);
-            //         }
-            //     }
-            // }
+            for (const oldFile of oldFileArray) {
+                if (oldFile) {
+                    // oldFile 존재 시 업로드 폴더에서 삭제
+                    const oldFilePath = path.join("upload_files/", oldFile);
+                    console.error("이전 파일 삭제 완료: ", oldFilePath);
+                    if (fs.existsSync(oldFilePath)) {
+                        try {
+                            fs.unlinkSync(oldFilePath);
+                        } catch (error) {
+                            console.error("이전 파일 삭제 실패: ", error);
+                        }
+                    }
+                } // if
+            } // for
 
             // res 객체를 이용한 전송객체 생성 <-> 같은 기능을 하는 uploadController의 res 객체명과 동일하게 정의
             // 컴포넌트 교체시 수정 없이 바로 사용할 수 있도록 하는 것이 가장 효율적

@@ -11,15 +11,17 @@ export default function ImageUploadMultiple({getFileName}) {
 
         // if (files.length < 6) {
             // formData에 append 추가 - file 개별로 append 되어야 함
-            for (const file of files) formData.append("files", file);
             // for (let i = 0; i < files.length; i++) formData.append("files", files[i]);
             // files.forEach((file) => formData.append("files", file)); // iterable 호출로 인해 사용 불가 :: 단순 순회를 목적으로 하기 때문
+            for (const file of files) formData.append("files", file);
+            formData.append("oldFile", oldFile);
     
             // server 전송
             // 파일 업로드 갯수 제한 없이 사용자가 선택한 갯수만큼 전송 -> ?maxFiles=${files.length}
-            axios.post(`http://localhost:9000/uploads/multiple?maxFiles=${files.length}`, formData) 
+            axios.post(`http://localhost:9000/uploads/multiple?maxFiles=${files.length}`, formData, {
+                headers : { "Content-Type": "multipart/form-data" }, // 파일과 문자 데이터 추가시 파일 전체가 넘어가도록 함
+            }) 
                 .then(res => {
-                    console.log(res.data);
                     getFileName(res.data); // NewProduct로 전송
                     setOldFile(res.data.oldFile);
                 })

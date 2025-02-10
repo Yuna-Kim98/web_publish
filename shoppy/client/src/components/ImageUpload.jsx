@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ export default function ImageUpload({getFileName}) {
 
         // 서버 전송
         axios.post('http://localhost:9000/uploads', formData, {
-            header : { "Content-type": "multiple/form-data" } // 파일과 문자 데이터 추가시
+            headers : { "Content-type": "multiple/form-data" } // 파일과 문자 데이터 추가시
         })
             .then(res => {
                 getFileName(res.data);
