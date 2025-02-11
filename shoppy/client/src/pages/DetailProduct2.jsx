@@ -23,21 +23,18 @@ export default function DetailProduct({ addCart }) {
     const [category, setCategory] = useState('DETAIL');
     const [select, setSelect] = useState('DETAIL');
     const [imgList, setImgList] = useState([]);
+    const [detailImgList, setDetailImgList] = useState([]);
     
     useEffect(() => {
         axios
             .post("http://localhost:9000/product/detail", {"pid": pid})
             .then((res) => {
-                console.log('res.data --> ', res.data);
                 setProduct(res.data);
-                // uploadFile 배열의 이미지 3개를 출력 형태로 생성하여 배열에 저장
-                const filterList = res.data.uploadFile.filter((image, i) => (i < 3) && image);
-                setImgList(filterList);
+                setImgList(res.data.imgList);
+                setDetailImgList(res.data.detailImgList);
             })
             .catch((error) => console.log(error));
-        }, []); 
-
-        console.log('imgList --> ', imgList);
+        }, []);
         
     //장바구니 추가 버튼 이벤트
     const addCartItem = () => {
@@ -64,7 +61,7 @@ export default function DetailProduct({ addCart }) {
             <div className="product-detail-top">
                 <div className="product-detail-image-top">
                     <img src={product.image} />
-                    <ImageList imgList={imgList} className="product-detail-image-top-list"  />
+                    <ImageList imgList={imgList} className="product-detail-image-top-list" />
                     {/* <ul className="product-detail-image-top-list">
                         <li>
                             <img src={product.image} alt="" />
@@ -133,7 +130,7 @@ export default function DetailProduct({ addCart }) {
                 </ul>
                 <div className="una-qna-list">
                     {/* { category === 'DETAIL' ? <Detail /> : null } */}
-                    { category === 'DETAIL' && <Detail /> }
+                    { category === 'DETAIL' && <Detail imgList={detailImgList} /> }
                     { category === 'REVIEW' && <Review /> }
                     { category === 'Q&A' && <QnA2 /> }
                     { category === 'RETURN & DELIVERY' && <ReturnDelivery /> }

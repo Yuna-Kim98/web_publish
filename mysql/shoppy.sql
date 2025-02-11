@@ -89,6 +89,19 @@ select pid,
         upload_file as uploadFile,
         source_file as sourceFile,
         pdate,
-        concat('http://localhost:9000/', upload_file->> '$[0]') as image
-from shoppy_product
-where pid = 4;
+        concat('http://localhost:9000/', upload_file->> '$[0]') as image,
+        json_array(
+			concat('http://localhost:9000/', upload_file->> '$[0]'),
+            concat('http://localhost:9000/', upload_file->> '$[1]'),
+            concat('http://localhost:9000/', upload_file->> '$[2]')
+        ) as imgList,
+        json_arrayagg(
+			concat('http://localhost:9000/', jt.filename)
+        ) as detailImgList
+from shoppy_product, 
+	json_table(shoppy_product.upload_file, '$[*]' columns( filename varchar(100) path '$')) as jt -- 배열 생성 함수
+where pid = 4
+group by pid;
+
+show tables;
+select * from shoppy_member;

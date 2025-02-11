@@ -1,4 +1,4 @@
-export default function Detail() {
+export default function Detail({imgList}) {
     const images = [
         {
             "img" : "https://image.wconcept.co.kr/images/Upload/VendorClosedBanner/20250117103402_3005374.jpg"
@@ -59,11 +59,12 @@ return (
     
     <ul className="image-box">
     {
-        images.map((item) => <>
-        <li className="detail-img">
-            <img src={item.img}/>
-        </li>
-        {item.describe && <p>{item.describe}</p>}
+        imgList && imgList.map((item) => 
+        <>
+            <li className="detail-img">
+                <img src={item}/>
+            </li>
+            {/* {item.describe && <p>{item.describe}</p>} */}
         </>)
     }
     </ul>

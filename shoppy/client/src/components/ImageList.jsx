@@ -7,7 +7,7 @@ export default function ImageList({imgList, className}) {
         <ul className={className}>
             { name !== 'review' ?
                 imgList && imgList.map(image => 
-                    <li><img src={`http://localhost:9000/${image}`} alt="" /></li>
+                    <li><img src={image} alt="" /></li>
                 ) :
                 imgList && imgList.map((img, i) =>
                     <li className='review-top-img-metadata'>
