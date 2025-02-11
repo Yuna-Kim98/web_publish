@@ -38,3 +38,24 @@ export const getList = async() => {
 
     return result; // [{}, {}, {}]
 }
+
+/** 상품 상세 정보 조회 - select **/
+export const getProduct = async(pid) => {
+    console.log('pid --> ', pid);
+    const sql = `
+        select pid,
+                pname as name,
+                price, 
+                description as info,
+                upload_file as uploadFile,
+                source_file as sourceFile,
+                pdate,
+                concat('http://localhost:9000/', upload_file->> '$[0]') as image
+        from shoppy_product
+        where pid = ?
+    `;
+    
+    const [result] = await db.execute(sql, [pid]); // result = [ [{pid:, ~~}], [컬럼명 fields] ] -> 무조건 2차원 배열
+    
+    return result[0];
+}

@@ -6,7 +6,8 @@ import axios from "axios";
 import Detail from "../components/Detail.jsx";
 import Review from '../components/Review.jsx'
 import QnA2 from "../components/QnA2.jsx";
-import ReturnDelivery from '../components/ReturnDelivery.jsx'
+import ReturnDelivery from '../components/ReturnDelivery.jsx';
+import ImageList from '../components/ImageList.jsx';
 
 export default function DetailProduct({ addCart }) {
     const tabList = [
@@ -21,29 +22,23 @@ export default function DetailProduct({ addCart }) {
     const [size, setSize] = useState("XS"); 
     const [category, setCategory] = useState('DETAIL');
     const [select, setSelect] = useState('DETAIL');
+    const [imgList, setImgList] = useState([]);
     
     useEffect(() => {
         axios
-            .get("/data/products.json") // http://localhost:3000/data/products.json
-            // .get('http://localhost:9000/product/all')
+            .post("http://localhost:9000/product/detail", {"pid": pid})
             .then((res) => {
-                console.log('detailproduct:: res.data -->', res.data);
-                // res.data.filter((product) => {
-                //     console.log('product --> ', product);
-                //     if (product.pid === pid) {
-                //         setProduct(product); 
-                //     } 
-                // });
-                res.data.filter((product) => {
-                    if (product.pid === pid) { 
-                        setProduct(product); 
-                        // setImgList(product.imgList);
-                    }
-                });
+                console.log('res.data --> ', res.data);
+                setProduct(res.data);
+                // uploadFile 배열의 이미지 3개를 출력 형태로 생성하여 배열에 저장
+                const filterList = res.data.uploadFile.filter((image, i) => (i < 3) && image);
+                setImgList(filterList);
             })
             .catch((error) => console.log(error));
-    }, []); 
+        }, []); 
 
+        console.log('imgList --> ', imgList);
+        
     //장바구니 추가 버튼 이벤트
     const addCartItem = () => {
       //장바구니 추가 항목 : { pid, size, count, price }
@@ -69,8 +64,8 @@ export default function DetailProduct({ addCart }) {
             <div className="product-detail-top">
                 <div className="product-detail-image-top">
                     <img src={product.image} />
-                    {/* <ImageList className="product-detial-image-top-list" imgList={imgList} /> */}
-                    <ul className="product-detail-image-top-list">
+                    <ImageList imgList={imgList} className="product-detail-image-top-list"  />
+                    {/* <ul className="product-detail-image-top-list">
                         <li>
                             <img src={product.image} alt="" />
                         </li>
@@ -80,7 +75,7 @@ export default function DetailProduct({ addCart }) {
                         <li>
                             <img src={product.image} alt="" />
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>    
                 <ul className="product-detail-info-top">
                     <li className="product-detail-title">{product.name}</li>
@@ -137,10 +132,11 @@ export default function DetailProduct({ addCart }) {
                     )) }
                 </ul>
                 <div className="una-qna-list">
-                    { category === 'DETAIL' ? <Detail /> : null }
-                    { category === 'REVIEW' ? <Review /> : null }
-                    { category === 'Q&A' ? <QnA2 /> : null }
-                    { category === 'RETURN & DELIVERY' ? <ReturnDelivery /> : null }
+                    {/* { category === 'DETAIL' ? <Detail /> : null } */}
+                    { category === 'DETAIL' && <Detail /> }
+                    { category === 'REVIEW' && <Review /> }
+                    { category === 'Q&A' && <QnA2 /> }
+                    { category === 'RETURN & DELIVERY' && <ReturnDelivery /> }
                 </div>
             </div>
         </div>

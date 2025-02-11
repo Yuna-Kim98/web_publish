@@ -4,10 +4,10 @@ export default function ImageList({imgList, className}) {
     const name = className.substring(0, 6); // review 이미지
 
     return (
-        <ul>
+        <ul className={className}>
             { name !== 'review' ?
-                imgList && imgList.map(img => 
-                    <li><img src="" alt="" /></li>
+                imgList && imgList.map(image => 
+                    <li><img src={`http://localhost:9000/${image}`} alt="" /></li>
                 ) :
                 imgList && imgList.map((img, i) =>
                     <li className='review-top-img-metadata'>

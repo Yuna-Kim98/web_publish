@@ -14,3 +14,11 @@ export const getList = async(req, res) => {
     res.json(result);
     res.end();
 }
+
+/** 상품 상세 정보 조회 **/
+export const getProduct = async(req, res) => {
+    const result = await repository.getProduct(req.body.pid);
+    // req.body는 객체로 데이터가 전송됨 -> {"pid": pid} 그러나 이 경우 pid를 변수 형태로 바로 보내므로 구조분해할당 불가능
+    res.json(result);
+    res.end();
+}

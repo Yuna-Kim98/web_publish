@@ -80,3 +80,15 @@ select pid,
             source_file,
             pdate
         from shoppy_product;
+desc shoppy_product;
+select * from shoppy_product where pid = 3; -- 컬럼명을 명확하게 주는 것이 유지보수 관점에서 효율적임
+select pid,
+		pname,
+        price, 
+        description,
+        upload_file as uploadFile,
+        source_file as sourceFile,
+        pdate,
+        concat('http://localhost:9000/', upload_file->> '$[0]') as image
+from shoppy_product
+where pid = 4;
