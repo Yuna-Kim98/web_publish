@@ -59,7 +59,7 @@ export const getProduct = async(pid) => {
                     concat('http://localhost:9000/', jt.filename)
                 ) as detailImgList
         from shoppy_product, 
-            json_table(shoppy_product.upload_file, '$[*]' columns( filename varchar(100) path '$')) as jt -- 배열 생성 함수
+            json_table(shoppy_product.upload_file, '$[*]' columns( filename varchar(100) path '$')) as jt
         where pid = ?
         group by pid;
     `;
@@ -67,4 +67,25 @@ export const getProduct = async(pid) => {
     const [result] = await db.execute(sql, [pid]); // result = [ [{pid:, ~~}], [컬럼명 fields] ] -> 무조건 2차원 배열
     
     return result[0];
+}
+
+export const getCartItems = async({pids}) => {
+    // pid 갯수에 맞게 ?가 배열로 생성되게 함
+    const strArray = [];
+    pids.forEach(pid => strArray.push("?"));
+
+    const sql = `
+        select pid,
+                pname,
+                price,
+                description,
+                concat("http://localhost:9000/", upload_file ->> '$[0]') as image
+        from shoppy_product
+        where pid in (${strArray.join(",")})
+    `;
+    // console.log('sql --> ', sql);
+
+    const [result] = await db.execute(sql, pids);
+
+    return result;
 }
