@@ -103,3 +103,35 @@ select pid,
         concat("http://localhost:9000/", upload_file ->> '$[0]') as image
 from shoppy_product
 where pid in (3, 5, 6);
+
+show tables;
+select * from shoppy_member;
+select * from shoppy_product;
+
+-- 어떤 회원(pk: id)이 어던 상품(pk: pid)을 장바구니에 담았는지 명확!
+-- shoppy_cart
+-- 컬럼리스트: cid(pk),id(shoppy_member:fk), pid(shoppy_product:fk), size, qty, cdate(장바구니 추가 날짜)
+desc shoppy_member; -- id: varchar(30)
+desc shoppy_product; -- pid: int
+
+drop table shoppy_cart;
+create table shoppy_cart(
+	cid		int				primary key			auto_increment,
+    id		varchar(30)		not null,
+    pid		int				not null,
+    size	varchar(10)		not null,
+    qty		int				not null,
+    cdate	datetime		not null,
+	constraint	fk_id_shoppy_member_id 
+				foreign key(id)
+                references shoppy_member(id),
+	constraint  fk_pid_shoppy_product_pid
+				foreign key(pid)
+                references shoppy_product(pid)
+);
+
+show tables;
+desc shoppy_cart;
+select * from shoppy_cart;
+
+select * from shoppy_member;
