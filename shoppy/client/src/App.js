@@ -34,7 +34,13 @@ export default function App() {
       console.log('로컬스토리지 데이터 작업 도중 에러 발생');
       console.log(error);
     }
-  }); 
+  });
+
+  /** 로컬스토리지 재호출 --> cartList, cartCount 재호출(초기화 작업) **/
+  const refreshStorage = (updateCart, updateCount) => {
+    setCartList(updateCart);
+    setCartCount(updateCount);
+  }
   
   /** cartCount가 업데이트 되면 localStorage에 cartList 저장 **/
   useEffect(() => {
@@ -78,7 +84,7 @@ export default function App() {
             <Route path='/' element={<Layout cartCount={cartCount} />}>
               <Route index element={<Home />} />
               <Route path='/all' element={<Products />} />
-              <Route path='/cart' element={<Carts />} /> {/* localStorage에 정보가 담겨있기 떄문에 데이터 필요x */}
+              <Route path='/cart' element={<Carts refreshStorage={refreshStorage} />} /> {/* localStorage에 정보가 담겨있기 떄문에 데이터 필요x */}
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/products/:pid' element={<DetailProduct addCart={addCart} />} />
