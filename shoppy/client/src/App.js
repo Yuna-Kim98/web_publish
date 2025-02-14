@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp.jsx';
 // import DetailProduct from './pages/DetailProduct.jsx';
 import DetailProduct from './pages/DetailProduct2.jsx';
 import NewProduct from './pages/NewProduct.jsx';
+import CartsDB from './pages/CartsDB.jsx';
 import { AuthProvider } from './auth/AuthContext.js';
 import './styles/shoppy.css';
 
@@ -89,6 +90,7 @@ export default function App() {
               <Route path='/signup' element={<SignUp />} />
               <Route path='/products/:pid' element={<DetailProduct addCart={addCart} />} />
               <Route path='/products/new' element={<NewProduct />} />
+              <Route path='/cartdb' element={<CartsDB />} />
             </Route>
           </Routes>
         </BrowserRouter>
