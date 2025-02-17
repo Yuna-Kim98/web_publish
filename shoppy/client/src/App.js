@@ -10,7 +10,9 @@ import SignUp from './pages/SignUp.jsx';
 import DetailProduct from './pages/DetailProduct2.jsx';
 import NewProduct from './pages/NewProduct.jsx';
 import CartsDB from './pages/CartsDB.jsx';
+import Cart from './pages/Carts.jsx';
 import { AuthProvider } from './auth/AuthContext.js';
+import { CartProvider } from './context/CartContext.js';
 import './styles/shoppy.css';
 
 export default function App() {
@@ -43,10 +45,10 @@ export default function App() {
     setCartCount(updateCount);
   }
   
-  /** cartCount가 업데이트 되면 localStorage에 cartList 저장 **/
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartList));
-  }, [cartCount]);
+  // /** cartCount가 업데이트 되면 localStorage에 cartList 저장 **/
+  // useEffect(() => {
+  //   localStorage.setItem("cartItems", JSON.stringify(cartList));
+  // }, [cartCount]);
 
   /** 장바구니 추가 **/
   const addCart = (cartItem) => {
@@ -79,22 +81,24 @@ export default function App() {
 
   return (
     <div>
-      <AuthProvider> {/* 전역으로 사용해 어디서든 쓸 수 있게 함 */}
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Layout cartCount={cartCount} />}>
-              <Route index element={<Home />} />
-              <Route path='/all' element={<Products />} />
-              <Route path='/cart' element={<Carts refreshStorage={refreshStorage} />} /> {/* localStorage에 정보가 담겨있기 떄문에 데이터 필요x */}
-              <Route path='/login' element={<Login />} />
-              <Route path='/signup' element={<SignUp />} />
-              <Route path='/products/:pid' element={<DetailProduct addCart={addCart} />} />
-              <Route path='/products/new' element={<NewProduct />} />
-              <Route path='/cartdb' element={<CartsDB />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <CartProvider>
+        <AuthProvider> {/* 전역으로 사용해 어디서든 쓸 수 있게 함 */}
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path='/all' element={<Products />} />
+                <Route path='/cart' element={<Cart refreshStorage={refreshStorage} />} /> {/* localStorage에 정보가 담겨있기 떄문에 데이터 필요x */}
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp />} />
+                <Route path='/products/:pid' element={<DetailProduct addCart={addCart} />} />
+                <Route path='/products/new' element={<NewProduct />} />
+                <Route path='/cartdb' element={<CartsDB />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </CartProvider>
     </div>
   );
 }

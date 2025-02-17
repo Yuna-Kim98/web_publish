@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactDom from 'react-dom';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { PiGiftThin } from "react-icons/pi";
 import axios from "axios";
 import Detail from "../components/Detail.jsx";
@@ -8,8 +8,14 @@ import Review from '../components/Review.jsx'
 import QnA2 from "../components/QnA2.jsx";
 import ReturnDelivery from '../components/ReturnDelivery.jsx';
 import ImageList from '../components/ImageList.jsx';
+import { CartContext } from "../context/CartContext.js";
+import { AuthContext } from "../auth/AuthContext.js";
 
-export default function DetailProduct({ addCart }) {
+export default function DetailProduct() {
+    const navigate = useNavigate();
+    const {cartList, setCartList, cartCount, setCartCount} = useContext(CartContext);
+    const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+
     const tabList = [
         {'name': 'DETAIL'},
         {'name': 'REVIEW'},
@@ -38,16 +44,57 @@ export default function DetailProduct({ addCart }) {
         
     //장바구니 추가 버튼 이벤트
     const addCartItem = () => {
-      //장바구니 추가 항목 : { pid, size, qty }
-      // alert(`${pid} --> 장바구니 추가 완료!`);
-      // console.log(product.pid, product.price, size, 1);
-        const cartItem = {
-            pid: product.pid,
-            size: size,
-            qty: 1
-        };
-        addCart(cartItem); // App.js의 addCart 함수 호출
-    };  
+        //장바구니 추가 항목 : { pid, size, qty }
+        if (isLoggedIn) {
+            const cartItem = {
+                pid: product.pid,
+                size: size,
+                qty: 1
+            };
+            const id = localStorage.getItem("user_id");
+            
+            // cartItem에 있는 pid, size를 cartList(로그인 성공시 준비)의 item과 비교 -> 일치하면 qty+1 업데이트, 일치하지 않으면 새로 데이터 추가
+            // some : boolead, find: item 요소
+            const findItem = cartList && cartList.find(item => item.pid === product.pid && item.size === size);
+            
+            if (findItem !== undefined) {
+                console.log('update');
+                axios.put("http://localhost:9000/cart/updateQty", {"cid": findItem.cid})
+                    .then(res => {
+                        if (res.data.result_rows) {
+                            alert("장바구니에 추가되었습니다.");
+                            // const updateList = cartList.map((item) => 
+                                //     item.cid === findItem.cid 
+                            //         ? { ...item, qty: item.qty+1 }
+                            //         : item
+                            // );
+                            // setCartList(updateList);
+
+                        };
+                    })
+                    .catch(err => console.log(err));
+
+                    /** DB 연동 -> cartList 재호출 **/
+                } else {
+                    console.log('insert');
+                    // cartItem을 서버로 전송한 뒤, shoppy_cart에 저장
+                    const formData = {id: id, cartList:[cartItem]};
+                    axios.post("http://localhost:9000/cart/add", formData)
+                    .then(res => {
+                        // console.log(res.data);
+                        if (res.data.result_rows) {
+                            alert("장바구니에 추가되었습니다.");
+                            setCartCount(cartCount+1);
+                            setCartList([...cartList, cartItem]);
+                        };
+                    })
+                    .catch(err => console.log(err));
+                    
+                    /** DB 연동 -> cartList 재호출 **/
+            }
+        } // if
+    }; // addCartItem
+    console.log('cartCount --> ', cartCount);
 
     // 카테고리 선택 & 카테고리 변경 이벤트
     const handleChangeSelect = (name) => {
@@ -132,7 +179,6 @@ export default function DetailProduct({ addCart }) {
                     { category === 'DETAIL' && <Detail imgList={detailImgList} /> }
                     { category === 'REVIEW' && <Review /> }
                     { category === 'Q&A' && <QnA2 /> }
-                    { category === 'RETURN & DELIVERY' && <ReturnDelivery /> }
                 </div>
             </div>
         </div>

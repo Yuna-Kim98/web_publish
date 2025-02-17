@@ -150,10 +150,20 @@ select sc.cid,
         sm.address, 
         sp.pid,
         sp.pname, 
-        sp.price, 
+        format(sp.price, 0) as dprice,
+        sp.price as price,
         sp.description as info, 
         concat("http://localhost:9000/", sp.upload_file ->> '$[0]') as image
 from shoppy_cart sc, shoppy_member sm, shoppy_product sp
 where sc.id = sm.id 
 	and sc.pid = sp.pid
     and sm.id = 'test1';
+
+select * from shoppy_cart;
+truncate table shoppy_cart;
+
+select count(*) as count
+from shoppy_cart
+where id = 'test1234';
+
+select * from shoppy_member;

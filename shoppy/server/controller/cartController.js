@@ -14,3 +14,17 @@ export const getItems = async(req, res) => {
     res.json(result);
     res.end();
 }
+
+/** 아이디별 장바구니 아이템 갯수 조회 **/
+export const getCartCount = async(req, res) => {
+    const result = await repository.getCartCount(req.body);
+    res.json(result);
+    res.end();
+}
+
+/** 장바구니 수량 업데이트 **/
+export const updateQty = async(req, res) => {
+    const result = await repository.updateQty(req.body);
+    res.json(result);
+    res.end();
+}

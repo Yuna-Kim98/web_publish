@@ -40,7 +40,8 @@ export const getItems = async({id}) => {
             sm.address, 
             sp.pid,
             sp.pname, 
-            sp.price, 
+            format(sp.price, 0) as dprice,
+            sp.price as price,
             sp.description as info, 
             concat("http://localhost:9000/", sp.upload_file ->> '$[0]') as image
     from shoppy_cart sc, shoppy_member sm, shoppy_product sp
@@ -51,4 +52,28 @@ export const getItems = async({id}) => {
 
     const [result] = await db.execute(sql, [id]);
     return result;
+}
+
+/** 아이디별 장바구니 아이템 갯수 조회 **/
+export const getCartCount = async({id}) => {
+    const sql = `
+        select count(*) as count
+        from shoppy_cart
+        where id = ?
+    `;
+
+    const [result] = await db.execute(sql, [id]);
+    return result[0];
+}
+
+/** 장바구니 수량 업데이트 **/
+export const updateQty = async({cid}) => {
+    const sql = `
+        update shoppy_cart
+            set qty = qty+1
+        where cid = ?
+    `;
+
+    const [result] = await db.execute(sql, [cid]);
+    return {"result_rows" : result.affectedRows};
 }
