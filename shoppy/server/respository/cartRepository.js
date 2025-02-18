@@ -67,13 +67,30 @@ export const getCartCount = async({id}) => {
 }
 
 /** 장바구니 수량 업데이트 **/
-export const updateQty = async({cid}) => {
+export const updateQty = async({cid, type}) => {
+    console.log('cid ::', cid);
+    console.log('type ::', type);
+
+    const str = type === "increase" ? "qty = qty+1" : "qty = qty-1";
+    
     const sql = `
         update shoppy_cart
-            set qty = qty+1
+            set ${str}
         where cid = ?
     `;
 
     const [result] = await db.execute(sql, [cid]);
+    return {"result_rows" : result.affectedRows};
+}
+
+/** 장바구니 아이템 개별 삭제 **/
+export const deleteItem = async({cid}) => {
+    const sql = `
+        delete from shoppy_cart
+        where cid = ?
+    `;
+
+    const [result] = await db.execute(sql, [cid]);
+
     return {"result_rows" : result.affectedRows};
 }

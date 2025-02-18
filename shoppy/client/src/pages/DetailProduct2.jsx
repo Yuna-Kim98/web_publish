@@ -10,11 +10,13 @@ import ReturnDelivery from '../components/ReturnDelivery.jsx';
 import ImageList from '../components/ImageList.jsx';
 import { CartContext } from "../context/CartContext.js";
 import { AuthContext } from "../auth/AuthContext.js";
+import { useCart } from '../hooks/useCart.js';
 
 export default function DetailProduct() {
     const navigate = useNavigate();
-    const {cartList, setCartList, cartCount, setCartCount} = useContext(CartContext);
-    const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+    const { cartList, cartCount } = useContext(CartContext);
+    const { isLoggedIn } = useContext(AuthContext);
+    const { saveToCartList, updateCartList } = useCart();
 
     const tabList = [
         {'name': 'DETAIL'},
@@ -31,6 +33,7 @@ export default function DetailProduct() {
     const [imgList, setImgList] = useState([]);
     const [detailImgList, setDetailImgList] = useState([]);
     
+    // 선언된 페이지에서만 사용하고 공유하지 않기 때문에 따로 비동기 처리를 하지 않아도 됨
     useEffect(() => {
         axios
             .post("http://localhost:9000/product/detail", {"pid": pid})
@@ -51,48 +54,26 @@ export default function DetailProduct() {
                 size: size,
                 qty: 1
             };
-            const id = localStorage.getItem("user_id");
             
             // cartItem에 있는 pid, size를 cartList(로그인 성공시 준비)의 item과 비교 -> 일치하면 qty+1 업데이트, 일치하지 않으면 새로 데이터 추가
             // some : boolead, find: item 요소
             const findItem = cartList && cartList.find(item => item.pid === product.pid && item.size === size);
-            
             if (findItem !== undefined) {
-                console.log('update');
-                axios.put("http://localhost:9000/cart/updateQty", {"cid": findItem.cid})
-                    .then(res => {
-                        if (res.data.result_rows) {
-                            alert("장바구니에 추가되었습니다.");
-                            // const updateList = cartList.map((item) => 
-                                //     item.cid === findItem.cid 
-                            //         ? { ...item, qty: item.qty+1 }
-                            //         : item
-                            // );
-                            // setCartList(updateList);
-
-                        };
-                    })
-                    .catch(err => console.log(err));
-
-                    /** DB 연동 -> cartList 재호출 **/
-                } else {
-                    console.log('insert');
-                    // cartItem을 서버로 전송한 뒤, shoppy_cart에 저장
-                    const formData = {id: id, cartList:[cartItem]};
-                    axios.post("http://localhost:9000/cart/add", formData)
-                    .then(res => {
-                        // console.log(res.data);
-                        if (res.data.result_rows) {
-                            alert("장바구니에 추가되었습니다.");
-                            setCartCount(cartCount+1);
-                            setCartList([...cartList, cartItem]);
-                        };
-                    })
-                    .catch(err => console.log(err));
-                    
-                    /** DB 연동 -> cartList 재호출 **/
+                // qty+1 업데이트
+                const result = updateCartList(findItem.cid, "increase");
+                result && alert('장바구니에 추가되었습니다!');
+            } else {
+                // 상품 데이터 새로 추가
+                const id = localStorage.getItem("user_id");
+                const formData = {id: id, cartList:[cartItem]};
+                const result = saveToCartList(formData);
+                result && alert('장바구니에 추가되었습니다!');
+                console.log('insert :: cartList -->', cartList);
             }
-        } // if
+        } else {
+            alert("로그인이 필요한 서비스입니다.");
+            navigate("/login");
+        }
     }; // addCartItem
     console.log('cartCount --> ', cartCount);
 

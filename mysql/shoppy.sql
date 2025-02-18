@@ -149,8 +149,7 @@ select sc.cid,
         sm.zipcode, 
         sm.address, 
         sp.pid,
-        sp.pname, 
-        format(sp.price, 0) as dprice,
+        sp.pname,
         sp.price as price,
         sp.description as info, 
         concat("http://localhost:9000/", sp.upload_file ->> '$[0]') as image
@@ -166,4 +165,4 @@ select count(*) as count
 from shoppy_cart
 where id = 'test1234';
 
-select * from shoppy_member;
+select * from shoppy_cart where id = 'test1234';
