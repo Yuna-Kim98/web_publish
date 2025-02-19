@@ -6,9 +6,12 @@ export const CartProvider = ({children}) => {
     // 전역 공간에서 자동 업데이트 되도록 관리
     const [cartList, setCartList] = useState([]); 
     const [cartCount, setCartCount] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     return (
-        <CartContext.Provider value={{cartList, setCartList, cartCount, setCartCount}}>
+        <CartContext.Provider value={{ cartList, setCartList, 
+                                        cartCount, setCartCount,
+                                        totalPrice, setTotalPrice }}>
             {children}
         </CartContext.Provider>
     );

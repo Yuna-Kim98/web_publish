@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext.js";
 import axios from "axios";
 
 export function useCart() { // Custom Hook
-    const {cartList, setCartList, cartCount, setCartCount} = useContext(CartContext);
+    const {cartList, setCartList, cartCount, setCartCount, setTotalPrice} = useContext(CartContext);
 
     /**
      * 함수 생성 - 비동기 로직 & useContext가 관리하는 변수는 await/async를 통해 순서 보장
@@ -22,6 +22,7 @@ export function useCart() { // Custom Hook
         // setCartCount(cartCount+1);
         setCartList(result.data);
         setCartCount(result.data.length);
+        calculateTotalPrice(result.data);
     }
 
     /** 장바구니 새로운 아이템 저장 **/
@@ -76,5 +77,13 @@ export function useCart() { // Custom Hook
         result.data.result_rows && getCartList();
     }
 
-    return { saveToCartList, updateCartList, getCartList, getCount, setCount, deleteCartItem };
+    /** 장바구니 총 주문금액 계산하기 **/
+    // 컴포넌트에서 호출없이 동작만 하기 때문에 따로 반환하지 않음
+    const calculateTotalPrice = (cartList) => {
+        // 실시간 업데이트를 위해 sql이 아닌 함수 사용
+        const totalPrice = cartList.reduce((sum, item) => sum + item.price * item.qty, 0);
+        setTotalPrice(totalPrice);
+    }
+
+    return { saveToCartList, updateCartList, getCartList, getCount, setCount, deleteCartItem, calculateTotalPrice };
 }
