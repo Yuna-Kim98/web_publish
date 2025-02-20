@@ -26,6 +26,7 @@ export default function Header() {
             if (select) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user_id");
+                localStorage.removeItem("tid");
                 setIsLoggedIn(false);
                 navigate('/');
             }

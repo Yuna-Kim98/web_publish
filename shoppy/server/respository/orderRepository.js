@@ -29,3 +29,31 @@ export const getOrderList = async({id}) => {
 
     return result;
 }
+
+/** shoppy_order 테이블에 주문 정보 추가하기 **/
+export const addToOrder = async(formData) => {
+    const result = await Promise.all( // []
+        formData.orderList.map(async(item) => {
+            const values = [
+                formData.tid,
+                formData.id,
+                item.pid,
+                item.size,
+                item.qty,
+                formData.total_price,
+                formData.type
+            ];
+
+            const sql = `
+                insert into shoppy_order(tid, id, pid, size, qty, tprice, type, odate)
+                values (?, ?, ?, ?, ?, ?, ?, current_date())
+            `;
+
+            const [result] = await db.execute(sql, values); // Promise 형태로 실행
+            return result.affectedRows;
+        })
+    );
+    const result_rows = result.reduce((acc, cur) => acc + cur, 0);
+
+    return { "result_rows" : result_rows };
+}

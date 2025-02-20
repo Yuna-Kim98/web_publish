@@ -157,6 +157,27 @@ from shoppy_cart sc, shoppy_member sm, shoppy_product sp
 where sc.id = sm.id 
 	and sc.pid = sp.pid
     and sm.id = 'test1';
+-- view_shoppy_cart 생성
+create view view_cart_list
+as
+select sc.cid, 
+		sc.size, 
+        sc.qty,
+        sm.id,
+        sm.zipcode, 
+        sm.address, 
+        sp.pid,
+        sp.pname, 
+        format(sp.price, 0) as dprice,
+        sp.price as price,
+        sp.description as info, 
+        concat("http://localhost:9000/", sp.upload_file ->> '$[0]') as image
+from shoppy_cart sc, shoppy_member sm, shoppy_product sp
+where sc.id = sm.id 
+	and sc.pid = sp.pid;
+    
+select * from view_cart_list;
+select * from shoppy_member;
 
 select * from shoppy_cart;
 truncate table shoppy_cart;
@@ -170,28 +191,6 @@ delete from shoppy_cart where cid = 3;
 
 -- 주문/결제 페이지 : 출력
 -- shoppy_cart, shoppy_memeber, shoppy_product 조인
-select * from shoppy_member; -- 이름, 핸드폰 번호, 이메일, 우편번호, 주소
-select sc.cid, 
-		sc.size, 
-        sc.qty,
-        sm.id,
-        sm.name,
-        sm.phone,
-        concat(sm.emailname, '@', sm.emaildomain) as email,
-        sm.zipcode, 
-        sm.address, 
-        sp.pid,
-        sp.pname,
-        sp.price as price,
-        sp.description as info, 
-        concat("http://localhost:9000/", sp.upload_file ->> '$[0]') as image
-from shoppy_cart sc, 
-	 shoppy_member sm, 
-     shoppy_product sp
-where sc.id = sm.id 
-	and sc.pid = sp.pid
-    and sm.id = 'test1234';
-
 -- 전체 주문 리스트 뷰 생성 
 create view view_order_list
 as
@@ -215,6 +214,28 @@ from shoppy_cart sc,
 where sc.id = sm.id 
 	and sc.pid = sp.pid;
 
-select *
-from view_order_list
-where id = 'test1234';
+select * from view_order_list;
+
+use hrdb2019;
+show tables;
+-- shoppy_order
+create table shoppy_order(
+	oid		int				primary key		auto_increment,
+    tid		varchar(50)		not null,
+    id		varchar(30)		not null,
+    pid		int				not null,
+    size	varchar(10)		not null,
+    qty		int				not null,
+    tprice  int				not null, -- 주문 총 금액
+    odate	date,
+    type	varchar(30)		not null,
+	constraint	fk_order_id_shoppy_member_id 
+				foreign key(id)
+                references shoppy_member(id),
+	constraint  fk_order_pid_shoppy_product_pid
+				foreign key(pid)
+                references shoppy_product(pid)
+);
+desc shoppy_order;
+truncate shoppy_order;
+select * from shoppy_order;

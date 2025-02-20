@@ -10,9 +10,10 @@ import DetailProduct from './pages/DetailProduct2.jsx';
 import NewProduct from './pages/NewProduct.jsx';
 // import CartsDB from './pages/CartsDB.jsx';
 import Carts from './pages/Carts.jsx';
+import CheckoutInfo from './pages/CheckoutInfo.jsx';
+import PaymentSuccess from './pages/PaymentSuccess.jsx';
 import { AuthProvider } from './auth/AuthContext.js';
 import { CartProvider } from './context/CartContext.js';
-import CheckoutInfo from './pages/CheckoutInfo.jsx';
 import './styles/shoppy.css';
 import { OrderProvider } from './context/OrderContext.js';
 
@@ -96,6 +97,7 @@ export default function App() {
               <Route path='/products/:pid' element={<DetailProduct />} />
               <Route path='/products/new' element={<NewProduct />} />
               <Route path='/checkout' element={<CheckoutInfo />} />
+              <Route path='/payment/success' element={<PaymentSuccess />} />
             </Route>
           </Routes>
         </BrowserRouter>

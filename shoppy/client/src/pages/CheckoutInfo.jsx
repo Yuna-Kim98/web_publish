@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import DaumPostcode from "react-daum-postcode";
+import axios from "axios";
 import { useOrder } from "../hooks/useOrder.js";
 import { AuthContext } from "../auth/AuthContext.js";
 import { OrderContext } from "../context/OrderContext.js";
@@ -62,6 +63,30 @@ export default function CheckoutInfo() {
         }
     };
     //---- DaumPostcode 관련 디자인 및 이벤트 종료 ----//
+
+    // 결제하기 버튼 클릭 이벤트
+    const handlePayment = async() => { // 비동기처리 주의!!!
+        const id = localStorage.getItem("user_id");
+        try {
+            const res = await axios
+                            .post("http://localhost:9000/payment/qr", {
+                                "id": id,
+                                "item_name": "테스트 상품",
+                                "total_amount": 1000
+                            });
+            console.log(res.data);
+            if (res.data.next_redirect_pc_url) {
+                window.location.href = res.data.next_redirect_pc_url; 
+                // 해당 url이 존재할 경우 바로 페이지 호출
+                // 모달창으로도 설정 가능
+                localStorage.setItem("tid", res.data.tid);
+            }
+        } catch (error) {
+            console.log("카카오페이 QR 결제 시 에러 발생", error);
+        }
+        // Promise로 데이터를 호출하면(post, then, catch 사용 시) trycatch 사용x
+        // 위와 같이 변수로 선언해 별도로 데이터를 호출할 경우 trycatch 사용
+    }   
 
     return (
         <div className="cart-container">
@@ -223,7 +248,7 @@ export default function CheckoutInfo() {
             <label for="privacy">개인정보 국외 이전 동의</label>
         </div>
     
-        <button className="pay-button">결제하기</button>
+        <button className="pay-button" onClick={handlePayment}>결제하기</button>
         </div>
     );
 }

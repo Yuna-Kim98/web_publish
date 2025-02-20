@@ -18,7 +18,28 @@ export function useOrder() {
         setMember(result.data[0]);
         calculateTotalPrice(result.data);
 
+        return result.data; // 호출하는 곳에서 결과를 바로 받아 실행하기 위해 반환
     }
     
-    return { getOrderList };
+    /** 주문 완료 정보 저장 **/
+    const saveToOrder = async(orderList, total_price, tid, type) => {
+        // getOrderList();
+        // console.log("saveToOrder :: orderList --> ", orderList);
+        // console.log("saveToOrder :: orderPrice --> ", total_price);
+        const id = localStorage.getItem("user_id");
+        const formData = {
+            "id": id,
+            "tid": tid,
+            "type": type,
+            "total_price": total_price,
+            "orderList": orderList
+        };
+
+        const result = await axios.post("http://localhost:9000/order/add", formData);
+        console.log('order list --> ', result.data);
+        // setOrderList(result.data);
+        // setMember(result.data[0]);
+    }
+
+    return { getOrderList, saveToOrder };
 }
