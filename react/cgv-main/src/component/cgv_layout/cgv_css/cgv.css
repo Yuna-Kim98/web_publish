@@ -217,7 +217,7 @@ ul a:hover {
 /* 전체보기 버튼 */
 .main-content-moviechart .moviechart-menu div:nth-child(2) a,
 .main-content-event > div:first-child > div:nth-child(2) a,
-.main-content-specialhall > div:first-child > a {
+.main-content-specialhall > div:first-child > div:last-child > a {
     border: 1px solid #e2e2e2;
     border-radius: 15px;
     display: inline-block;
@@ -370,7 +370,6 @@ content {
     right: 10px;
     top: 7px;
 }
-/* 전체보기 버튼 수정 */
 .main-content-specialhall > .specialhall-list {
     display: flex;
     justify-content: space-between;
@@ -387,13 +386,9 @@ content {
 .specialhall-list-normal {
     border-top: 1px solid #e9e9e9;
 }
-.main-content-specialhall > .specialhall-list > ul li:last-child {
+.specialhall-list-normal:last-child {
     border-bottom: 1px solid #e9e9e9;
 }
-/* .main-content-specialhall > .specialhall-list > ul li:hover {
-    border: 1px solid #000;
-    border-radius: 10px;
-} */
 .specialhall-list-hover {
     border: 1px solid #000;
     border-radius: 10px;

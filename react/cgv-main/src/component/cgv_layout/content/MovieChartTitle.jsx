@@ -1,3 +1,5 @@
+import { IoIosArrowForward } from "react-icons/io";
+
 export default function MovieChartTilte({text1, text2, text3}) {
     return (
         <div class="moviechart-menu">
@@ -7,7 +9,7 @@ export default function MovieChartTilte({text1, text2, text3}) {
                 <a href=""><span>{text2}</span></a>
             </div>
             <div>
-                <a href="#" target="_parent">{text3}<i class="fa-solid fa-angle-right"></i></a>
+                <a href="#" target="_parent">{text3}<IoIosArrowForward /></a>
             </div>
         </div>
     );
